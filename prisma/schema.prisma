@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+
+model User{
+  id String @id @default(uuid())
+  name String?
+  email String @unique
+  age Int?
+  password String
+  role Role @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  passes Pass[]
+  subscriptions ProgrammeSubscription[]
+  programme Programme[] // for trainers
+  @@map("users")
+}
+
+model PassType{
+  id String @id @default(uuid())
+  type String   // SWIM/GYM
+  minAge Int
+  maxAge Int?
+  isPeak Boolean?
+  durationInDays Int 
+  price Float
+  pass Pass[]
+  @@map("pass_types")
+}
+
+model Pass{
+  id String @id @default(uuid())
+  startDate DateTime @default(now())
+  endDate DateTime
+  user User @relation(fields: [userId], references: [id], onDelete:Cascade)
+  userId String
+  passType PassType @relation(fields: [passTypeId], references: [id], onDelete:Cascade)
+  passTypeId String
+  @@map("passes")
+}
+
+model Programme{
+  id String @id @default(uuid())
+  name String
+  dates DateTime[]
+  price Float
+  venue String
+  slots Int
+  trainer User @relation(fields:[trainerId], references: [id], onDelete:Restrict) // don't delete programme if trainer is deleted, find new trainers
+  trainerId String
+  subscriptions ProgrammeSubscription[]
+  @@map("programmes")
+}
+
+model ProgrammeSubscription{
+  id String @id @default(uuid())
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  userId String
+  programme Programme @relation(fields:[programmeId], references:[id], onDelete:Cascade)
+  programmeId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  @@map("programme_subscriptions")
+}
