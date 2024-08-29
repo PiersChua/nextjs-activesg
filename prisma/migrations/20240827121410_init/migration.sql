@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
+-- CreateEnum
+CREATE TYPE "PassCategory" AS ENUM ('SWIM', 'GYM');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
@@ -10,7 +13,7 @@ CREATE TABLE "users" (
     "password" TEXT NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -18,9 +21,9 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "pass_types" (
     "id" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
+    "category" "PassCategory" NOT NULL,
     "minAge" INTEGER NOT NULL,
-    "maxAge" INTEGER,
+    "maxAge" INTEGER NOT NULL,
     "isPeak" BOOLEAN,
     "durationInDays" INTEGER NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
@@ -58,7 +61,7 @@ CREATE TABLE "programme_subscriptions" (
     "userId" TEXT NOT NULL,
     "programmeId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "programme_subscriptions_pkey" PRIMARY KEY ("id")
 );
