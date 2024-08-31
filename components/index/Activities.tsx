@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Box,
   Divider,
@@ -13,7 +12,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
 const Activities = () => {
   return (
-    <Box my={10} id="activities">
+    <Box pt="5em" id="activities">
       <Flex justifyContent="space-between" alignItems="center">
         <Box>
           <Box
@@ -28,67 +27,46 @@ const Activities = () => {
               </Text>{" "}
             </Text>
           </Box>
-          <Flex direction="column" gap={10}>
-            <Flex direction="column" gap={2}>
-              <Stack direction="row" align="center" spacing={0}>
-                <Text
-                  fontWeight="semibold"
-                  sx={{ fontSize: "clamp(14px, 3vw, 32px)" }}
-                >
-                  Fitpass
-                </Text>
-                <IconButton
-                  bg="inherit"
-                  aria-label="Search"
+          <Flex direction="column" gap="2em">
+            {activityItems.map((item, idx) => (
+              <Flex key={idx} direction="column" gap={2}>
+                <Stack
+                  _hover={{
+                    "> .icon-button": {
+                      transform: "translateX(10px)",
+                      color: "#F95738",
+                      bg: "inherit",
+                    },
+                    cursor: "pointer",
+                    color: "#F95738",
+                    transition: "0.3s",
+                  }}
                   as="a"
-                  icon={<Icon as={FaArrowRightLong} />}
-                />
-              </Stack>
-
-              <Divider borderColor="#000000" />
-              <Text sx={{ fontSize: "clamp(10px, 2vw, 20px)" }}>
-                Unlock access to gyms and swimming pools across Singapore
-              </Text>
-            </Flex>
-            <Flex direction="column" gap={2}>
-              <Stack direction="row" align="center" spacing={0}>
-                <Text
-                  fontWeight="semibold"
-                  sx={{ fontSize: "clamp(14px, 3vw, 32px)" }}
+                  href={item.href}
+                  direction="row"
+                  align="center"
+                  spacing={0}
                 >
-                  PlaySpace
+                  <Text
+                    fontWeight="semibold"
+                    sx={{ fontSize: "clamp(14px, 3vw, 32px)" }}
+                  >
+                    {item.title}
+                  </Text>
+                  <IconButton
+                    className="icon-button"
+                    bg="inherit"
+                    aria-label="Search"
+                    as="span"
+                    icon={<Icon as={FaArrowRightLong} />}
+                  />
+                </Stack>
+                <Divider borderColor="#000000" />
+                <Text sx={{ fontSize: "clamp(10px, 2vw, 20px)" }}>
+                  {item.desc}
                 </Text>
-                <IconButton
-                  aria-label="Search"
-                  as="a"
-                  icon={<Icon as={FaArrowRightLong} />}
-                />
-              </Stack>
-              <Divider borderColor="#000000" />
-              <Text sx={{ fontSize: "clamp(10px, 2vw, 20px)" }}>
-                Reserve a spot at your favourite sports facilities
-              </Text>
-            </Flex>
-            <Flex direction="column" gap={2}>
-              <Stack direction="row" align="center" spacing={0}>
-                <Text
-                  fontWeight="semibold"
-                  sx={{ fontSize: "clamp(14px, 3vw, 32px)" }}
-                >
-                  ProActive
-                </Text>
-                <IconButton
-                  aria-label="Search"
-                  as="a"
-                  icon={<Icon as={FaArrowRightLong} />}
-                />
-              </Stack>
-              <Divider borderColor="#000000" />
-              <Text sx={{ fontSize: "clamp(10px, 2vw, 20px)" }}>
-                Participate in a wide range of programs designed to keep you
-                moving
-              </Text>
-            </Flex>
+              </Flex>
+            ))}
           </Flex>
         </Box>
         <Image
@@ -102,5 +80,23 @@ const Activities = () => {
     </Box>
   );
 };
+
+const activityItems = [
+  {
+    title: "FitPass",
+    desc: "Unlock access to gyms and swimming pools across Singapore",
+    href: "#",
+  },
+  {
+    title: "PlaySpace",
+    desc: "Reserve a spot at your favourite sports facilities",
+    href: "#",
+  },
+  {
+    title: "ProActive",
+    desc: "Participate in a wide range of programs designed to keep you moving",
+    href: "#",
+  },
+];
 
 export default Activities;

@@ -40,7 +40,7 @@ const Hero = () => {
           alt="hero"
           width={0}
           height={0}
-          style={{ width: "auto", height: "clamp(200px, 40vw, 900px);" }}
+          style={{ width: "auto", height: "clamp(200px, 40vw, 900px)" }}
         />
       </Flex>
     </Box>

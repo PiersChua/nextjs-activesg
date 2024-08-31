@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import { Providers } from "@/app/providers";
+import { Container } from "@chakra-ui/react";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import { getSession } from "@/utils/getSession";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,18 +13,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getSession();
+  const user = session?.user;
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Container maxW="1400px">
+            <Navbar user={user} />
+            {children}
+          </Container>
+        </Providers>
       </body>
     </html>
   );

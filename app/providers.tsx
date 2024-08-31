@@ -1,5 +1,6 @@
 "use client";
 
+import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider, StyleFunctionProps } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import "@fontsource/poppins";
