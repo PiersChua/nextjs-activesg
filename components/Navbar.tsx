@@ -15,13 +15,14 @@ import { IoMdClose } from "react-icons/io";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { disableNav } from "@/utils/disableNav";
-import { User } from "next-auth";
+import { logout } from "@/app/action/user";
+import { signOut } from "@/auth";
 // import Link from "next/link";
 
 interface NavbarProps {
-  user?: User;
+  isLoggedIn: boolean;
 }
-const Navbar = ({ user }: NavbarProps) => {
+const Navbar = ({ isLoggedIn }: NavbarProps) => {
   const path = usePathname();
   const { isOpen, onToggle } = useDisclosure();
   return (
@@ -64,30 +65,61 @@ const Navbar = ({ user }: NavbarProps) => {
               display={{ base: "none", md: "flex" }}
             >
               <DesktopNav />
-              <Button
-                as="a"
-                color="#000000"
-                bg="#F4D35E"
-                href={!user ? "/signup" : "/profile"}
-                _hover={{
-                  bg: "#D9C287",
-                }}
-              >
-                {!user ? "Sign Up" : "Profile"}
-              </Button>
+              {isLoggedIn ? (
+                <form action={logout}>
+                  <Button
+                    type="submit"
+                    color="#000000"
+                    bg="#F4D35E"
+                    _hover={{
+                      bg: "#D9C287",
+                    }}
+                  >
+                    Sign out
+                  </Button>
+                </form>
+              ) : (
+                <Button
+                  as="a"
+                  color="#000000"
+                  bg="#F4D35E"
+                  href="/signup"
+                  _hover={{
+                    bg: "#D9C287",
+                  }}
+                >
+                  Sign up
+                </Button>
+              )}
             </Flex>
-            <Button
-              display={{ base: "flex", md: "none" }}
-              as="a"
-              color="#000000"
-              bg="#F4D35E"
-              href={!user ? "/signup" : "/profile"}
-              _hover={{
-                bg: "#D9C287",
-              }}
-            >
-              {!user ? "Sign Up" : "Profile"}
-            </Button>
+            <Flex display={{ base: "flex", md: "none" }}>
+              {isLoggedIn ? (
+                <form action={logout}>
+                  <Button
+                    type="submit"
+                    color="#000000"
+                    bg="#F4D35E"
+                    _hover={{
+                      bg: "#D9C287",
+                    }}
+                  >
+                    Sign out
+                  </Button>
+                </form>
+              ) : (
+                <Button
+                  as="a"
+                  color="#000000"
+                  bg="#F4D35E"
+                  href="/signup"
+                  _hover={{
+                    bg: "#D9C287",
+                  }}
+                >
+                  Sign up
+                </Button>
+              )}
+            </Flex>
           </Flex>
           <Collapse in={isOpen} animateOpacity>
             <MobileNav />

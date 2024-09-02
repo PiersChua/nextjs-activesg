@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { hash } from "bcryptjs";
 import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { signIn, signOut } from "@/auth";
-import { CredentialsSignin } from "next-auth";
+import { AuthError, CredentialsSignin } from "next-auth";
 import * as z from "zod";
 import { LoginSchema, SignUpSchema } from "@/schemas";
 
@@ -47,15 +47,22 @@ const login = async (values: z.infer<typeof LoginSchema>) => {
   const password = formData.password;
   try {
     await signIn("credentials", {
-      redirect: false,
-      callbackUrl: "/",
+      redirectTo: "/",
       email,
       password,
     });
   } catch (error) {
-    return { error: "Invalid fields" };
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return { error: "Invalid credentials" };
+        default: {
+          return { error: "Something went wrong" };
+        }
+      }
+    }
+    throw error;
   }
-  redirect("/");
 };
 
 const loginWithGoogle = async () => {

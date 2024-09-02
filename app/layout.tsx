@@ -18,14 +18,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getSession();
-  const user = session?.user;
+  const isLoggedIn = !!(await getSession());
   return (
     <html lang="en">
       <body>
         <Providers>
           <Container maxW="1400px">
-            <Navbar user={user} />
+            <Navbar isLoggedIn={isLoggedIn} />
             {children}
           </Container>
         </Providers>
