@@ -24,20 +24,21 @@ enum PassCategory {
 }
 
 model User {
-  id            String                  @id @default(uuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String                  @unique
+  email         String    @unique
   emailVerified DateTime?
   age           Int?
   password      String?
-  role          Role                    @default(USER)
+  role          Role      @default(USER)
   image         String?
+
   accounts      Account[]
   passes        Pass[]
   subscriptions ProgrammeSubscription[]
   programme     Programme[] // for trainers
   createdAt     DateTime                @default(now())
-  updatedAt     DateTime
+  updatedAt     DateTime                @updatedAt
 
   @@map("users")
 }
@@ -114,7 +115,7 @@ model ProgrammeSubscription {
   programme   Programme @relation(fields: [programmeId], references: [id], onDelete: Cascade)
   programmeId String    @unique
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime
+  updatedAt   DateTime  @updatedAt
 
   @@map("programme_subscriptions")
 }

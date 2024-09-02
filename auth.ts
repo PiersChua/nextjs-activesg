@@ -18,14 +18,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   ...authConfig,
-  pages: {
-    signIn: "/login",
-    // signIn: "/auth/signin",
-    // signOut: "/auth/signout",
-    // error: "/auth/error",
-    // verifyRequest: "/auth/verify-request",
-    // newUser: "/auth/new-user",
-  },
+  // pages: {
+  //   signIn: "/login",
+  //   // signIn: "/auth/signin",
+  //   // signOut: "/auth/signout",
+  //   // error: "/auth/error",
+  //   // verifyRequest: "/auth/verify-request",
+  //   // newUser: "/auth/new-user",
+  // },
   callbacks: {
     // token in session parameters is identical to the one in jwt
     async session({ session, token }) {
@@ -49,6 +49,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!existingUser) return token;
       token.role = existingUser.role;
       return token;
+    },
+    async signIn({ account, profile }) {
+      return true;
     },
   },
 });

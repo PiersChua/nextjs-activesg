@@ -31,7 +31,6 @@ const signUp = async (values: z.infer<typeof SignUpSchema>) => {
       age: age,
       email: email,
       password: hashedPassword,
-      updatedAt: new Date(),
     },
   });
   redirect("/login");
@@ -66,7 +65,9 @@ const login = async (values: z.infer<typeof LoginSchema>) => {
 };
 
 const loginWithGoogle = async () => {
-  await signIn("google");
+  await signIn("google", {
+    redirectTo: "/",
+  });
 };
 
 const logout = async () => {
