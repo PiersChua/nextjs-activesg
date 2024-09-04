@@ -9,7 +9,7 @@ const FormHeader = ({ text }: HeaderProps) => {
     <Text
       textAlign="center"
       fontWeight="semibold"
-      sx={{ fontSize: "clamp(18px, 5vw, 64px)" }}
+      fontSize={{ base: "40px", md: "60px" }}
     >
       {text}
     </Text>

@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import NextAuth from "next-auth";
 import authConfig from "./auth.config";
 
@@ -9,16 +8,25 @@ const publicRoutes = ["/login", "/signup", "/"];
 const apiAuthRoutes = "/api/auth";
 
 export default auth((req) => {
-  // const path = req.nextUrl.pathname;
-  // const isLoggedIn = !!req.auth; // retrieve the session
-  // const isApiAuthRoute = path.startsWith(apiAuthRoutes);
-  // const isPublicRoute = publicRoutes.includes(path);
-  // const isProtectedRoute = protectedRoutes.includes(path);
+  const path = req.nextUrl.pathname;
+  const isLoggedIn = !!req.auth; // retrieve the session
+  const isApiAuthRoute = path.startsWith(apiAuthRoutes);
+  const isPublicRoute = publicRoutes.includes(path);
+  const isProtectedRoute = protectedRoutes.includes(path);
 
-  // // redirect users to login page when accessing protected routes if not logged in
-  // if (!isLoggedIn && !isPublicRoute) {
-  //   return Response.redirect(new URL("/login", req.nextUrl));
-  // }
+  if (isApiAuthRoute) {
+    return;
+  }
+  if (isLoggedIn && isProtectedRoute) {
+    if (!req.auth?.user.age) {
+      return Response.redirect(new URL("/userprofile", req.nextUrl));
+    }
+  }
+  // redirect users to login page when accessing protected routes if not logged in
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL("/login", req.nextUrl));
+  }
+  return;
 });
 
 // middleware is invoked all on paths

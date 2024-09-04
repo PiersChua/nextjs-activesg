@@ -1,33 +1,33 @@
-import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Container, Divider, Flex, Text } from "@chakra-ui/react";
 const About = () => {
   return (
-    <Box pt="5em" id="about">
-      <Box>
-        <Text
-          mb="0.5em"
-          fontWeight="semibold"
-          sx={{ fontSize: "clamp(18px, 5vw, 64px)" }}
-        >
-          Who are we?
-        </Text>
-        <Flex direction="column" gap="2em">
-          {aboutItems.map((item, idx) => (
-            <Flex key={idx} direction="column" gap={2}>
-              <Text
-                fontWeight="semibold"
-                sx={{ fontSize: "clamp(14px, 3vw, 32px)" }}
-                mb={2}
-              >
-                {item.title}
-              </Text>
-              <Divider borderColor="#000000" />
-              <Text sx={{ fontSize: "clamp(10px, 2vw, 20px)" }}>
-                {item.desc}
-              </Text>
-            </Flex>
-          ))}
-        </Flex>
-      </Box>
+    <Box py="5em" id="about">
+      <Container maxW="1400px">
+        <Box>
+          <Text
+            mb="0.5em"
+            fontWeight="semibold"
+            fontSize={{ base: "40px", md: "60px" }}
+          >
+            Who are we?
+          </Text>
+          <Flex direction="column" gap="2em">
+            {aboutItems.map((item, idx) => (
+              <Flex key={idx} direction="column" gap={2}>
+                <Text
+                  fontWeight="semibold"
+                  fontSize={{ base: "20px", md: "24px" }}
+                  mb={2}
+                >
+                  {item.title}
+                </Text>
+                <Divider borderColor="#000000" />
+                <Text fontSize={{ base: "16px", md: "20px" }}>{item.desc}</Text>
+              </Flex>
+            ))}
+          </Flex>
+        </Box>
+      </Container>
     </Box>
   );
 };

@@ -53,7 +53,6 @@ const LoginForm = () => {
             <Input
               disabled={isPending}
               {...register("email")}
-              name="email"
               placeholder="john@example.com"
             />
             {errors?.email?.message && (
@@ -66,7 +65,6 @@ const LoginForm = () => {
               <Input
                 disabled={isPending}
                 {...register("password")}
-                name="password"
                 type={show ? "text" : "password"}
                 placeholder="At least 8 characters"
               />

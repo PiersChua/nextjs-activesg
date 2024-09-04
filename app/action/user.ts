@@ -68,10 +68,12 @@ const loginWithGoogle = async () => {
   await signIn("google", {
     redirectTo: "/",
   });
+  // redirect("/");
 };
 
 const logout = async () => {
-  await signOut();
-  redirect("/");
+  await signOut({
+    redirectTo: "/",
+  });
 };
 export { signUp, login, loginWithGoogle, logout };

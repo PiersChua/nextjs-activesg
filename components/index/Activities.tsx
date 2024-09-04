@@ -7,17 +7,18 @@ import {
   IconButton,
   Icon,
   Stack,
+  Container,
 } from "@chakra-ui/react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
 const Activities = () => {
   return (
-    <Box pt="5em" id="activities">
-      <Flex justifyContent="space-between" alignItems="center">
+    <Box bg="var(--beige-shade-1)" py="5em" id="activities">
+      <Container maxW="1400px">
         <Box>
           <Box
             fontWeight="semibold"
-            sx={{ fontSize: "clamp(18px, 5vw, 64px)" }}
+            fontSize={{ base: "40px", md: "60px" }}
             mb="0.5em"
           >
             <Text>
@@ -49,7 +50,7 @@ const Activities = () => {
                 >
                   <Text
                     fontWeight="semibold"
-                    sx={{ fontSize: "clamp(14px, 3vw, 32px)" }}
+                    fontSize={{ base: "20px", md: "24px" }}
                   >
                     {item.title}
                   </Text>
@@ -62,21 +63,12 @@ const Activities = () => {
                   />
                 </Stack>
                 <Divider borderColor="#000000" />
-                <Text sx={{ fontSize: "clamp(10px, 2vw, 20px)" }}>
-                  {item.desc}
-                </Text>
+                <Text fontSize={{ base: "16px", md: "20px" }}>{item.desc}</Text>
               </Flex>
             ))}
           </Flex>
         </Box>
-        <Image
-          src="/activities.svg"
-          alt="activities"
-          width={0}
-          height={0}
-          style={{ width: "auto", height: "clamp(200px, 40vw, 900px)" }}
-        />
-      </Flex>
+      </Container>
     </Box>
   );
 };

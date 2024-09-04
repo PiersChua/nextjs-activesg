@@ -9,6 +9,7 @@ import {
   IconButton,
   Stack,
   useDisclosure,
+  Container,
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
@@ -16,8 +17,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { disableNav } from "@/utils/disableNav";
 import { logout } from "@/app/action/user";
-import { signOut } from "@/auth";
-// import Link from "next/link";
 
 interface NavbarProps {
   isLoggedIn: boolean;
@@ -37,93 +36,95 @@ const Navbar = ({ isLoggedIn }: NavbarProps) => {
           bg="var(--beige)"
           zIndex="100"
         >
-          <Flex justifyContent="space-between" alignItems="center">
-            <Flex display={{ base: "flex", md: "none" }}>
-              <IconButton
-                _hover={{ boxShadow: "outline" }}
-                onClick={onToggle}
-                icon={
-                  isOpen ? (
-                    <Icon as={IoMdClose} w={8} h={8} />
-                  ) : (
-                    <Icon as={GiHamburgerMenu} w={8} h={8} />
-                  )
-                }
-                variant="ghost"
-                aria-label="Toggle Navigation"
+          <Container maxW="1400px">
+            <Flex justifyContent="space-between" alignItems="center">
+              <Flex display={{ base: "flex", md: "none" }}>
+                <IconButton
+                  _hover={{ boxShadow: "outline" }}
+                  onClick={onToggle}
+                  icon={
+                    isOpen ? (
+                      <Icon as={IoMdClose} w={8} h={8} />
+                    ) : (
+                      <Icon as={GiHamburgerMenu} w={8} h={8} />
+                    )
+                  }
+                  variant="ghost"
+                  aria-label="Toggle Navigation"
+                />
+              </Flex>
+              <Image
+                width="150"
+                height="150"
+                src="fitsg-high-resolution-logo-transparent.svg"
+                alt="FitSG"
               />
-            </Flex>
-            <Image
-              width="150"
-              height="150"
-              src="fitsg-high-resolution-logo-transparent.svg"
-              alt="FitSG"
-            />
-            <Flex
-              alignItems="center"
-              gap={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              <DesktopNav />
-              {isLoggedIn ? (
-                <form action={logout}>
+              <Flex
+                alignItems="center"
+                gap={4}
+                display={{ base: "none", md: "flex" }}
+              >
+                <DesktopNav />
+                {isLoggedIn ? (
+                  <form action={logout}>
+                    <Button
+                      type="submit"
+                      color="#000000"
+                      bg="#F4D35E"
+                      _hover={{
+                        bg: "#D9C287",
+                      }}
+                    >
+                      Sign out
+                    </Button>
+                  </form>
+                ) : (
                   <Button
-                    type="submit"
+                    as="a"
                     color="#000000"
                     bg="#F4D35E"
+                    href="/signup"
                     _hover={{
                       bg: "#D9C287",
                     }}
                   >
-                    Sign out
+                    Sign up
                   </Button>
-                </form>
-              ) : (
-                <Button
-                  as="a"
-                  color="#000000"
-                  bg="#F4D35E"
-                  href="/signup"
-                  _hover={{
-                    bg: "#D9C287",
-                  }}
-                >
-                  Sign up
-                </Button>
-              )}
-            </Flex>
-            <Flex display={{ base: "flex", md: "none" }}>
-              {isLoggedIn ? (
-                <form action={logout}>
+                )}
+              </Flex>
+              <Flex display={{ base: "flex", md: "none" }}>
+                {isLoggedIn ? (
+                  <form action={logout}>
+                    <Button
+                      type="submit"
+                      color="#000000"
+                      bg="#F4D35E"
+                      _hover={{
+                        bg: "#D9C287",
+                      }}
+                    >
+                      Sign out
+                    </Button>
+                  </form>
+                ) : (
                   <Button
-                    type="submit"
+                    as="a"
                     color="#000000"
                     bg="#F4D35E"
+                    href="/signup"
                     _hover={{
                       bg: "#D9C287",
                     }}
                   >
-                    Sign out
+                    Sign up
                   </Button>
-                </form>
-              ) : (
-                <Button
-                  as="a"
-                  color="#000000"
-                  bg="#F4D35E"
-                  href="/signup"
-                  _hover={{
-                    bg: "#D9C287",
-                  }}
-                >
-                  Sign up
-                </Button>
-              )}
+                )}
+              </Flex>
             </Flex>
-          </Flex>
-          <Collapse in={isOpen} animateOpacity>
-            <MobileNav />
-          </Collapse>
+            <Collapse in={isOpen} animateOpacity>
+              <MobileNav />
+            </Collapse>
+          </Container>
         </Box>
       )}
     </>

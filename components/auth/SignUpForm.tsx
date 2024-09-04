@@ -49,28 +49,24 @@ const SignUpForm = () => {
       <FormHeader text="Sign Up" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
-          <Stack direction="row">
-            <FormControl isInvalid={!!errors?.name?.message}>
-              <FormLabel>Name</FormLabel>
-              <Input
-                disabled={isPending}
-                {...register("name")}
-                name="name"
-                placeholder="Piers Chua"
-                type="text"
-              />
-              {errors?.name?.message && (
-                <FormErrorMessage>{errors.name.message}</FormErrorMessage>
-              )}
-            </FormControl>
-          </Stack>
+          <FormControl isInvalid={!!errors?.name?.message}>
+            <FormLabel>Name</FormLabel>
+            <Input
+              disabled={isPending}
+              {...register("name")}
+              placeholder="Piers Chua"
+              type="text"
+            />
+            {errors?.name?.message && (
+              <FormErrorMessage>{errors.name.message}</FormErrorMessage>
+            )}
+          </FormControl>
           <FormControl isInvalid={!!errors?.age?.message}>
             <FormLabel>Age</FormLabel>
             <NumberInput>
               <NumberInputField
                 disabled={isPending}
                 {...register("age")}
-                name="age"
                 placeholder="19"
               />
               <NumberInputStepper>
@@ -88,7 +84,6 @@ const SignUpForm = () => {
             <Input
               disabled={isPending}
               {...register("email")}
-              name="email"
               placeholder="piers@example.com"
             />
             {errors?.email?.message && (
@@ -101,7 +96,6 @@ const SignUpForm = () => {
               <Input
                 disabled={isPending}
                 {...register("password")}
-                name="password"
                 type={show ? "text" : "password"}
                 placeholder="At least 8 characters"
               />
