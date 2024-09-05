@@ -38,7 +38,7 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
       />
 
       <Box textStyle="h1" mb={2} color="white">
-        <Text>Don't Say Bojio</Text>
+        <Text>Don&apos;t Say Bojio</Text>
         <Text>
           Come{" "}
           <Text as="span" color="#F95738">

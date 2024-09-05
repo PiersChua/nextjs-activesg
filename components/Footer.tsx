@@ -15,14 +15,17 @@ const Footer = () => {
   return (
     <>
       {!disableNav.includes(path) && (
-        <Box p={5} bg="#D6BFAF">
+        <Box mt="auto" p={5} bg="#D6BFAF">
           <Flex wrap="wrap" gap={5}>
-            <Image
-              src="/fitsg-high-resolution-logo-transparent.svg"
-              width="200"
-              height="200"
-              alt="Fit SG"
-            />
+            <Flex flex="1 1 200px">
+              <Image
+                src="/fitsg-high-resolution-logo-transparent.svg"
+                width="200"
+                height="200"
+                alt="Fit SG"
+              />
+            </Flex>
+
             {footerColumns.map((column, index) => (
               <Flex key={index} direction="column" gap={3} flex="1 1 200px">
                 {column.map((item, index) => (
@@ -39,7 +42,7 @@ const Footer = () => {
             ))}
             <Flex gap={3} alignItems="center" flex="1 1 200px">
               {socialItems.map((item, index) => (
-                <Link href={item.href} key={index}>
+                <Link target="_blank" href={item.href} key={index}>
                   <Icon
                     title={item.tooltip}
                     _hover={{ color: "#f95738", transition: "0.3s color" }}
@@ -73,8 +76,16 @@ const footerItems = [
 const socialItems = [
   { icon: FaInstagram, href: "/instagram", tooltip: "Check out our instagram" },
   { icon: FaFacebookF, href: "/facebook", tooltip: "Check out our facebook" },
-  { icon: FaLinkedinIn, href: "/linkedin", tooltip: "Check out our linkedin" },
-  { icon: FaGithub, href: "/github", tooltip: "Check out our github" },
+  {
+    icon: FaLinkedinIn,
+    href: "https://www.linkedin.com/in/piers-chua/",
+    tooltip: "Check out our linkedin",
+  },
+  {
+    icon: FaGithub,
+    href: "https://github.com/PiersChua",
+    tooltip: "Check out our github",
+  },
 ];
 
 const sliceArrays = (array: typeof footerItems, size = 4) => {

@@ -10,6 +10,11 @@ import {
   Stack,
   useDisclosure,
   Container,
+  Menu,
+  MenuButton,
+  Avatar,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
@@ -29,12 +34,13 @@ const Navbar = ({ isLoggedIn }: NavbarProps) => {
       {!disableNav.includes(path) && (
         <Box
           boxShadow="0 5px 20px rgba(0,0,0,0.2)"
+          bg="#faf0cacb"
+          backdropFilter="blur(10px)"
           position="sticky"
           top="0"
           p={5}
           fontSize="20px"
           fontWeight="medium"
-          bg="var(--beige)"
           zIndex="100"
         >
           <Flex justifyContent="space-between" alignItems="center">
@@ -65,60 +71,10 @@ const Navbar = ({ isLoggedIn }: NavbarProps) => {
               display={{ base: "none", md: "flex" }}
             >
               <DesktopNav />
-              {isLoggedIn ? (
-                <form action={logout}>
-                  <Button
-                    type="submit"
-                    color="#000000"
-                    bg="#F4D35E"
-                    _hover={{
-                      bg: "#D9C287",
-                    }}
-                  >
-                    Sign out
-                  </Button>
-                </form>
-              ) : (
-                <Button
-                  as="a"
-                  color="#000000"
-                  bg="#F4D35E"
-                  href="/signup"
-                  _hover={{
-                    bg: "#D9C287",
-                  }}
-                >
-                  Sign up
-                </Button>
-              )}
+              {isLoggedIn ? <Profile /> : <SignUpButton />}
             </Flex>
             <Flex display={{ base: "flex", md: "none" }}>
-              {isLoggedIn ? (
-                <form action={logout}>
-                  <Button
-                    type="submit"
-                    color="#000000"
-                    bg="#F4D35E"
-                    _hover={{
-                      bg: "#D9C287",
-                    }}
-                  >
-                    Sign out
-                  </Button>
-                </form>
-              ) : (
-                <Button
-                  as="a"
-                  color="#000000"
-                  bg="#F4D35E"
-                  href="/signup"
-                  _hover={{
-                    bg: "#D9C287",
-                  }}
-                >
-                  Sign up
-                </Button>
-              )}
+              {isLoggedIn ? <Profile /> : <SignUpButton />}
             </Flex>
           </Flex>
           <Collapse in={isOpen} animateOpacity>
@@ -148,13 +104,7 @@ const DesktopNav = () => {
 
 const MobileNav = () => {
   return (
-    <Stack
-      bg="#FAF0CA"
-      zIndex="999"
-      direction="column"
-      p={4}
-      display={{ md: "none" }}
-    >
+    <Stack direction="column" p={4} display={{ md: "none" }}>
       <Stack
         flexDirection="column"
         alignItems="center"
@@ -164,7 +114,7 @@ const MobileNav = () => {
       >
         {navItems.map((navItem) => (
           <Link
-            _hover={{ color: "#f95738" }}
+            _hover={{ color: "#f95738", transition: "0.3s color" }}
             key={navItem.label}
             href={navItem.href}
           >
@@ -173,6 +123,53 @@ const MobileNav = () => {
         ))}
       </Stack>
     </Stack>
+  );
+};
+
+const Profile = () => {
+  return (
+    <Menu>
+      <MenuButton
+        as={Button}
+        rounded={"full"}
+        variant={"link"}
+        cursor={"pointer"}
+        minW={0}
+      >
+        <Avatar
+          size={"sm"}
+          src={
+            "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+          }
+        />
+      </MenuButton>
+      <MenuList>
+        <form action={logout}>
+          <MenuItem as="button" type="submit">
+            Sign out
+          </MenuItem>
+        </form>
+        <MenuItem as="a" href="/user-profile">
+          Profile
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  );
+};
+
+const SignUpButton = () => {
+  return (
+    <Button
+      as="a"
+      color="#000000"
+      bg="#F4D35E"
+      href="/signup"
+      _hover={{
+        bg: "#D9C287",
+      }}
+    >
+      Sign up
+    </Button>
   );
 };
 
