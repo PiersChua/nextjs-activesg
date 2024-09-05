@@ -24,4 +24,10 @@ const ContactSchema = z.object({
   message: z.string().min(50, "Message is too short"),
 });
 
-export { LoginSchema, SignUpSchema, ContactSchema };
+const ProfileSchema = z.object({
+  name: z.string().min(2, "Name is too short"),
+  age: z.coerce.number().gte(10, "Age must be at least 10"),
+  email: z.string().email("Please enter a valid email address"),
+});
+
+export { LoginSchema, SignUpSchema, ContactSchema, ProfileSchema };

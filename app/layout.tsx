@@ -3,6 +3,7 @@ import { Providers } from "@/app/providers";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { getSessionUser } from "@/utils/getSessionUser";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Fit SG",
@@ -23,7 +24,8 @@ export default async function RootLayout({
       <body>
         <Providers>
           <Navbar isLoggedIn={isLoggedIn} />
-          {children}
+          <main>{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

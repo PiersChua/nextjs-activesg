@@ -2,3 +2,12 @@
   --beige: #faf0ca;
   --beige-shade-1: #e1d8b5;
 }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}

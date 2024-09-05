@@ -18,9 +18,9 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { FaGoogle } from "react-icons/fa";
-import FormRedirect from "@/components/auth/FormRedirect";
-import FormButton from "@/components/auth/FormButton";
-import FormHeader from "@/components/auth/FormHeader";
+import FormRedirect from "@/components/Form/FormRedirect";
+import FormButton from "@/components/Form/FormButton";
+import FormHeader from "@/components/Form/FormHeader";
 import FormMessage from "./FormMessage";
 
 const LoginForm = () => {

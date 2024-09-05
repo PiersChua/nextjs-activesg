@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { useState, useTransition } from "react";
 import * as z from "zod";
-import FormButton from "@/components/auth/FormButton";
-import FormMessage from "@/components/auth/FormMessage";
+import FormButton from "@/components/Form/FormButton";
+import FormMessage from "@/components/Form/FormMessage";
 import { ContactSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

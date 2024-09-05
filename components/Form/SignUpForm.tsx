@@ -17,10 +17,10 @@ import {
 } from "@chakra-ui/react";
 import { useState, useTransition } from "react";
 import * as z from "zod";
-import FormRedirect from "@/components/auth/FormRedirect";
-import FormButton from "@/components/auth/FormButton";
-import FormHeader from "@/components/auth/FormHeader";
-import FormMessage from "@/components/auth/FormMessage";
+import FormRedirect from "@/components/Form/FormRedirect";
+import FormButton from "@/components/Form/FormButton";
+import FormHeader from "@/components/Form/FormHeader";
+import FormMessage from "@/components/Form/FormMessage";
 import { SignUpSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

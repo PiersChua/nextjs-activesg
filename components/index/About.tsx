@@ -4,25 +4,17 @@ const About = () => {
     <Box py="5em" id="about">
       <Container maxW="1400px">
         <Box>
-          <Text
-            mb="0.5em"
-            fontWeight="semibold"
-            fontSize={{ base: "40px", md: "60px" }}
-          >
+          <Text mb="0.5em" fontWeight="semibold" textStyle="h1">
             Who are we?
           </Text>
           <Flex direction="column" gap="2em">
             {aboutItems.map((item, idx) => (
               <Flex key={idx} direction="column" gap={2}>
-                <Text
-                  fontWeight="semibold"
-                  fontSize={{ base: "20px", md: "24px" }}
-                  mb={2}
-                >
+                <Text textStyle="h2" mb={2}>
                   {item.title}
                 </Text>
                 <Divider borderColor="#000000" />
-                <Text fontSize={{ base: "16px", md: "20px" }}>{item.desc}</Text>
+                <Text textStyle="p">{item.desc}</Text>
               </Flex>
             ))}
           </Flex>

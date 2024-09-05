@@ -14,7 +14,7 @@ export const GET = async (
     if (!result) {
       return NextResponse.json(
         { message: "No pass type found" },
-        { status: 400 }
+        { status: 404 }
       );
     }
     return NextResponse.json(result, { status: 200 });

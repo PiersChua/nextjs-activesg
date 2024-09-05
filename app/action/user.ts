@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
 import { signIn, signOut } from "@/auth";
 import { AuthError, CredentialsSignin } from "next-auth";
 import * as z from "zod";
-import { LoginSchema, SignUpSchema } from "@/schemas";
+import { LoginSchema, ProfileSchema, SignUpSchema } from "@/schemas";
 
 const signUp = async (values: z.infer<typeof SignUpSchema>) => {
   const validatedFields = SignUpSchema.safeParse(values);
@@ -76,4 +76,22 @@ const logout = async () => {
     redirectTo: "/",
   });
 };
-export { signUp, login, loginWithGoogle, logout };
+
+const updateUser = async (values: z.infer<typeof ProfileSchema>) => {
+  const validatedFields = ProfileSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return { error: "Invalid fields" };
+  }
+  const { name, age, email } = validatedFields.data;
+  const updateUser = await prisma.user.update({
+    where: {
+      email: email,
+    },
+    data: {
+      name: capitalizeFirstLetter(name),
+      age: age,
+    },
+  });
+  redirect("/");
+};
+export { signUp, login, loginWithGoogle, logout, updateUser };

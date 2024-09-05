@@ -3,7 +3,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   try {
-    const result = await prisma.passType.findMany();
+    const ageParam = req.nextUrl.searchParams.get("age");
+    const age = ageParam ? parseInt(ageParam, 10) : null;
+
+    const result = await prisma.passType.findMany({
+      where: {
+        ...(age !== null && {
+          minAge: { lte: age },
+          maxAge: { gte: age },
+        }),
+      },
+    });
     if (!result) {
       return NextResponse.json(
         { message: "No pass types found" },

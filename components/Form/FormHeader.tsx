@@ -6,11 +6,7 @@ interface HeaderProps {
 }
 const FormHeader = ({ text }: HeaderProps) => {
   return (
-    <Text
-      textAlign="center"
-      fontWeight="semibold"
-      fontSize={{ base: "40px", md: "60px" }}
-    >
+    <Text textAlign="center" textStyle="h1">
       {text}
     </Text>
   );

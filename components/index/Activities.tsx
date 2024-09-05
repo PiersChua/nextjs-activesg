@@ -10,17 +10,12 @@ import {
   Container,
 } from "@chakra-ui/react";
 import { FaArrowRightLong } from "react-icons/fa6";
-import Image from "next/image";
 const Activities = () => {
   return (
     <Box bg="var(--beige-shade-1)" py="5em" id="activities">
       <Container maxW="1400px">
         <Box>
-          <Box
-            fontWeight="semibold"
-            fontSize={{ base: "40px", md: "60px" }}
-            mb="0.5em"
-          >
+          <Box textStyle="h1" mb="0.5em">
             <Text>
               What we{" "}
               <Text as="span" color="#F95738">
@@ -48,12 +43,7 @@ const Activities = () => {
                   align="center"
                   spacing={0}
                 >
-                  <Text
-                    fontWeight="semibold"
-                    fontSize={{ base: "20px", md: "24px" }}
-                  >
-                    {item.title}
-                  </Text>
+                  <Text textStyle="h2">{item.title}</Text>
                   <IconButton
                     className="icon-button"
                     bg="inherit"
@@ -63,7 +53,7 @@ const Activities = () => {
                   />
                 </Stack>
                 <Divider borderColor="#000000" />
-                <Text fontSize={{ base: "16px", md: "20px" }}>{item.desc}</Text>
+                <Text textStyle="p">{item.desc}</Text>
               </Flex>
             ))}
           </Flex>
@@ -77,17 +67,17 @@ const activityItems = [
   {
     title: "FitPass",
     desc: "Unlock access to gyms and swimming pools across Singapore",
-    href: "#",
+    href: "/pass-types",
   },
   {
     title: "PlaySpace",
     desc: "Reserve a spot at your favourite sports facilities",
-    href: "#",
+    href: "/facilities",
   },
   {
     title: "ProActive",
     desc: "Participate in a wide range of programs designed to keep you moving",
-    href: "#",
+    href: "/programmes",
   },
 ];
 

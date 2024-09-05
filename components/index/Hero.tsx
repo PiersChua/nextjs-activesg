@@ -37,12 +37,7 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
         backgroundColor="rgba(0, 0, 0, 0.4)" // Dark overlay with transparency
       />
 
-      <Box
-        fontWeight="semibold"
-        fontSize={{ base: "40px", md: "60px" }}
-        mb={2}
-        color="white"
-      >
+      <Box textStyle="h1" mb={2} color="white">
         <Text>Don't Say Bojio</Text>
         <Text>
           Come{" "}
@@ -56,7 +51,7 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
         gap={2}
         alignItems="center"
         justifyContent="center"
-        fontSize={{ base: "16px", md: "20px" }}
+        textStyle="p"
         color="white"
       >
         <Text>

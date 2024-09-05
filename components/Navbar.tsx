@@ -28,103 +28,102 @@ const Navbar = ({ isLoggedIn }: NavbarProps) => {
     <>
       {!disableNav.includes(path) && (
         <Box
+          boxShadow="0 5px 20px rgba(0,0,0,0.2)"
           position="sticky"
           top="0"
-          py="5"
+          p={5}
           fontSize="20px"
           fontWeight="medium"
           bg="var(--beige)"
           zIndex="100"
         >
-          <Container maxW="1400px">
-            <Flex justifyContent="space-between" alignItems="center">
-              <Flex display={{ base: "flex", md: "none" }}>
-                <IconButton
-                  _hover={{ boxShadow: "outline" }}
-                  onClick={onToggle}
-                  icon={
-                    isOpen ? (
-                      <Icon as={IoMdClose} w={8} h={8} />
-                    ) : (
-                      <Icon as={GiHamburgerMenu} w={8} h={8} />
-                    )
-                  }
-                  variant="ghost"
-                  aria-label="Toggle Navigation"
-                />
-              </Flex>
-              <Image
-                width="150"
-                height="150"
-                src="fitsg-high-resolution-logo-transparent.svg"
-                alt="FitSG"
+          <Flex justifyContent="space-between" alignItems="center">
+            <Flex display={{ base: "flex", md: "none" }}>
+              <IconButton
+                _hover={{ boxShadow: "outline" }}
+                onClick={onToggle}
+                icon={
+                  isOpen ? (
+                    <Icon as={IoMdClose} w={8} h={8} />
+                  ) : (
+                    <Icon as={GiHamburgerMenu} w={8} h={8} />
+                  )
+                }
+                variant="ghost"
+                aria-label="Toggle Navigation"
               />
-              <Flex
-                alignItems="center"
-                gap={4}
-                display={{ base: "none", md: "flex" }}
-              >
-                <DesktopNav />
-                {isLoggedIn ? (
-                  <form action={logout}>
-                    <Button
-                      type="submit"
-                      color="#000000"
-                      bg="#F4D35E"
-                      _hover={{
-                        bg: "#D9C287",
-                      }}
-                    >
-                      Sign out
-                    </Button>
-                  </form>
-                ) : (
-                  <Button
-                    as="a"
-                    color="#000000"
-                    bg="#F4D35E"
-                    href="/signup"
-                    _hover={{
-                      bg: "#D9C287",
-                    }}
-                  >
-                    Sign up
-                  </Button>
-                )}
-              </Flex>
-              <Flex display={{ base: "flex", md: "none" }}>
-                {isLoggedIn ? (
-                  <form action={logout}>
-                    <Button
-                      type="submit"
-                      color="#000000"
-                      bg="#F4D35E"
-                      _hover={{
-                        bg: "#D9C287",
-                      }}
-                    >
-                      Sign out
-                    </Button>
-                  </form>
-                ) : (
-                  <Button
-                    as="a"
-                    color="#000000"
-                    bg="#F4D35E"
-                    href="/signup"
-                    _hover={{
-                      bg: "#D9C287",
-                    }}
-                  >
-                    Sign up
-                  </Button>
-                )}
-              </Flex>
             </Flex>
-            <Collapse in={isOpen} animateOpacity>
-              <MobileNav />
-            </Collapse>
-          </Container>
+            <Image
+              width="150"
+              height="150"
+              src="fitsg-high-resolution-logo-transparent.svg"
+              alt="FitSG"
+            />
+            <Flex
+              alignItems="center"
+              gap={4}
+              display={{ base: "none", md: "flex" }}
+            >
+              <DesktopNav />
+              {isLoggedIn ? (
+                <form action={logout}>
+                  <Button
+                    type="submit"
+                    color="#000000"
+                    bg="#F4D35E"
+                    _hover={{
+                      bg: "#D9C287",
+                    }}
+                  >
+                    Sign out
+                  </Button>
+                </form>
+              ) : (
+                <Button
+                  as="a"
+                  color="#000000"
+                  bg="#F4D35E"
+                  href="/signup"
+                  _hover={{
+                    bg: "#D9C287",
+                  }}
+                >
+                  Sign up
+                </Button>
+              )}
+            </Flex>
+            <Flex display={{ base: "flex", md: "none" }}>
+              {isLoggedIn ? (
+                <form action={logout}>
+                  <Button
+                    type="submit"
+                    color="#000000"
+                    bg="#F4D35E"
+                    _hover={{
+                      bg: "#D9C287",
+                    }}
+                  >
+                    Sign out
+                  </Button>
+                </form>
+              ) : (
+                <Button
+                  as="a"
+                  color="#000000"
+                  bg="#F4D35E"
+                  href="/signup"
+                  _hover={{
+                    bg: "#D9C287",
+                  }}
+                >
+                  Sign up
+                </Button>
+              )}
+            </Flex>
+          </Flex>
+          <Collapse in={isOpen} animateOpacity>
+            <MobileNav />
+          </Collapse>
         </Box>
       )}
     </>
@@ -136,7 +135,7 @@ const DesktopNav = () => {
     <Stack direction={"row"} spacing={4}>
       {navItems.map((navItem) => (
         <Link
-          _hover={{ color: "#f95738" }}
+          _hover={{ color: "#f95738", transition: "0.3s color" }}
           key={navItem.label}
           href={navItem.href}
         >

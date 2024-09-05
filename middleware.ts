@@ -3,11 +3,11 @@ import authConfig from "./auth.config";
 
 export const { auth } = NextAuth(authConfig);
 
-const protectedRoutes = ["/passes"];
-const publicRoutes = ["/login", "/signup", "/"];
+const protectedRoutes = ["/passes", "/pass-types"]; // protected routes for non-logged in users and users with incomplete profile
+const publicRoutes = ["/", "/login", "/signup"];
 const apiAuthRoutes = "/api/auth";
 
-export default auth((req) => {
+export default auth(async (req) => {
   const path = req.nextUrl.pathname;
   const isLoggedIn = !!req.auth; // retrieve the session
   const isApiAuthRoute = path.startsWith(apiAuthRoutes);
@@ -17,13 +17,18 @@ export default auth((req) => {
   if (isApiAuthRoute) {
     return;
   }
-  if (isLoggedIn && isProtectedRoute) {
-    if (!req.auth?.user.age) {
-      return Response.redirect(new URL("/userprofile", req.nextUrl));
-    }
+  // if (isLoggedIn && isProtectedRoute) {
+  //   if (!req.auth?.user.role) {
+  //     console.log("User", req.auth?);
+  //     return Response.redirect(new URL("/user-profile", req.nextUrl));
+  //   }
+  // }
+  if (isLoggedIn && (path.includes("/login") || path.includes("/signup"))) {
+    // users should not be able to access auth routes when logged in
+    return Response.redirect(new URL("/", req.nextUrl));
   }
-  // redirect users to login page when accessing protected routes if not logged in
   if (!isLoggedIn && !isPublicRoute) {
+    // redirect users to login page when accessing protected routes if not logged in
     return Response.redirect(new URL("/login", req.nextUrl));
   }
   return;
