@@ -33,7 +33,10 @@ const Footer = () => {
                     key={index}
                     as="a"
                     href={item.href}
-                    _hover={{ color: "#f95738", transition: "0.3s color" }}
+                    _hover={{
+                      color: "var(--orange)",
+                      transition: "0.3s color",
+                    }}
                   >
                     {item.label}
                   </Text>
@@ -45,7 +48,10 @@ const Footer = () => {
                 <Link target="_blank" href={item.href} key={index}>
                   <Icon
                     title={item.tooltip}
-                    _hover={{ color: "#f95738", transition: "0.3s color" }}
+                    _hover={{
+                      color: "var(--orange)",
+                      transition: "0.3s color",
+                    }}
                     boxSize={6}
                     as={item.icon}
                   />

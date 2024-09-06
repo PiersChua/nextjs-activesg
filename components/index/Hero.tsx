@@ -41,7 +41,7 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
         <Text>Don&apos;t Say Bojio</Text>
         <Text>
           Come{" "}
-          <Text as="span" color="#F95738">
+          <Text as="span" color="var(--orange)">
             Exercise
           </Text>{" "}
           Lah!

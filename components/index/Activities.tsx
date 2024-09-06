@@ -18,7 +18,7 @@ const Activities = () => {
           <Box textStyle="h1" mb="0.5em">
             <Text>
               What we{" "}
-              <Text as="span" color="#F95738">
+              <Text as="span" color="var(--orange)">
                 offer
               </Text>{" "}
             </Text>
@@ -27,29 +27,24 @@ const Activities = () => {
             {activityItems.map((item, idx) => (
               <Flex key={idx} direction="column" gap={2}>
                 <Stack
+                  role="group"
                   _hover={{
-                    "> .icon-button": {
-                      transform: "translateX(10px)",
-                      color: "#F95738",
-                      bg: "inherit",
-                    },
-                    cursor: "pointer",
-                    color: "#F95738",
-                    transition: "0.3s",
+                    color: "var(--orange)",
                   }}
                   as="a"
                   href={item.href}
                   direction="row"
                   align="center"
-                  spacing={0}
+                  spacing={2}
+                  transition={"all .3s"}
                 >
                   <Text textStyle="h2">{item.title}</Text>
-                  <IconButton
-                    className="icon-button"
-                    bg="inherit"
-                    aria-label="Search"
-                    as="span"
-                    icon={<Icon as={FaArrowRightLong} />}
+                  <Icon
+                    transition={"transform .3s"}
+                    _groupHover={{
+                      transform: "translateX(10px)",
+                    }}
+                    as={FaArrowRightLong}
                   />
                 </Stack>
                 <Divider borderColor="#000000" />
@@ -67,7 +62,7 @@ const activityItems = [
   {
     title: "FitPass",
     desc: "Unlock access to gyms and swimming pools across Singapore",
-    href: "/pass-types",
+    href: "/gym-passes",
   },
   {
     title: "PlaySpace",
