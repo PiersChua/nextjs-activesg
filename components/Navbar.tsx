@@ -105,9 +105,15 @@ const DesktopNav = () => {
 };
 
 const DesktopSubNav = ({ label, children }: NavItem) => {
+  const path = usePathname();
   return (
     <Box key={label}>
-      <Popover trigger={"hover"} placement={"bottom-end"}>
+      <Popover
+        openDelay={50}
+        closeDelay={50}
+        trigger={"hover"}
+        placement={"bottom-end"}
+      >
         <PopoverTrigger>
           <Text
             cursor="pointer"
@@ -116,6 +122,7 @@ const DesktopSubNav = ({ label, children }: NavItem) => {
             _hover={{
               color: "var(--orange)",
             }}
+            color={path.includes(label.toLowerCase()) ? "var(--orange)" : ""}
           >
             {label}
           </Text>
@@ -184,7 +191,7 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
-
+  const path = usePathname();
   return (
     <Stack spacing={4}>
       <Box py={2}>
@@ -200,7 +207,12 @@ const MobileNavItem = ({ label, children }: NavItem) => {
             transition={"transform .25s ease-in-out"}
             transform={isOpen ? "rotate(180deg)" : ""}
           />
-          <Text fontWeight="semibold">{label}</Text>
+          <Text
+            color={path.includes(label.toLowerCase()) ? "var(--orange)" : ""}
+            fontWeight="semibold"
+          >
+            {label}
+          </Text>
         </Stack>
       </Box>
 
@@ -265,6 +277,9 @@ const Profile = () => {
         </form>
         <MenuItem as="a" href="/user-profile">
           Profile
+        </MenuItem>
+        <MenuItem as="a" href="/user-cart">
+          Cart
         </MenuItem>
       </MenuList>
     </Menu>

@@ -72,7 +72,7 @@ model PassType {
   maxAge         Int
   isPeak         Boolean?
   durationInDays Int
-  price          Float
+  priceInCents   Int
   pass           Pass[]
 
   @@map("pass_types")

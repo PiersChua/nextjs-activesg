@@ -3,27 +3,28 @@ import { Prisma } from "@prisma/client";
 import { PassCategory } from "@prisma/client";
 
 const passTypeData: Prisma.PassTypeCreateInput[] = [
+  /* GYM */
   // Day pass
   {
     category: PassCategory.GYM,
     minAge: 12,
     maxAge: 17,
     durationInDays: 1,
-    price: 1.5,
+    priceInCents: 150,
   },
   {
     category: PassCategory.GYM,
     minAge: 18,
     maxAge: 54,
     durationInDays: 1,
-    price: 2.5,
+    priceInCents: 250,
   },
   {
     category: PassCategory.GYM,
     minAge: 55,
     maxAge: 65,
     durationInDays: 1,
-    price: 1.5,
+    priceInCents: 150,
   },
   // Monthly peak pass
   {
@@ -32,7 +33,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 17,
     isPeak: true,
     durationInDays: 30,
-    price: 18.0,
+    priceInCents: 1800,
   },
   {
     category: PassCategory.GYM,
@@ -40,7 +41,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 54,
     isPeak: true,
     durationInDays: 30,
-    price: 30.0,
+    priceInCents: 3000,
   },
   {
     category: PassCategory.GYM,
@@ -48,7 +49,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 65,
     isPeak: true,
     durationInDays: 30,
-    price: 18.0,
+    priceInCents: 1800,
   },
   // Monthly non-peak pass
   {
@@ -57,7 +58,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 17,
     isPeak: false,
     durationInDays: 30,
-    price: 9.0,
+    priceInCents: 900,
   },
   {
     category: PassCategory.GYM,
@@ -65,7 +66,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 54,
     isPeak: false,
     durationInDays: 30,
-    price: 15.0,
+    priceInCents: 1500,
   },
   {
     category: PassCategory.GYM,
@@ -73,7 +74,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 65,
     isPeak: false,
     durationInDays: 30,
-    price: 9.0,
+    priceInCents: 900,
   },
   // Half-yearly peak pass
   {
@@ -82,7 +83,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 17,
     isPeak: true,
     durationInDays: 180,
-    price: 95.0,
+    priceInCents: 9500,
   },
   {
     category: PassCategory.GYM,
@@ -90,7 +91,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 54,
     isPeak: true,
     durationInDays: 180,
-    price: 160.0,
+    priceInCents: 16000,
   },
   {
     category: PassCategory.GYM,
@@ -98,7 +99,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 65,
     isPeak: true,
     durationInDays: 180,
-    price: 95.0,
+    priceInCents: 9500,
   },
   // Half-yearly non-peak pass
   {
@@ -107,7 +108,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 17,
     isPeak: false,
     durationInDays: 180,
-    price: 40.0,
+    priceInCents: 4000,
   },
   {
     category: PassCategory.GYM,
@@ -115,7 +116,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 54,
     isPeak: false,
     durationInDays: 180,
-    price: 40.0,
+    priceInCents: 4000,
   },
   {
     category: PassCategory.GYM,
@@ -123,7 +124,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 65,
     isPeak: false,
     durationInDays: 180,
-    price: 40.0,
+    priceInCents: 4000,
   },
   // Yearly peak pass
   {
@@ -132,7 +133,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 17,
     isPeak: true,
     durationInDays: 360,
-    price: 180.0,
+    priceInCents: 18000,
   },
   {
     category: PassCategory.GYM,
@@ -140,7 +141,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 54,
     isPeak: true,
     durationInDays: 360,
-    price: 300.0,
+    priceInCents: 30000,
   },
   {
     category: PassCategory.GYM,
@@ -148,7 +149,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 65,
     isPeak: true,
     durationInDays: 360,
-    price: 180.0,
+    priceInCents: 18000,
   },
   // Yearly non-peak pass
   {
@@ -157,7 +158,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 17,
     isPeak: false,
     durationInDays: 360,
-    price: 80.0,
+    priceInCents: 8000,
   },
   {
     category: PassCategory.GYM,
@@ -165,7 +166,7 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 54,
     isPeak: false,
     durationInDays: 360,
-    price: 80.0,
+    priceInCents: 8000,
   },
   {
     category: PassCategory.GYM,
@@ -173,7 +174,80 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
     maxAge: 65,
     isPeak: false,
     durationInDays: 360,
-    price: 80.0,
+    priceInCents: 8000,
+  },
+  /* SWIM */
+  // Day pass
+  {
+    category: PassCategory.SWIM,
+    minAge: 12,
+    maxAge: 17,
+    durationInDays: 1,
+    priceInCents: 60,
+  },
+  {
+    category: PassCategory.SWIM,
+    minAge: 18,
+    maxAge: 54,
+    durationInDays: 1,
+    priceInCents: 130,
+  },
+  {
+    category: PassCategory.SWIM,
+    minAge: 55,
+    maxAge: 65,
+    durationInDays: 1,
+    priceInCents: 60,
+  },
+  // Monthly pass
+  {
+    category: PassCategory.SWIM,
+    minAge: 12,
+    maxAge: 17,
+    isPeak: true,
+    durationInDays: 30,
+    priceInCents: 500,
+  },
+  {
+    category: PassCategory.SWIM,
+    minAge: 18,
+    maxAge: 54,
+    isPeak: true,
+    durationInDays: 30,
+    priceInCents: 1000,
+  },
+  {
+    category: PassCategory.SWIM,
+    minAge: 55,
+    maxAge: 65,
+    isPeak: true,
+    durationInDays: 30,
+    priceInCents: 500,
+  },
+  // Yearly pass
+  {
+    category: PassCategory.SWIM,
+    minAge: 12,
+    maxAge: 17,
+    isPeak: true,
+    durationInDays: 360,
+    priceInCents: 5000,
+  },
+  {
+    category: PassCategory.SWIM,
+    minAge: 18,
+    maxAge: 54,
+    isPeak: true,
+    durationInDays: 360,
+    priceInCents: 10000,
+  },
+  {
+    category: PassCategory.SWIM,
+    minAge: 55,
+    maxAge: 65,
+    isPeak: true,
+    durationInDays: 360,
+    priceInCents: 5000,
   },
 ];
 
