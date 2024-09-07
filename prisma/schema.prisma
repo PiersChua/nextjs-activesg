@@ -83,9 +83,9 @@ model Pass {
   startDate  DateTime @default(now())
   endDate    DateTime
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String   @unique
+  userId     String
   passType   PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
-  passTypeId String   @unique
+  passTypeId String
 
   @@map("passes")
 }
@@ -102,7 +102,7 @@ model Programme {
   endTime         DateTime
   maxParticipants Int
   trainer         User                    @relation(fields: [trainerId], references: [id], onDelete: Restrict) // don't delete programme if trainer is deleted, find new trainers
-  trainerId       String                  @unique
+  trainerId       String
   subscriptions   ProgrammeSubscription[]
 
   @@map("programmes")
@@ -113,7 +113,7 @@ model ProgrammeSubscription {
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
   programme   Programme @relation(fields: [programmeId], references: [id], onDelete: Cascade)
-  programmeId String    @unique
+  programmeId String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 

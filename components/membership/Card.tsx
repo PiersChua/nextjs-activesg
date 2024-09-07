@@ -1,5 +1,3 @@
-import { PassType } from "@prisma/client";
-import { MdAddShoppingCart, MdOutlineShoppingBag } from "react-icons/md";
 import {
   Box,
   Card,
@@ -11,6 +9,8 @@ import {
   Button,
   Stack,
 } from "@chakra-ui/react";
+import CardButton from "@/components/membership/CardButton";
+import { PassType } from "@prisma/client";
 
 interface PassCardProps {
   passTypes: PassType[];
@@ -43,20 +43,22 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
             </CardBody>
             <CardFooter>
               <Stack flexWrap="wrap" direction="row" spacing={4}>
-                <Button
-                  colorScheme="blue"
+                <CardButton
+                  passType={passType}
+                  color="blue"
                   variant="outline"
-                  leftIcon={<MdAddShoppingCart />}
+                  icon="Cart"
                 >
                   Add to cart
-                </Button>
-                <Button
-                  colorScheme="blue"
+                </CardButton>
+                <CardButton
+                  passType={passType}
+                  color="blue"
                   variant="solid"
-                  leftIcon={<MdOutlineShoppingBag />}
+                  icon="Bag"
                 >
-                  Purchase
-                </Button>
+                  Buy now
+                </CardButton>
               </Stack>
             </CardFooter>
           </Card>
