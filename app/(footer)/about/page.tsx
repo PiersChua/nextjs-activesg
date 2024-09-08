@@ -1,10 +1,10 @@
 import { Box, Container, Divider, Flex, Text } from "@chakra-ui/react";
-const About = () => {
+const AboutPage = () => {
   return (
-    <Box py="5em" id="about">
+    <Box py="5em">
       <Container maxW="1400px">
         <Box>
-          <Text mb="0.5em" fontWeight="semibold" textStyle="h1">
+          <Text mb="0.5em" textStyle="h1">
             Who are we?
           </Text>
           <Flex direction="column" gap="2em">
@@ -34,4 +34,4 @@ const aboutItems = [
   },
 ];
 
-export default About;
+export default AboutPage;

@@ -1,78 +1,51 @@
-"use client";
-import {
-  Box,
-  Divider,
-  Flex,
-  Text,
-  IconButton,
-  Icon,
-  Stack,
-  Container,
-} from "@chakra-ui/react";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { Box, Text, Container, SimpleGrid } from "@chakra-ui/react";
+import ActivitiesCard, {
+  ActivitiesCardProps,
+} from "@/components/index/ActivitiesCard";
 const Activities = () => {
   return (
-    <Box bg="var(--beige-shade-1)" py="5em" id="activities">
+    <Box py="5em">
       <Container maxW="1400px">
-        <Box>
-          <Box textStyle="h1" mb="0.5em">
-            <Text>
-              What we{" "}
-              <Text as="span" color="var(--orange)">
-                offer
-              </Text>{" "}
-            </Text>
-          </Box>
-          <Flex direction="column" gap="2em">
-            {activityItems.map((item, idx) => (
-              <Flex key={idx} direction="column" gap={2}>
-                <Stack
-                  role="group"
-                  _hover={{
-                    color: "var(--orange)",
-                  }}
-                  as="a"
-                  href={item.href}
-                  direction="row"
-                  align="center"
-                  spacing={2}
-                  transition={"all .3s"}
-                >
-                  <Text textStyle="h2">{item.title}</Text>
-                  <Icon
-                    transition={"transform .3s"}
-                    _groupHover={{
-                      transform: "translateX(10px)",
-                    }}
-                    as={FaArrowRightLong}
-                  />
-                </Stack>
-                <Divider borderColor="#000000" />
-                <Text textStyle="p">{item.desc}</Text>
-              </Flex>
-            ))}
-          </Flex>
-        </Box>
+        <Text textStyle="h1" mb="0.5em">
+          What we{" "}
+          <Text as="span" color="var(--orange)">
+            offer
+          </Text>{" "}
+        </Text>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing="40px">
+          {activityItems.map((item, index) => (
+            <ActivitiesCard
+              key={index}
+              title={item.title}
+              desc={item.desc}
+              image={item.image}
+              icon={item.icon}
+            />
+          ))}
+        </SimpleGrid>
       </Container>
     </Box>
   );
 };
 
-const activityItems = [
+const activityItems: ActivitiesCardProps[] = [
   {
     title: "FitPass",
     desc: "Unlock access to gyms and swimming pools across Singapore",
-    href: "/gym-passes",
+    image: "/fitpass.webp",
+    icon: "FITPASS",
   },
   {
     title: "PlaySpace",
     desc: "Reserve a spot at your favourite sports facilities",
-    href: "/facilities",
+    image: "/facilities.webp",
+    icon: "PLAYSPACE",
   },
   {
     title: "ProActive",
-    desc: "Participate in a wide range of programs designed to keep you moving",
-    href: "/programmes",
+    desc: "Participate in a wide range of programmes designed to keep you moving",
+    image: "/programmes.webp",
+    icon: "PROACTIVE",
   },
 ];
 

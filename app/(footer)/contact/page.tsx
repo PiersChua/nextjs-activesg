@@ -1,9 +1,9 @@
 import { Box, Container, Flex, Text } from "@chakra-ui/react";
 import ContactForm from "@/components/Form/ContactForm";
 
-const Contact = () => {
+const ContactPage = () => {
   return (
-    <Box py="5em" id="contact">
+    <Box py="5em">
       <Container maxW="1400px">
         <Flex gap={10} direction="column">
           <Box>
@@ -24,4 +24,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactPage;

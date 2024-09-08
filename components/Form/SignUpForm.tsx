@@ -109,7 +109,7 @@ const SignUpForm = () => {
               <FormErrorMessage>{errors.password.message}</FormErrorMessage>
             )}
           </FormControl>
-          {error && <FormMessage>{error}</FormMessage>}
+          {error && <FormMessage type="Error">{error}</FormMessage>}
 
           <FormButton isLoading={isPending} text="Sign Up" />
         </Stack>

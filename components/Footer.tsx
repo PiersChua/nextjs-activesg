@@ -69,8 +69,8 @@ const Footer = () => {
 };
 
 const footerItems = [
-  { label: "About Us", href: "/about-us" },
-  { label: "Contact Us", href: "/contact-us" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
   { label: "Personal Trainers", href: "/personal-trainers" },
   { label: "Find a gym", href: "/gym-locations" },
   { label: "Careers", href: "/careers" },

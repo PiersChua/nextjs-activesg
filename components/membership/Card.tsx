@@ -6,7 +6,6 @@ import {
   CardFooter,
   SimpleGrid,
   Text,
-  Button,
   Stack,
 } from "@chakra-ui/react";
 import CardButton from "@/components/membership/CardButton";

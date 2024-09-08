@@ -24,6 +24,7 @@ import { ProfileSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User } from "@prisma/client";
+import FormRedirect from "./FormRedirect";
 
 interface UserProfileProps {
   user: User | null;
@@ -91,11 +92,18 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
             <FormLabel>Email address</FormLabel>
             <Input {...register("email")} disabled />
           </FormControl>
-          {error && <FormMessage>{error}</FormMessage>}
+          {error && <FormMessage type="Error">{error}</FormMessage>}
 
           <FormButton isLoading={isPending} text="Update" />
         </Stack>
       </form>
+      {user?.password && (
+        <FormRedirect
+          href="/reset-password"
+          hrefText="Reset"
+          text="Forgot your password?"
+        />
+      )}
     </Stack>
   );
 };

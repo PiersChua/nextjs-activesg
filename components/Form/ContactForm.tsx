@@ -89,7 +89,7 @@ const ContactForm = () => {
               <FormErrorMessage>{errors.message.message}</FormErrorMessage>
             )}
           </FormControl>
-          {error && <FormMessage>{error}</FormMessage>}
+          {error && <FormMessage type="Error">{error}</FormMessage>}
 
           <FormButton isLoading={isPending} text="Submit" />
         </Stack>
