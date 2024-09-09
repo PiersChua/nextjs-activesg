@@ -18,13 +18,13 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Image,
 } from "@chakra-ui/react";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { disableNav } from "@/utils/disableNav";
 import { logout } from "@/app/action/user";
@@ -67,8 +67,8 @@ const Navbar = ({ isLoggedIn }: NavbarProps) => {
             </Flex>
             <Link title="Home" href="/">
               <Image
-                width="150"
-                height="150"
+                width="150px"
+                height="auto"
                 src="/fitsg-high-resolution-logo-transparent.svg"
                 alt="FitSG"
               />

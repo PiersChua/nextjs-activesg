@@ -4,7 +4,7 @@ import authConfig from "./auth.config";
 export const { auth } = NextAuth(authConfig);
 
 const protectedRoutes = ["/passes", "/pass-types"]; // protected routes for non-logged in users and users with incomplete profile
-const publicRoutes = ["/", "/login", "/signup"];
+const publicRoutes = ["/", "/login", "/signup", "/about", "/contact"];
 const apiAuthRoutes = "/api/auth";
 
 export default auth(async (req) => {

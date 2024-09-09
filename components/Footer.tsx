@@ -1,10 +1,9 @@
 "use client";
-import { Box, Flex, Text, Icon, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Text, Icon, IconButton, Image } from "@chakra-ui/react";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { disableNav } from "@/utils/disableNav";
@@ -21,7 +20,7 @@ const Footer = () => {
               <Image
                 src="/fitsg-high-resolution-logo-transparent.svg"
                 width="200"
-                height="200"
+                height="auto"
                 alt="Fit SG"
               />
             </Flex>

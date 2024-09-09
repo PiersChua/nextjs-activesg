@@ -53,6 +53,7 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
         justifyContent="center"
         textStyle="p"
         color="white"
+        flexWrap="wrap"
       >
         <Text>
           {isLoggedIn

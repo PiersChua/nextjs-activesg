@@ -19,9 +19,11 @@ const PassTypesPage = async () => {
           time="7am to 10pm"
         />
       )}
-      <Text textStyle="h1">
-        Are you above 65 years old? Show your NRIC to our staff to for free
-      </Text>
+      {dayPasses.length === 0 && peakPasses.length === 0 && (
+        <Text textStyle="h1">
+          Are you above 65 years old? Show your NRIC to our staff to for free
+        </Text>
+      )}
     </Container>
   );
 };

@@ -10,17 +10,11 @@ const Activities = () => {
           What we{" "}
           <Text as="span" color="var(--orange)">
             offer
-          </Text>{" "}
+          </Text>
         </Text>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing="40px">
           {activityItems.map((item, index) => (
-            <ActivitiesCard
-              key={index}
-              title={item.title}
-              desc={item.desc}
-              image={item.image}
-              icon={item.icon}
-            />
+            <ActivitiesCard key={index} {...item} />
           ))}
         </SimpleGrid>
       </Container>

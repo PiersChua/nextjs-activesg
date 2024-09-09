@@ -1,70 +1,38 @@
 "use client";
-import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
-import { keyframes } from "@emotion/react";
+import { Box, Container, Flex, Text } from "@chakra-ui/react";
+import ExperiencesWrapper from "@/components/index/ExperiencesWrapper";
 
-const loopScroll = keyframes`
-  from {
-    transform: translate(0);
-  }
-  to {
-    transform: translate(${`calc(-50% - 1rem)`});
-  }`;
 const scrollDuration = 45;
 const Experiences = () => {
-  const doubledImages = [...images, ...images];
+  const doubledImages1 = [...images1, ...images1];
+  const doubledImages2 = [...images2, ...images2];
   return (
-    <Box bg="var(--beige-shade-1)" py="5em">
+    <Box bg="var(--beige)" py="5em">
       <Container maxW="1400px">
-        <Text mb="0.5em" textStyle="h1">
-          Shared Experiences
+        <Text textStyle="h1" mb="0.5em">
+          Shared{" "}
+          <Text as="span" color="var(--orange)">
+            Experiences
+          </Text>
         </Text>
-        <Box overflow="hidden" bg="inherit" position="relative">
-          <Box
-            position="absolute"
-            top="0"
-            bottom="0"
-            left="0"
-            width="30px"
-            bgGradient="linear(to-r, var(--beige-shade-1), transparent)"
-            zIndex="1"
+        <Flex direction="column" gap={10}>
+          <ExperiencesWrapper
+            images={doubledImages1}
+            direction="left"
+            scrollDuration={scrollDuration}
           />
-          <Box
-            position="absolute"
-            top="0"
-            bottom="0"
-            right="0"
-            width="30px"
-            bgGradient="linear(to-l, var(--beige-shade-1), transparent)"
-            zIndex="1"
+          <ExperiencesWrapper
+            images={doubledImages2}
+            direction="right"
+            scrollDuration={scrollDuration}
           />
-          <Flex
-            _hover={{
-              animationPlayState: "paused",
-            }}
-            bg="inherit"
-            w="max-content"
-            gap={8} // 2rem gap
-            animation={`${loopScroll} ${scrollDuration}s linear infinite`}
-          >
-            {doubledImages.map((image, index) => (
-              <Image
-                objectFit="cover"
-                rounded="xl"
-                h="25vw"
-                maxH="200px"
-                key={index}
-                src={image}
-                aria-hidden={index >= images.length}
-              />
-            ))}
-          </Flex>
-        </Box>
+        </Flex>
       </Container>
     </Box>
   );
 };
 
-const images = [
+const images1 = [
   "/exp_1.webp",
   "/exp_2.webp",
   "/exp_3.webp",
@@ -72,6 +40,16 @@ const images = [
   "/exp_5.webp",
   "/exp_6.webp",
   "/exp_7.webp",
+];
+
+const images2 = [
+  "/exp_8.webp",
+  "/exp_9.webp",
+  "/exp_10.webp",
+  "/exp_11.webp",
+  "/exp_12.webp",
+  "/exp_13.webp",
+  "/exp_14.webp",
 ];
 
 export default Experiences;
