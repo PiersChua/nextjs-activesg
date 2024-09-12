@@ -35,8 +35,9 @@ model User {
 
   accounts      Account[]
   passes        Pass[]
+  passCarts     PassCart[]
   subscriptions ProgrammeSubscription[]
-  programme     Programme[] // for trainers
+  programmes    Programme[] // for trainers
   createdAt     DateTime                @default(now())
   updatedAt     DateTime                @updatedAt
 
@@ -73,7 +74,8 @@ model PassType {
   isPeak         Boolean?
   durationInDays Int
   priceInCents   Int
-  pass           Pass[]
+  passes         Pass[]
+  passCarts      PassCart[]
 
   @@map("pass_types")
 }
@@ -82,12 +84,24 @@ model Pass {
   id         String   @id @default(uuid())
   startDate  DateTime @default(now())
   endDate    DateTime
+  quantity   Int      @default(1)
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
   passType   PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
   passTypeId String
 
   @@map("passes")
+}
+
+model PassCart {
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quantity   Int
+  userId     String
+  passType   PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
+  passTypeId String
+
+  @@map("pass_carts")
 }
 
 model Programme {

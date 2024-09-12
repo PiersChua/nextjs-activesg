@@ -3,12 +3,14 @@ import { Button } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import { MdAddShoppingCart, MdOutlineShoppingBag } from "react-icons/md";
 import { createPass } from "@/app/action/passes";
+import { createPassCart } from "@/app/action/pass-carts";
 import { PassType } from "@prisma/client";
+import { usePathname } from "next/navigation";
 
 interface CardButtonProps {
   color: string;
   variant: string;
-  icon: "Cart" | "Bag";
+  type: "Cart" | "Buy";
   passType: PassType;
   children: ReactNode;
 }
@@ -16,17 +18,19 @@ interface CardButtonProps {
 const CardButton = ({
   color,
   variant,
-  icon,
+  type,
   passType,
   children,
 }: CardButtonProps) => {
+  const path = usePathname();
   return (
     <Button
-      onClick={() => createPass(passType)}
+      as="a"
+      href={`${path}?type=${type}&id=${passType.id}`}
       colorScheme={color}
       variant={variant}
       leftIcon={
-        icon === "Cart" ? <MdAddShoppingCart /> : <MdOutlineShoppingBag />
+        type === "Cart" ? <MdAddShoppingCart /> : <MdOutlineShoppingBag />
       }
     >
       {children}

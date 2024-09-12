@@ -339,11 +339,11 @@ const navItems: NavItem[] = [
     children: [
       {
         label: "Gym",
-        href: "/membership/gym-passes",
+        href: "/membership/GYM",
       },
       {
         label: "Swim",
-        href: "/membership/swim-passes",
+        href: "/membership/SWIM",
       },
     ],
   },

@@ -30,4 +30,11 @@ const ProfileSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
 });
 
-export { LoginSchema, SignUpSchema, ContactSchema, ProfileSchema };
+const CartSchema = z.object({
+  quantity: z.coerce
+    .number()
+    .gte(1, "Minimum quantity is 1")
+    .lte(10, "Maximum quantity is 10"),
+});
+
+export { LoginSchema, SignUpSchema, ContactSchema, ProfileSchema, CartSchema };

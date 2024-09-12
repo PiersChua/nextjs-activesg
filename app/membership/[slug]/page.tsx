@@ -2,12 +2,29 @@ import React from "react";
 import { Container, Text } from "@chakra-ui/react";
 import { getPassTypes } from "@/app/action/pass-types";
 import PassCard from "@/components/membership/Card";
+import { PassCategory } from "@prisma/client";
+import { notFound } from "next/navigation";
+import CartModal from "@/components/membership/CartModal";
 
-const PassTypesPage = async () => {
-  const { dayPasses, peakPasses, nonPeakPasses } = await getPassTypes("GYM");
-
+const PassTypesPage = async ({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: { [key: string]: string };
+}) => {
+  if (params.slug !== PassCategory.GYM && params.slug !== PassCategory.SWIM) {
+    notFound();
+  }
+  const { dayPasses, peakPasses, nonPeakPasses } = await getPassTypes(
+    params.slug
+  );
   return (
     <Container mb={10} maxW="1400px">
+      {searchParams.id && searchParams.type && (
+        <CartModal id={searchParams.id} type={searchParams.type} />
+      )}
+
       {dayPasses.length > 0 && (
         <PassCard passTypes={dayPasses} header="Day pass" />
       )}

@@ -46,7 +46,7 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
                   passType={passType}
                   color="blue"
                   variant="outline"
-                  icon="Cart"
+                  type="Cart"
                 >
                   Add to cart
                 </CardButton>
@@ -54,7 +54,7 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
                   passType={passType}
                   color="blue"
                   variant="solid"
-                  icon="Bag"
+                  type="Buy"
                 >
                   Buy now
                 </CardButton>

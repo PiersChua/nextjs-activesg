@@ -42,9 +42,6 @@ const ExperiencesWrapper = ({
         zIndex="1"
       />
       <Flex
-        _hover={{
-          animationPlayState: "paused",
-        }}
         bg="inherit"
         w="max-content"
         gap={8} // 2rem gap

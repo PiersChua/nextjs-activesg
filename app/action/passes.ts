@@ -4,8 +4,18 @@ import prisma from "@/lib/db";
 import { getSessionUser } from "@/utils/getSessionUser";
 import { PassType } from "@prisma/client";
 
-const createPass = async (passType: PassType) => {
-  const user = await getSessionUser();
+const createPass = async (passTypeId: string) => {
+  const [passType, user] = await Promise.all([
+    prisma.passType.findUnique({
+      where: {
+        id: passTypeId,
+      },
+    }),
+    getSessionUser(),
+  ]);
+  if (!passType) {
+    throw new Error("Pass type not found");
+  }
   const userId = user?.id;
 
   const currentDateUTC = new Date();
