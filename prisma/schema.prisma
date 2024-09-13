@@ -94,12 +94,13 @@ model Pass {
 }
 
 model PassCart {
-  id         String   @id @default(uuid())
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  quantity   Int
-  userId     String
-  passType   PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
-  passTypeId String
+  id          String   @id @default(uuid())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cartChecked Boolean  @default(true)
+  quantity    Int
+  userId      String
+  passType    PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
+  passTypeId  String
 
   @@map("pass_carts")
 }

@@ -15,7 +15,7 @@ const Footer = () => {
     <>
       {!disableNav.includes(path) && (
         <Box mt="auto" p={5} bg="#D6BFAF">
-          <Flex wrap="wrap" gap={5}>
+          <Flex alignItems="center" wrap="wrap" gap={5}>
             <Flex flex="1 1 200px">
               <Image
                 src="/fitsg-high-resolution-logo-transparent.svg"
@@ -24,7 +24,6 @@ const Footer = () => {
                 alt="Fit SG"
               />
             </Flex>
-
             {footerColumns.map((column, index) => (
               <Flex key={index} direction="column" gap={3} flex="1 1 200px">
                 {column.map((item, index) => (

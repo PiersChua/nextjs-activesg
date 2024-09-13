@@ -49,7 +49,8 @@ const PassTypesPage = async ({
         nonPeakPasses.length === 0 &&
         peakPasses.length === 0 && (
           <Text textStyle="h1">
-            Are you above 65 years old? Show your NRIC to our staff to for free
+            Are you above 65 years old? Show your NRIC to our staff for a free
+            entry
           </Text>
         )}
     </Container>

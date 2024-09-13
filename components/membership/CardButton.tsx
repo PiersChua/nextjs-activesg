@@ -2,8 +2,6 @@
 import { Button } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import { MdAddShoppingCart, MdOutlineShoppingBag } from "react-icons/md";
-import { createPass } from "@/app/action/passes";
-import { createPassCart } from "@/app/action/pass-carts";
 import { PassType } from "@prisma/client";
 import { usePathname } from "next/navigation";
 
