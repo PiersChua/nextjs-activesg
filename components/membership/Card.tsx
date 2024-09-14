@@ -28,7 +28,13 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
       </Box>
       <SimpleGrid minChildWidth="300px" spacing="40px">
         {passTypes.map((passType) => (
-          <Card key={passType.id}>
+          <Card
+            bg="var(--beige)"
+            boxShadow="0 5px 20px rgba(0,0,0,0.2)"
+            key={passType.id}
+            border={0}
+            rounded="xl"
+          >
             <CardHeader textStyle="h2">
               {`$${(passType.priceInCents / 100).toFixed(2)}`}
             </CardHeader>

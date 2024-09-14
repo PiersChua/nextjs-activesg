@@ -118,6 +118,7 @@ const DesktopSubNav = ({ label, children }: NavItem) => {
           <Text
             cursor="pointer"
             p={2}
+            fontSize="20px"
             fontWeight="semibold"
             _hover={{
               color: "var(--orange)",
@@ -157,7 +158,7 @@ const DesktopSubNav = ({ label, children }: NavItem) => {
                   justifyContent="space-between"
                   transition={"all .3s"}
                 >
-                  <Text fontWeight="medium">{child.label}</Text>
+                  <Text fontSize="18px">{child.label}</Text>
                   <Icon
                     transition={"all .3s"}
                     transform={"translateX(-20px)"}
@@ -209,6 +210,7 @@ const MobileNavItem = ({ label, children }: NavItem) => {
           />
           <Text
             color={path.includes(label.toLowerCase()) ? "var(--orange)" : ""}
+            fontSize="20px"
             fontWeight="semibold"
           >
             {label}
@@ -230,7 +232,7 @@ const MobileNavItem = ({ label, children }: NavItem) => {
               spacing={2}
               transition={"all .3s"}
             >
-              <Text as="a" py={2} href={child.href}>
+              <Text as="a" fontSize="18px" py={2} href={child.href}>
                 {child.label}
               </Text>
               <Icon

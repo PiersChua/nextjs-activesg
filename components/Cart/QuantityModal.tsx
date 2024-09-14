@@ -1,5 +1,8 @@
 "use client";
-import { createPassCart } from "@/app/action/pass-carts";
+import {
+  createPassCart,
+  updatePassCartQuantity,
+} from "@/app/action/pass-carts";
 import * as z from "zod";
 import {
   Modal,
@@ -26,9 +29,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FormMessage from "../Form/FormMessage";
 interface ModalProps {
   id: string;
-  type: string;
+  quantity?: number;
+  type: "Create" | "Update";
+  route: boolean;
 }
-const CartModal = ({ id, type }: ModalProps) => {
+
+const QuantityModal = ({ id, quantity = 1, type, route }: ModalProps) => {
   const router = useRouter();
   const handleClose = () => router.back();
   const {
@@ -45,12 +51,24 @@ const CartModal = ({ id, type }: ModalProps) => {
   const onSubmit = (values: z.infer<typeof CartSchema>) => {
     startTransition(async () => {
       setError("");
-      await createPassCart(id, values).then((data) => {
-        setError(data?.error as string);
-        setSuccess(data?.success as string);
-      });
-      if (type === "Buy") {
-        router.push("/user-cart");
+      switch (type) {
+        case "Create": {
+          await createPassCart(id, values).then((data) => {
+            setError(data?.error as string);
+            setSuccess(data?.success as string);
+          });
+          if (route) {
+            router.push("/user-cart");
+          }
+          break;
+        }
+        case "Update": {
+          await updatePassCartQuantity(id, values).then((data) => {
+            setError(data?.error as string);
+            setSuccess(data?.success as string);
+          });
+          break;
+        }
       }
     });
   };
@@ -65,7 +83,7 @@ const CartModal = ({ id, type }: ModalProps) => {
             <Stack spacing={5}>
               <FormControl isInvalid={!!errors?.quantity?.message}>
                 <NumberInput
-                  defaultValue={1}
+                  defaultValue={quantity}
                   min={1}
                   max={10}
                   clampValueOnBlur={false}
@@ -106,4 +124,4 @@ const CartModal = ({ id, type }: ModalProps) => {
   );
 };
 
-export default CartModal;
+export default QuantityModal;

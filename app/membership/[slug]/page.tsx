@@ -4,7 +4,7 @@ import { getPassTypes } from "@/app/action/pass-types";
 import PassCard from "@/components/membership/Card";
 import { PassCategory } from "@prisma/client";
 import { notFound } from "next/navigation";
-import CartModal from "@/components/membership/CartModal";
+import QuantityModal from "@/components/Cart/QuantityModal";
 
 const PassTypesPage = async ({
   params,
@@ -22,7 +22,11 @@ const PassTypesPage = async ({
   return (
     <Container mb={10} maxW="1400px">
       {searchParams.id && searchParams.type && (
-        <CartModal id={searchParams.id} type={searchParams.type} />
+        <QuantityModal
+          id={searchParams.id}
+          type="Create"
+          route={searchParams.type === "Buy" ? true : false}
+        />
       )}
 
       {dayPasses.length > 0 && (

@@ -1,7 +1,7 @@
 import { Container, Stack, Text } from "@chakra-ui/react";
 import { getPassCart } from "@/app/action/pass-carts";
 import TableComponent from "@/components/Cart/Table";
-import CartModal from "@/components/Cart/CartModal";
+import QuantityModal from "@/components/Cart/QuantityModal";
 
 const UserCartPage = async ({
   searchParams,
@@ -16,7 +16,9 @@ const UserCartPage = async ({
       {userCart.length > 0 ? (
         <>
           {searchParams.id && searchParams.quantity && (
-            <CartModal
+            <QuantityModal
+              type="Update"
+              route={false}
               id={searchParams.id}
               quantity={parseInt(searchParams.quantity, 10)}
             />
