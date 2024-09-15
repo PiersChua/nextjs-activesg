@@ -15,7 +15,7 @@ const signUp = async (values: z.infer<typeof SignUpSchema>) => {
   }
   const formData = validatedFields.data;
   const name = capitalizeFirstLetter(formData.name);
-  const age = formData.age;
+  const dateOfBirth = formData.dateOfBirth;
   const email = formData.email.toLowerCase();
   const password = formData.password;
   const existingUser = await prisma.user.findUnique({
@@ -28,7 +28,7 @@ const signUp = async (values: z.infer<typeof SignUpSchema>) => {
   await prisma.user.create({
     data: {
       name: name,
-      age: age,
+      dateOfBirth: dateOfBirth,
       email: email,
       password: hashedPassword,
     },
@@ -82,14 +82,14 @@ const updateUser = async (values: z.infer<typeof ProfileSchema>) => {
   if (!validatedFields.success) {
     return { error: "Invalid fields" };
   }
-  const { name, age, email } = validatedFields.data;
+  const { name, dateOfBirth, email } = validatedFields.data;
   const updateUser = await prisma.user.update({
     where: {
       email: email,
     },
     data: {
       name: capitalizeFirstLetter(name),
-      age: age,
+      dateOfBirth: dateOfBirth,
     },
   });
   redirect("/");

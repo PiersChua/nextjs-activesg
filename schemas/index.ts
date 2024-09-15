@@ -7,7 +7,12 @@ const LoginSchema = z.object({
 
 const SignUpSchema = z.object({
   name: z.string().min(2, "Name is too short"),
-  age: z.coerce.number().gte(10, "Age must be at least 10"),
+  dateOfBirth: z.coerce
+    .date()
+    .max(
+      new Date(new Date().setFullYear(new Date().getFullYear() - 10)),
+      "You must be at least 10 years old"
+    ),
   email: z.string().email("Please enter a valid email address"),
   password: z
     .string()
@@ -26,7 +31,12 @@ const ContactSchema = z.object({
 
 const ProfileSchema = z.object({
   name: z.string().min(2, "Name is too short"),
-  age: z.coerce.number().gte(10, "Age must be at least 10"),
+  dateOfBirth: z.coerce
+    .date()
+    .max(
+      new Date(new Date().setFullYear(new Date().getFullYear() - 10)),
+      "You must be at least 10 years old"
+    ),
   email: z.string().email("Please enter a valid email address"),
 });
 

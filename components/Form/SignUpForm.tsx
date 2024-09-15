@@ -9,11 +9,6 @@ import {
   Button,
   Stack,
   FormErrorMessage,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { useState, useTransition } from "react";
 import * as z from "zod";
@@ -47,7 +42,7 @@ const SignUpForm = () => {
   return (
     <Stack mt={10} spacing={5}>
       <FormHeader text="Sign Up" />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
           <FormControl isInvalid={!!errors?.name?.message}>
             <FormLabel>Name</FormLabel>
@@ -61,21 +56,16 @@ const SignUpForm = () => {
               <FormErrorMessage>{errors.name.message}</FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors?.age?.message}>
-            <FormLabel>Age</FormLabel>
-            <NumberInput>
-              <NumberInputField
-                disabled={isPending}
-                {...register("age")}
-                placeholder="19"
-              />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            {errors?.age?.message && (
-              <FormErrorMessage>{errors.age.message}</FormErrorMessage>
+          <FormControl isInvalid={!!errors?.dateOfBirth?.message}>
+            <FormLabel>Date of birth</FormLabel>
+            <Input
+              type="date"
+              disabled={isPending}
+              {...register("dateOfBirth")}
+              max={new Date().toISOString().split("T")[0]}
+            />
+            {errors?.dateOfBirth?.message && (
+              <FormErrorMessage>{errors.dateOfBirth.message}</FormErrorMessage>
             )}
           </FormControl>
 

@@ -73,8 +73,8 @@ const footerItems = [
   { label: "Find a gym", href: "/gym-locations" },
   { label: "Careers", href: "/careers" },
   { label: "FAQs", href: "/faqs" },
-  { label: "Terms and Conditions", href: "/terms-conditions" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms and Conditions", href: "/terms" },
+  { label: "Privacy Policy", href: "/policy" },
 ];
 
 const socialItems = [

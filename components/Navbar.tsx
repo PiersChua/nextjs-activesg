@@ -158,7 +158,7 @@ const DesktopSubNav = ({ label, children }: NavItem) => {
                   justifyContent="space-between"
                   transition={"all .3s"}
                 >
-                  <Text fontSize="18px">{child.label}</Text>
+                  <Text fontSize="20px">{child.label}</Text>
                   <Icon
                     transition={"all .3s"}
                     transform={"translateX(-20px)"}
@@ -206,7 +206,7 @@ const MobileNavItem = ({ label, children }: NavItem) => {
           <Icon
             as={FaChevronDown}
             transition={"transform .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
+            transform={isOpen ? "rotate(-180deg)" : ""}
           />
           <Text
             color={path.includes(label.toLowerCase()) ? "var(--orange)" : ""}
@@ -232,7 +232,7 @@ const MobileNavItem = ({ label, children }: NavItem) => {
               spacing={2}
               transition={"all .3s"}
             >
-              <Text as="a" fontSize="18px" py={2} href={child.href}>
+              <Text as="a" fontSize="20px" py={2} href={child.href}>
                 {child.label}
               </Text>
               <Icon

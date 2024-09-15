@@ -63,8 +63,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         where: { id: token.sub },
       });
       if (!existingUser) return token;
-      token.age = existingUser.age;
       token.role = existingUser.role;
+      token.dateOfBirth = existingUser.dateOfBirth;
+      if (existingUser.dateOfBirth) {
+        const today = new Date();
+        let age = today.getFullYear() - existingUser.dateOfBirth.getFullYear();
+        const monthDifference =
+          today.getMonth() - existingUser.dateOfBirth.getMonth();
+        if (
+          monthDifference < 0 ||
+          (monthDifference == 0 &&
+            today.getDate() < existingUser.dateOfBirth.getDate())
+        ) {
+          age--;
+        }
+        token.age = age;
+      }
+
       return token;
     },
   },

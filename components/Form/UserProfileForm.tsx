@@ -4,16 +4,8 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
-  InputRightElement,
-  Button,
   Stack,
   FormErrorMessage,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { useState, useTransition } from "react";
 import * as z from "zod";
@@ -41,7 +33,7 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
       name: user?.name || "",
-      age: user?.age || undefined,
+      dateOfBirth: user?.dateOfBirth || undefined,
       email: user?.email || "",
     },
   });
@@ -70,21 +62,16 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
               <FormErrorMessage>{errors.name.message}</FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors?.age?.message}>
-            <FormLabel>Age</FormLabel>
-            <NumberInput>
-              <NumberInputField
-                disabled={isPending}
-                {...register("age")}
-                placeholder="19"
-              />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            {errors?.age?.message && (
-              <FormErrorMessage>{errors.age.message}</FormErrorMessage>
+          <FormControl isInvalid={!!errors?.dateOfBirth?.message}>
+            <FormLabel>Date of birth</FormLabel>
+            <Input
+              type="date"
+              disabled={isPending}
+              {...register("dateOfBirth")}
+              max={new Date().toISOString().split("T")[0]}
+            />
+            {errors?.dateOfBirth?.message && (
+              <FormErrorMessage>{errors.dateOfBirth.message}</FormErrorMessage>
             )}
           </FormControl>
 

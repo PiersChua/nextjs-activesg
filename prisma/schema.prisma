@@ -28,7 +28,7 @@ model User {
   name          String?
   email         String    @unique
   emailVerified DateTime?
-  age           Int?
+  dateOfBirth   DateTime? @db.Date
   password      String?
   role          Role      @default(USER)
   image         String?

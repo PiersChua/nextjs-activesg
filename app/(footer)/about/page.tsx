@@ -3,22 +3,20 @@ const AboutPage = () => {
   return (
     <Box py="5em">
       <Container maxW="1400px">
-        <Box>
-          <Text mb="0.5em" textStyle="h1">
-            Who are we?
-          </Text>
-          <Flex direction="column" gap="2em">
-            {aboutItems.map((item, idx) => (
-              <Flex key={idx} direction="column" gap={2}>
-                <Text textStyle="h2" mb={2}>
-                  {item.title}
-                </Text>
-                <Divider borderColor="#000000" />
-                <Text textStyle="p">{item.desc}</Text>
-              </Flex>
-            ))}
-          </Flex>
-        </Box>
+        <Text mb="0.5em" textStyle="h1">
+          Who are we?
+        </Text>
+        <Flex direction="column" gap="2em">
+          {aboutItems.map((item, idx) => (
+            <Flex key={idx} direction="column" gap={2}>
+              <Text textStyle="h2" mb={2}>
+                {item.title}
+              </Text>
+              <Divider borderColor="#000000" />
+              <Text textStyle="p">{item.desc}</Text>
+            </Flex>
+          ))}
+        </Flex>
       </Container>
     </Box>
   );
