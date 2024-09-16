@@ -7,7 +7,7 @@ import BenefitsCard, {
 
 const Benefits = () => {
   return (
-    <Box bg="var(--beige-shade-1)" py="5em">
+    <Box bg="var(--beige-1)" py="5em">
       <Container maxW="1400px">
         <Text textStyle="h1" mb="0.5em">
           Why choose{" "}

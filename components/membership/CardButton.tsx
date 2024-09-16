@@ -7,7 +7,9 @@ import { usePathname } from "next/navigation";
 
 interface CardButtonProps {
   color: string;
-  variant: string;
+  bg: string;
+  hoverColor: string;
+  border?: string;
   type: "Cart" | "Buy";
   passType: PassType;
   children: ReactNode;
@@ -15,8 +17,10 @@ interface CardButtonProps {
 
 const CardButton = ({
   color,
-  variant,
+  hoverColor,
+  bg,
   type,
+  border,
   passType,
   children,
 }: CardButtonProps) => {
@@ -25,8 +29,10 @@ const CardButton = ({
     <Button
       as="a"
       href={`${path}?type=${type}&id=${passType.id}`}
-      colorScheme={color}
-      variant={variant}
+      color={color}
+      _hover={{ bg: hoverColor }}
+      bg={bg}
+      border={border}
       leftIcon={
         type === "Cart" ? <MdAddShoppingCart /> : <MdOutlineShoppingBag />
       }

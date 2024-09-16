@@ -32,6 +32,11 @@ const theme = extendTheme({
     heading: `'Poppins', sans-serif`,
     body: `'Poppins', sans-serif`,
   },
+  colors: {
+    orangey: {
+      500: "#ff9c66", // Primary shade
+    },
+  },
 });
 export function Providers({ children }: { children: React.ReactNode }) {
   return (

@@ -7,9 +7,10 @@ interface CheckboxProps {
   id: string;
 }
 const CartCheckbox = ({ checked, id }: CheckboxProps) => {
-  
   return (
     <Checkbox
+      colorScheme="red"
+      border="var(--grey)"
       defaultChecked={checked}
       onChange={() => updatePassCartChecked(id)}
     />

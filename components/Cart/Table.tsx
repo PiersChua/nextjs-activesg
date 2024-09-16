@@ -27,19 +27,23 @@ const TableComponent = ({ userCart }: TableProps) => {
       <Table size="lg" variant="simple">
         <Thead>
           <Tr>
-            <Th>Checked</Th>
-            <Th>Name</Th>
-            <Th>Quantity</Th>
-            <Th isNumeric>Price ($)</Th>
+            <Th borderBottom="1px solid var(--grey)"></Th>
+            <Th borderBottom="1px solid var(--grey)">Name</Th>
+            <Th borderBottom="1px solid var(--grey)">Unit Price</Th>
+            <Th borderBottom="1px solid var(--grey)">Quantity</Th>
+            <Th borderBottom="1px solid var(--grey)" isNumeric>
+              Total Price
+            </Th>
+            <Th borderBottom="1px solid var(--grey)"></Th>
           </Tr>
         </Thead>
         <Tbody>
           {userCart.map((item) => (
             <Tr key={item.id}>
-              <Td>
+              <Td borderBottom="1px solid var(--grey)">
                 <CartCheckbox id={item.id} checked={item.cartChecked} />
               </Td>
-              <Td>
+              <Td borderBottom="1px solid var(--grey)">
                 {`${
                   item.passType.durationInDays > 1
                     ? `${item.passType.durationInDays / 30} ${
@@ -52,13 +56,17 @@ const TableComponent = ({ userCart }: TableProps) => {
                   item.passType.category
                 } Pass`}
               </Td>
-              <Td>{item.quantity}</Td>
-              <Td isNumeric>
+              <Td borderBottom="1px solid var(--grey)">
+                ${(item.passType.priceInCents / 100).toFixed(2)}
+              </Td>
+              <Td borderBottom="1px solid var(--grey)">{item.quantity}</Td>
+              <Td borderBottom="1px solid var(--grey)" isNumeric>
+                $
                 {((item.passType.priceInCents * item.quantity) / 100).toFixed(
                   2
                 )}
               </Td>
-              <Td>
+              <Td borderBottom="1px solid var(--grey)">
                 <Stack direction="row">
                   <EditButton quantity={item.quantity} id={item.id} />
                   <DeleteButton id={item.id} />

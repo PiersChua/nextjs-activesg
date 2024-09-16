@@ -146,7 +146,7 @@ const DesktopSubNav = ({ label, children }: NavItem) => {
                 display={"block"}
                 p={2}
                 rounded={"md"}
-                _hover={{ bg: "var(--beige-shade-1)" }}
+                _hover={{ bg: "var(--beige-1)" }}
               >
                 <Stack
                   role="group"
@@ -271,16 +271,35 @@ const Profile = () => {
           }
         />
       </MenuButton>
-      <MenuList>
+      <MenuList
+        boxShadow="0 5px 20px rgba(0,0,0,0.2)"
+        border={0}
+        bg="var(--beige)"
+      >
         <form action={logout}>
-          <MenuItem as="button" type="submit">
+          <MenuItem
+            _hover={{ bg: "var(--beige-1)" }}
+            bg="var(--beige)"
+            as="button"
+            type="submit"
+          >
             Sign out
           </MenuItem>
         </form>
-        <MenuItem as="a" href="/user-profile">
+        <MenuItem
+          _hover={{ bg: "var(--beige-1)" }}
+          bg="var(--beige)"
+          as="a"
+          href="/user-profile"
+        >
           Profile
         </MenuItem>
-        <MenuItem as="a" href="/user-cart">
+        <MenuItem
+          _hover={{ bg: "var(--beige-1)" }}
+          bg="var(--beige)"
+          as="a"
+          href="/user-cart"
+        >
           Cart
         </MenuItem>
       </MenuList>
