@@ -23,6 +23,24 @@ enum PassCategory {
   GYM
 }
 
+enum Sport {
+  BASKETBALL
+  BADMINTON
+  FOOTBALL
+  HOCKEY
+  TENNIS
+  TABLE_TENNIS
+}
+
+enum FacilityType {
+  HALL
+  COURT
+  ROOM
+  STUDIO
+  OUTDOOR
+  OTHERS
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -38,6 +56,7 @@ model User {
   passCarts     PassCart[]
   subscriptions ProgrammeSubscription[]
   programmes    Programme[] // for trainers
+  bookings      Booking[]
   createdAt     DateTime                @default(now())
   updatedAt     DateTime                @updatedAt
 
@@ -82,8 +101,8 @@ model PassType {
 
 model Pass {
   id         String   @id @default(uuid())
-  startDate  DateTime @default(now())
-  endDate    DateTime
+  startDate  DateTime @default(now()) @db.Date
+  endDate    DateTime @db.Date
   quantity   Int      @default(1)
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
@@ -94,14 +113,16 @@ model Pass {
 }
 
 model PassCart {
-  id          String   @id @default(uuid())
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  cartChecked Boolean  @default(true)
-  quantity    Int
-  userId      String
-  passType    PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
-  passTypeId  String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  isChecked  Boolean  @default(true)
+  quantity   Int
+  passType   PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
+  passTypeId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
+  @@id([userId, passTypeId])
   @@map("pass_carts")
 }
 
@@ -133,4 +154,39 @@ model ProgrammeSubscription {
   updatedAt   DateTime  @updatedAt
 
   @@map("programme_subscriptions")
+}
+
+model Facility {
+  id          String       @id @default(uuid())
+  name        String
+  location    String
+  description String
+  sport       Sport[]
+  type        FacilityType
+  otherType   String? // used when facility is type "OTHERS"
+  Timeslot    Timeslot[]
+
+  @@map("facilities")
+}
+
+model Timeslot {
+  id          String   @id @default(uuid())
+  startTime   DateTime @db.Timestamptz()
+  endTime     DateTime @db.Timestamptz()
+  isAvailable Boolean
+  facility    Facility @relation(fields: [facilityId], references: [id], onDelete: Restrict) // don't delete timeslot if facility is deleted
+  facilityId  String
+  booking     Booking?
+
+  @@map("timeslots")
+}
+
+model Booking {
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  timeslot   Timeslot @relation(fields: [timeslotId], references: [id], onDelete: Restrict)
+  timeslotId String   @unique
+
+  @@id([userId, timeslotId])
+  @@map("bookings")
 }

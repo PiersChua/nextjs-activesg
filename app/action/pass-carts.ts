@@ -26,11 +26,22 @@ const createPassCart = async (
     return { error: "Pass type not found" };
   }
   const userId = user?.id;
-  const passCart = await prisma.passCart.create({
-    data: {
+  const upsertPassCart = await prisma.passCart.upsert({
+    where: {
+      userId_passTypeId: {
+        userId: userId!,
+        passTypeId: passTypeId,
+      },
+    },
+    update: {
+      quantity: {
+        increment: quantity,
+      },
+    },
+    create: {
       user: {
         connect: {
-          id: userId,
+          id: userId!,
         },
       },
       passType: {
@@ -38,10 +49,10 @@ const createPassCart = async (
           id: passTypeId,
         },
       },
-      quantity,
+      quantity: quantity,
     },
   });
-  if (!passCart) return { error: "Unable to add to cart" };
+  if (!upsertPassCart) return { error: "Unable to add to cart" };
   return { success: "Successfully added to cart" };
 };
 
@@ -61,34 +72,56 @@ const getPassCart = async () => {
   return passCarts;
 };
 
-const deletePassCart = async (passCartId: string) => {
+const deletePassCart = async (passTypeId: string) => {
+  const user = await getSessionUser();
+  const userId = user?.id;
   const deletedPassCart = await prisma.passCart.delete({
     where: {
-      id: passCartId,
+      userId_passTypeId: {
+        userId: userId!,
+        passTypeId: passTypeId,
+      },
     },
   });
   revalidatePath("/user-cart");
 };
 
-const updatePassCartChecked = async (passCartId: string) => {
+const updatePassCartChecked = async (passTypeId: string) => {
+  const user = await getSessionUser();
+  const userId = user?.id;
   const passCart = await prisma.passCart.findUnique({
     where: {
-      id: passCartId,
+      userId_passTypeId: {
+        userId: userId!,
+        passTypeId: passTypeId,
+      },
     },
   });
   const updatedPassCart = await prisma.passCart.update({
     where: {
-      id: passCartId,
+      userId_passTypeId: {
+        userId: userId!,
+        passTypeId: passTypeId,
+      },
     },
     data: {
-      cartChecked: !passCart!.cartChecked,
+      isChecked: !passCart!.isChecked,
+    },
+  });
+  revalidatePath("/user-cart");
+};
+
+const updateAllPassCartChecked = async (isChecked: boolean) => {
+  const passCart = await prisma.passCart.updateMany({
+    data: {
+      isChecked: !isChecked,
     },
   });
   revalidatePath("/user-cart");
 };
 
 const updatePassCartQuantity = async (
-  passCartId: string,
+  passTypeId: string,
   values: z.infer<typeof CartSchema>
 ) => {
   const validatedFields = CartSchema.safeParse(values);
@@ -100,14 +133,19 @@ const updatePassCartQuantity = async (
   const userId = user?.id;
   const passCart = await prisma.passCart.findUnique({
     where: {
-      id: passCartId,
-      userId: userId,
+      userId_passTypeId: {
+        userId: userId!,
+        passTypeId: passTypeId,
+      },
     },
   });
   if (!passCart) return { error: "Pass not found" };
   const updatedPassCart = await prisma.passCart.update({
     where: {
-      id: passCartId,
+      userId_passTypeId: {
+        userId: userId!,
+        passTypeId: passTypeId,
+      },
     },
     data: {
       quantity: quantity,
@@ -122,5 +160,6 @@ export {
   getPassCart,
   deletePassCart,
   updatePassCartChecked,
+  updateAllPassCartChecked,
   updatePassCartQuantity,
 };

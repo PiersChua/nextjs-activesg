@@ -39,9 +39,9 @@ const TableComponent = ({ userCart }: TableProps) => {
         </Thead>
         <Tbody>
           {userCart.map((item) => (
-            <Tr key={item.id}>
+            <Tr key={item.passTypeId}>
               <Td borderBottom="1px solid var(--grey)">
-                <CartCheckbox id={item.id} checked={item.cartChecked} />
+                <CartCheckbox id={item.passTypeId} checked={item.isChecked} />
               </Td>
               <Td borderBottom="1px solid var(--grey)">
                 {`${
@@ -68,8 +68,8 @@ const TableComponent = ({ userCart }: TableProps) => {
               </Td>
               <Td borderBottom="1px solid var(--grey)">
                 <Stack direction="row">
-                  <EditButton quantity={item.quantity} id={item.id} />
-                  <DeleteButton id={item.id} />
+                  <EditButton quantity={item.quantity} id={item.passTypeId} />
+                  <DeleteButton id={item.passTypeId} />
                 </Stack>
               </Td>
             </Tr>

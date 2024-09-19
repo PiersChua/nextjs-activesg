@@ -1,6 +1,6 @@
 import prisma from "@/lib/db";
 import { Prisma } from "@prisma/client";
-import { PassCategory } from "@prisma/client";
+import { PassCategory, FacilityType, Sport } from "@prisma/client";
 
 const passTypeData: Prisma.PassTypeCreateInput[] = [
   /* GYM */
@@ -280,9 +280,40 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
 //   },
 // ];
 
+const facilityData: Prisma.FacilityCreateInput[] = [
+  {
+    name: "Fernvale Primary School Hall",
+    description: "Primary School near Seletar Mall",
+    location: "1 Fernvale Lane, Singapore 797701",
+    sport: [Sport.BADMINTON, Sport.BASKETBALL],
+    type: FacilityType.HALL,
+  },
+  {
+    name: "Yio Chu Kang Sports Hall",
+    description:
+      "Yio Chu Kang Sport Hall is a public sport hall with 6 badminton Courts & Table Tennis Academy",
+    location: "214 Ang Mo Kio Avenue 9, Singapore 569780",
+    sport: [Sport.BADMINTON, Sport.TABLE_TENNIS],
+    type: FacilityType.HALL,
+  },
+  {
+    name: "Presbyterian High School",
+    description:
+      "Co-educational government-aided Presbyterian secondary school in Ang Mo Kio",
+    location: " 5209 Ang Mo Kio Ave 6, Singapore 569845",
+    sport: [Sport.BADMINTON, Sport.BASKETBALL],
+    type: FacilityType.HALL,
+  },
+];
+
 async function main() {
-  for (const data of passTypeData) {
-    const user = await prisma.passType.create({
+  // for (const data of passTypeData) {
+  //   const user = await prisma.passType.create({
+  //     data: data,
+  //   });
+  // }
+  for (const data of facilityData) {
+    const facility = await prisma.facility.create({
       data: data,
     });
   }

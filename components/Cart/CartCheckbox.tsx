@@ -11,8 +11,10 @@ const CartCheckbox = ({ checked, id }: CheckboxProps) => {
     <Checkbox
       colorScheme="red"
       border="var(--grey)"
-      defaultChecked={checked}
-      onChange={() => updatePassCartChecked(id)}
+      isChecked={checked}
+      onChange={() => {
+        updatePassCartChecked(id);
+      }}
     />
   );
 };

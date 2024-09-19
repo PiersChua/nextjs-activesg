@@ -18,12 +18,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isLoggedIn = !!(await getSessionUser());
+  const user = await getSessionUser();
+  const isLoggedIn = !!user;
+  const name = user?.name as string | undefined;
+  const image = user?.image as string | undefined;
   return (
     <html lang="en">
       <body>
         <Providers>
-          <Navbar isLoggedIn={isLoggedIn} />
+          <Navbar name={name} image={image} isLoggedIn={isLoggedIn} />
           <main>{children}</main>
           <Footer />
         </Providers>

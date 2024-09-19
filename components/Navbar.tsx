@@ -31,8 +31,10 @@ import { logout } from "@/app/action/user";
 
 interface NavbarProps {
   isLoggedIn: boolean;
+  image: string | undefined;
+  name: string | undefined;
 }
-const Navbar = ({ isLoggedIn }: NavbarProps) => {
+const Navbar = ({ isLoggedIn, image, name }: NavbarProps) => {
   const path = usePathname();
   const { isOpen, onToggle } = useDisclosure();
   return (
@@ -79,10 +81,18 @@ const Navbar = ({ isLoggedIn }: NavbarProps) => {
               display={{ base: "none", md: "flex" }}
             >
               <DesktopNav />
-              {isLoggedIn ? <Profile /> : <SignUpButton />}
+              {isLoggedIn ? (
+                <Profile name={name} image={image} />
+              ) : (
+                <SignUpButton />
+              )}
             </Flex>
             <Flex display={{ base: "flex", md: "none" }}>
-              {isLoggedIn ? <Profile /> : <SignUpButton />}
+              {isLoggedIn ? (
+                <Profile name={name} image={image} />
+              ) : (
+                <SignUpButton />
+              )}
             </Flex>
           </Flex>
           <Collapse in={isOpen} animateOpacity>
@@ -254,7 +264,11 @@ const MobileNavItem = ({ label, children }: NavItem) => {
   );
 };
 
-const Profile = () => {
+interface ProfileProps {
+  image: string | undefined;
+  name: string | undefined;
+}
+const Profile = ({ image, name }: ProfileProps) => {
   return (
     <Menu>
       <MenuButton
@@ -264,12 +278,7 @@ const Profile = () => {
         cursor={"pointer"}
         minW={0}
       >
-        <Avatar
-          size={"sm"}
-          src={
-            "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-          }
-        />
+        <Avatar bg="var(--orange)" name={name} size={"sm"} src={image} />
       </MenuButton>
       <MenuList
         boxShadow="0 5px 20px rgba(0,0,0,0.2)"
@@ -286,22 +295,17 @@ const Profile = () => {
             Sign out
           </MenuItem>
         </form>
-        <MenuItem
-          _hover={{ bg: "var(--beige-1)" }}
-          bg="var(--beige)"
-          as="a"
-          href="/user-profile"
-        >
-          Profile
-        </MenuItem>
-        <MenuItem
-          _hover={{ bg: "var(--beige-1)" }}
-          bg="var(--beige)"
-          as="a"
-          href="/user-cart"
-        >
-          Cart
-        </MenuItem>
+        {profileItems.map((item, index) => (
+          <MenuItem
+            key={index}
+            _hover={{ bg: "var(--beige-1)" }}
+            bg="var(--beige)"
+            as="a"
+            href={item.href}
+          >
+            {item.label}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );
@@ -367,6 +371,17 @@ const navItems: NavItem[] = [
         href: "/membership/SWIM",
       },
     ],
+  },
+];
+
+const profileItems = [
+  {
+    label: "Profile",
+    href: "/user-profile",
+  },
+  {
+    label: "Cart",
+    href: "/user-cart",
   },
 ];
 

@@ -53,11 +53,11 @@ const QuantityModal = ({ id, quantity = 1, type, route }: ModalProps) => {
       setError("");
       switch (type) {
         case "Create": {
-          await createPassCart(id, values).then((data) => {
-            setError(data?.error as string);
-            setSuccess(data?.success as string);
-          });
-          if (route) {
+          const data = await createPassCart(id, values);
+          setError(data?.error as string);
+          setSuccess(data?.success as string);
+
+          if (!data?.error && route) {
             router.push("/user-cart");
           }
           break;
@@ -85,7 +85,7 @@ const QuantityModal = ({ id, quantity = 1, type, route }: ModalProps) => {
                 <NumberInput
                   defaultValue={quantity}
                   min={1}
-                  max={10}
+                  max={99}
                   clampValueOnBlur={false}
                 >
                   <NumberInputField
@@ -106,13 +106,21 @@ const QuantityModal = ({ id, quantity = 1, type, route }: ModalProps) => {
               <Stack direction="row" justifyContent="flex-end">
                 <Button
                   disabled={isPending}
-                  colorScheme="blue"
+                  color="#ffffff"
+                  bg="var(--orange)"
+                  _hover={{ bg: "var(--orange-1)" }}
                   mr={3}
                   onClick={handleClose}
                 >
                   Close
                 </Button>
-                <Button type="submit" isLoading={isPending} variant="outline">
+                <Button
+                  color="var(--orange)"
+                  bg="#ffffff"
+                  border="1px solid var(--orange)"
+                  type="submit"
+                  isLoading={isPending}
+                >
                   Confirm
                 </Button>
               </Stack>

@@ -25,7 +25,7 @@ const Activities = () => {
 const activityItems: ActivitiesCardProps[] = [
   {
     title: "FitPass",
-    desc: "Unlock access to gyms and swimming pools across Singapore",
+    desc: "Unlock access to gyms and swimming pools",
     image: "/fitpass.webp",
     icon: "FITPASS",
   },

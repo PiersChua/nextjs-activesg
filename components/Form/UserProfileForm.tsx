@@ -33,7 +33,6 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
       name: user?.name || "",
-      dateOfBirth: user?.dateOfBirth || undefined,
       email: user?.email || "",
     },
   });
@@ -46,9 +45,9 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
   };
 
   return (
-    <Stack mt={10} spacing={5}>
+    <Stack my={10} spacing={5}>
       <FormHeader text="My Profile" />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
           <FormControl isInvalid={!!errors?.name?.message}>
             <FormLabel>Name</FormLabel>
@@ -65,6 +64,11 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
           <FormControl isInvalid={!!errors?.dateOfBirth?.message}>
             <FormLabel>Date of birth</FormLabel>
             <Input
+              defaultValue={
+                user?.dateOfBirth
+                  ? new Date(user.dateOfBirth).toISOString().split("T")[0]
+                  : ""
+              }
               type="date"
               disabled={isPending}
               {...register("dateOfBirth")}
@@ -74,6 +78,13 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
               <FormErrorMessage>{errors.dateOfBirth.message}</FormErrorMessage>
             )}
           </FormControl>
+          {/* <FormControl>
+            <FormLabel>Profile Picture</FormLabel>
+            <Input type="file" />
+          </FormControl>
+          {errors?.dateOfBirth?.message && (
+            <FormErrorMessage>{errors.dateOfBirth.message}</FormErrorMessage>
+          )} */}
 
           <FormControl>
             <FormLabel>Email address</FormLabel>
