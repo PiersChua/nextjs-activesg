@@ -62,12 +62,8 @@ const Hero = ({ isLoggedIn }: HeroProps) => {
         </Text>
         <Button
           as={"a"}
-          color="#000000"
-          bg="#F4D35E"
           href={isLoggedIn ? "/activities" : "/signup"}
-          _hover={{
-            bg: "#D9C287",
-          }}
+          variant="yellowBlack"
         >
           Get Started
         </Button>

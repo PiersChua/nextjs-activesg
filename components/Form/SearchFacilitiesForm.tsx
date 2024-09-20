@@ -51,7 +51,7 @@ const SearchFacilitiesForm = () => {
           <FormControl isInvalid={!!errors?.facilityType?.message}>
             <FormLabel>Facility Type</FormLabel>
             <Select
-              border="1px solid var(--grey)"
+              variant="cream"
               disabled={isPending}
               {...register("facilityType")}
             >
@@ -70,7 +70,7 @@ const SearchFacilitiesForm = () => {
           </FormControl>
           <FormControl isInvalid={!!errors?.sport?.message}>
             <FormLabel>Sport</FormLabel>
-            <Select disabled={isPending} {...register("sport")}>
+            <Select variant="cream" disabled={isPending} {...register("sport")}>
               <option selected hidden disabled value="">
                 Eg. Badminton
               </option>
@@ -87,6 +87,7 @@ const SearchFacilitiesForm = () => {
           <FormControl isInvalid={!!errors?.date?.message}>
             <FormLabel>Date of birth</FormLabel>
             <Input
+              variant="cream"
               type="date"
               disabled={isPending}
               {...register("date")}
@@ -98,7 +99,7 @@ const SearchFacilitiesForm = () => {
           </FormControl>
           <FormControl isInvalid={!!errors?.time?.message}>
             <FormLabel>Time</FormLabel>
-            <Select disabled={isPending} {...register("time")}>
+            <Select variant="cream" disabled={isPending} {...register("time")}>
               <option selected hidden disabled value="">
                 Eg. Morning
               </option>

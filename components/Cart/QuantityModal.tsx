@@ -106,18 +106,14 @@ const QuantityModal = ({ id, quantity = 1, type, route }: ModalProps) => {
               <Stack direction="row" justifyContent="flex-end">
                 <Button
                   disabled={isPending}
-                  color="#ffffff"
-                  bg="var(--orange)"
-                  _hover={{ bg: "var(--orange-1)" }}
+                  variant="orangeWhite"
                   mr={3}
                   onClick={handleClose}
                 >
                   Close
                 </Button>
                 <Button
-                  color="var(--orange)"
-                  bg="#ffffff"
-                  border="1px solid var(--orange)"
+                  variant="outlineOrange"
                   type="submit"
                   isLoading={isPending}
                 >

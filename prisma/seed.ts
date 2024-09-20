@@ -307,11 +307,11 @@ const facilityData: Prisma.FacilityCreateInput[] = [
 ];
 
 async function main() {
-  // for (const data of passTypeData) {
-  //   const user = await prisma.passType.create({
-  //     data: data,
-  //   });
-  // }
+  for (const data of passTypeData) {
+    const user = await prisma.passType.create({
+      data: data,
+    });
+  }
   for (const data of facilityData) {
     const facility = await prisma.facility.create({
       data: data,

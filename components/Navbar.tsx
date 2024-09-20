@@ -313,15 +313,7 @@ const Profile = ({ image, name }: ProfileProps) => {
 
 const SignUpButton = () => {
   return (
-    <Button
-      as="a"
-      color="#000000"
-      bg="#F4D35E"
-      href="/signup"
-      _hover={{
-        bg: "#D9C287",
-      }}
-    >
+    <Button as="a" variant="yellowBlack" href="/signup">
       Sign up
     </Button>
   );

@@ -45,13 +45,23 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
   };
 
   return (
-    <Stack my={10} spacing={5}>
+    <Stack
+      bg="var(--beige)"
+      boxShadow="0 5px 20px rgba(0,0,0,0.2)"
+      maxW="800px"
+      w="full"
+      p={5}
+      rounded="xl"
+      my={10}
+      spacing={5}
+    >
       <FormHeader text="My Profile" />
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
           <FormControl isInvalid={!!errors?.name?.message}>
             <FormLabel>Name</FormLabel>
             <Input
+              variant="cream"
               disabled={isPending}
               {...register("name")}
               placeholder="Piers Chua"
@@ -64,6 +74,7 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
           <FormControl isInvalid={!!errors?.dateOfBirth?.message}>
             <FormLabel>Date of birth</FormLabel>
             <Input
+              variant="cream"
               defaultValue={
                 user?.dateOfBirth
                   ? new Date(user.dateOfBirth).toISOString().split("T")[0]
@@ -88,7 +99,7 @@ const UserProfileForm = ({ user }: UserProfileProps) => {
 
           <FormControl>
             <FormLabel>Email address</FormLabel>
-            <Input {...register("email")} disabled />
+            <Input variant="cream" {...register("email")} disabled />
           </FormControl>
           {error && <FormMessage type="Error">{error}</FormMessage>}
 

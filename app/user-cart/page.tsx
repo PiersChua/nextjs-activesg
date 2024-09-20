@@ -41,7 +41,6 @@ const UserCartPage = async ({
                 <SelectAllCheckbox isAllChecked={isAllChecked} />
                 <Text textStyle="p">Select all</Text>
               </Stack>
-
               <Stack
                 alignItems="center"
                 justifyContent="flex-end"

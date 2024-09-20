@@ -10,12 +10,8 @@ const FormButton = ({ text, isLoading }: ButtonProps) => {
   return (
     <Button
       isLoading={isLoading}
-      color="#000000"
-      bg="#F4D35E"
-      _hover={{
-        bg: "#D9C287",
-      }}
       type="submit"
+      variant="yellowBlack"
       rightIcon={<Icon as={FaArrowRightLong} />}
     >
       {text}

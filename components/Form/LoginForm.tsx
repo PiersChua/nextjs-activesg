@@ -44,13 +44,23 @@ const LoginForm = () => {
   };
 
   return (
-    <Stack mt={10} spacing={5}>
+    <Stack
+      bg="var(--beige)"
+      boxShadow="0 5px 20px rgba(0,0,0,0.2)"
+      maxW="800px"
+      w="full"
+      p={5}
+      rounded="xl"
+      mt={10}
+      spacing={5}
+    >
       <FormHeader text="Login" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
           <FormControl isInvalid={!!errors?.email?.message}>
             <FormLabel>Email address</FormLabel>
             <Input
+              variant="cream"
               disabled={isPending}
               {...register("email")}
               placeholder="john@example.com"
@@ -63,6 +73,7 @@ const LoginForm = () => {
             <FormLabel>Password</FormLabel>
             <InputGroup>
               <Input
+                variant="cream"
                 disabled={isPending}
                 {...register("password")}
                 type={show ? "text" : "password"}

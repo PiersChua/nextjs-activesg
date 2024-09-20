@@ -40,13 +40,23 @@ const SignUpForm = () => {
     });
   };
   return (
-    <Stack mt={10} spacing={5}>
+    <Stack
+      bg="var(--beige)"
+      boxShadow="0 5px 20px rgba(0,0,0,0.2)"
+      maxW="800px"
+      w="full"
+      p={5}
+      rounded="xl"
+      mt={10}
+      spacing={5}
+    >
       <FormHeader text="Sign Up" />
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
           <FormControl isInvalid={!!errors?.name?.message}>
             <FormLabel>Name</FormLabel>
             <Input
+              variant="cream"
               disabled={isPending}
               {...register("name")}
               placeholder="Piers Chua"
@@ -59,6 +69,7 @@ const SignUpForm = () => {
           <FormControl isInvalid={!!errors?.dateOfBirth?.message}>
             <FormLabel>Date of birth</FormLabel>
             <Input
+              variant="cream"
               type="date"
               disabled={isPending}
               {...register("dateOfBirth")}
@@ -72,6 +83,7 @@ const SignUpForm = () => {
           <FormControl isInvalid={!!errors?.email?.message}>
             <FormLabel>Email address</FormLabel>
             <Input
+              variant="cream"
               disabled={isPending}
               {...register("email")}
               placeholder="piers@example.com"
@@ -84,6 +96,7 @@ const SignUpForm = () => {
             <FormLabel>Password</FormLabel>
             <InputGroup>
               <Input
+                variant="cream"
                 disabled={isPending}
                 {...register("password")}
                 type={show ? "text" : "password"}

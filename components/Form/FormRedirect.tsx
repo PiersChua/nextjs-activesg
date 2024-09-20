@@ -12,7 +12,7 @@ const FormRedirect = ({ href, text, hrefText }: RedirectProps) => {
       {text}{" "}
       <Text
         textDecoration="underline"
-        _hover={{ color: "#F4D35E", transition: "color 0.3s" }}
+        _hover={{ color: "var(--yellow)" }}
         href={href}
         as="a"
       >

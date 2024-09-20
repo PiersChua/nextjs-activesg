@@ -15,13 +15,7 @@ const EmptyCart = () => {
       <Text color="var(--grey)" textAlign="center" textStyle="h2">
         Your cart is empty
       </Text>
-      <Button
-        as="a"
-        href="/membership/GYM"
-        color="#fff"
-        bg="var(--orange)"
-        _hover={{ bg: "var(--orange-1)" }}
-      >
+      <Button as="a" href="/membership/GYM" variant="orangeWhite">
         Start shopping now
       </Button>
     </Flex>

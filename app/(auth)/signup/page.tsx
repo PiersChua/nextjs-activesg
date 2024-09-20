@@ -1,7 +1,12 @@
 import SignUpForm from "@/components/Form/SignUpForm";
+import { Stack } from "@chakra-ui/react";
 
 const SignUpPage = () => {
-  return <SignUpForm />;
+  return (
+    <Stack alignItems="center">
+      <SignUpForm />
+    </Stack>
+  );
 };
 
 export default SignUpPage;

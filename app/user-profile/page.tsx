@@ -1,7 +1,7 @@
 import UserProfileForm from "@/components/Form/UserProfileForm";
 import prisma from "@/lib/db";
 import { getSessionUser } from "@/utils/getSessionUser";
-import { Container } from "@chakra-ui/react";
+import { Container, Stack } from "@chakra-ui/react";
 
 const UserPage = async () => {
   const getUser = async () => {
@@ -18,7 +18,9 @@ const UserPage = async () => {
   const user = await getUser();
   return (
     <Container maxW="1400px">
-      <UserProfileForm user={user} />
+      <Stack alignItems="center">
+        <UserProfileForm user={user} />
+      </Stack>
     </Container>
   );
 };

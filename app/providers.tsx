@@ -4,8 +4,13 @@ import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider, StyleFunctionProps } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import "@fontsource/poppins";
+import { inputTheme } from "@/app/_themes/Input";
+import { selectTheme } from "@/app/_themes/Select";
+import { buttonTheme } from "@/app/_themes/Button";
 
+/* Theme */
 const theme = extendTheme({
+  components: { Input: inputTheme, Select: selectTheme, Button: buttonTheme },
   textStyles: {
     h1: {
       fontSize: { base: "44px", md: "60px" },
@@ -38,6 +43,7 @@ const theme = extendTheme({
     },
   },
 });
+
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <CacheProvider>

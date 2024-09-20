@@ -49,10 +49,7 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
             <CardFooter>
               <Stack flexWrap="wrap" direction="row" spacing={4}>
                 <CardButton
-                  border="1px solid var(--orange)"
-                  color="var(--orange)"
-                  bg="#F5F5F5"
-                  hoverColor="#E0E0E0"
+                  variant="outlineOrange"
                   passType={passType}
                   type="Cart"
                 >
@@ -60,9 +57,7 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
                 </CardButton>
                 <CardButton
                   passType={passType}
-                  color="#ffffff"
-                  bg="var(--orange)"
-                  hoverColor="var(--orange-1)"
+                  variant="orangeWhite"
                   type="Buy"
                 >
                   Buy now
