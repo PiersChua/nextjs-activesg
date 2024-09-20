@@ -13,9 +13,7 @@ const EditButton = ({ id, quantity }: ButtonProps) => {
     <IconButton
       as="a"
       href={`${path}?quantity=${quantity}&id=${id}`}
-      color="#ffffff"
-      _hover={{ bg: "#2980b9 " }}
-      bg="#3498db"
+      variant="blueWhite"
       fontSize="20px"
       aria-label="Edit"
       icon={<FaEdit />}

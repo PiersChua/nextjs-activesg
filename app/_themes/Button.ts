@@ -22,6 +22,26 @@ const outlineOrange = defineStyle(() => {
   };
 });
 
+const redWhite = defineStyle(() => {
+  return {
+    color: "#ffffff",
+    backgroundColor: "var(--red)",
+    _hover: {
+      backgroundColor: "var(--red-1)",
+    },
+  };
+});
+
+const blueWhite = defineStyle(() => {
+  return {
+    color: "#ffffff",
+    backgroundColor: "var(--blue)",
+    _hover: {
+      backgroundColor: "var(--blue-1)",
+    },
+  };
+});
+
 const yellowBlack = defineStyle(() => {
   return {
     color: "#000000",
@@ -31,5 +51,5 @@ const yellowBlack = defineStyle(() => {
 });
 
 export const buttonTheme = defineStyleConfig({
-  variants: { orangeWhite, outlineOrange, yellowBlack },
+  variants: { orangeWhite, redWhite, blueWhite, outlineOrange, yellowBlack },
 });
