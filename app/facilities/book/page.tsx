@@ -1,4 +1,4 @@
-import FacilitiesCard from "@/components/facilities/Card";
+import FacilitiesCard from "@/components/facilities/FacilitiesTypeCard";
 import SearchFacilitiesForm from "@/components/Form/SearchFacilitiesForm";
 import { Box, Container, SimpleGrid, Stack } from "@chakra-ui/react";
 import React from "react";

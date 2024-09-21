@@ -281,11 +281,12 @@ const passTypeData: Prisma.PassTypeCreateInput[] = [
 // ];
 
 const facilityData: Prisma.FacilityCreateInput[] = [
+  // HALLS
   {
     name: "Fernvale Primary School Hall",
     description: "Primary School near Seletar Mall",
     location: "1 Fernvale Lane, Singapore 797701",
-    sport: [Sport.BADMINTON, Sport.BASKETBALL],
+    sports: [Sport.BADMINTON, Sport.BASKETBALL],
     type: FacilityType.HALL,
   },
   {
@@ -293,16 +294,110 @@ const facilityData: Prisma.FacilityCreateInput[] = [
     description:
       "Yio Chu Kang Sport Hall is a public sport hall with 6 badminton Courts & Table Tennis Academy",
     location: "214 Ang Mo Kio Avenue 9, Singapore 569780",
-    sport: [Sport.BADMINTON, Sport.TABLE_TENNIS],
+    sports: [Sport.BADMINTON, Sport.TABLE_TENNIS],
     type: FacilityType.HALL,
   },
   {
     name: "Presbyterian High School",
     description:
       "Co-educational government-aided Presbyterian secondary school in Ang Mo Kio",
-    location: " 5209 Ang Mo Kio Ave 6, Singapore 569845",
-    sport: [Sport.BADMINTON, Sport.BASKETBALL],
+    location: "5209 Ang Mo Kio Ave 6, Singapore 569845",
+    sports: [Sport.BADMINTON, Sport.BASKETBALL],
     type: FacilityType.HALL,
+  },
+
+  // COURTS
+  {
+    name: "Yio Chu Kang Community Centre",
+    description: "Community Centre in Singapore",
+    location: "1 Fernvale Lane, Singapore 797701",
+    sports: [Sport.BADMINTON],
+    type: FacilityType.COURT,
+  },
+  {
+    name: "Tampines Sports Hall",
+    description:
+      "A multi-purpose sports hall with basketball and badminton courts.",
+    location: "10 Tampines Central 1, Singapore 529536",
+    sports: [Sport.BASKETBALL, Sport.BADMINTON],
+    type: FacilityType.COURT,
+  },
+  {
+    name: "Kallang Indoor Stadium",
+    description:
+      "Indoor stadium for various sports including basketball and badminton.",
+    location: "5 Stadium Walk, Singapore 397693",
+    sports: [Sport.BASKETBALL, Sport.BADMINTON],
+    type: FacilityType.COURT,
+  },
+
+  // ROOMS
+  {
+    name: "Table Tennis Room",
+    description: "Room dedicated for table tennis practice and events.",
+    location: "123 Table Tennis Ave, Singapore 123456",
+    sports: [Sport.TABLE_TENNIS],
+    type: FacilityType.ROOM,
+  },
+  {
+    name: "Badminton Training Room",
+    description: "Room for badminton training and strategy sessions.",
+    location: "45 Badminton Lane, Singapore 654321",
+    sports: [Sport.BADMINTON],
+    type: FacilityType.ROOM,
+  },
+  {
+    name: "Dance and Movement Room",
+    description: "A studio equipped for dance classes and movement practices.",
+    location: "12 Dance St, Singapore 112233",
+    sports: [Sport.HOCKEY], // Example sport related to movement
+    type: FacilityType.ROOM,
+  },
+
+  // STUDIOS
+  {
+    name: "Badminton Training Studio",
+    description: "A specialized studio for badminton training.",
+    location: "321 Sport Ave, Singapore 987654",
+    sports: [Sport.BADMINTON],
+    type: FacilityType.STUDIO,
+  },
+  {
+    name: "Basketball Shooting Studio",
+    description: "A studio equipped for basketball shooting practice.",
+    location: "456 Hoop Rd, Singapore 876543",
+    sports: [Sport.BASKETBALL],
+    type: FacilityType.STUDIO,
+  },
+  {
+    name: "Tennis Practice Studio",
+    description: "Indoor facility for tennis practice.",
+    location: "789 Racket St, Singapore 765432",
+    sports: [Sport.TENNIS],
+    type: FacilityType.STUDIO,
+  },
+
+  // OUTDOOR
+  {
+    name: "Central Park Basketball Court",
+    description: "Outdoor basketball court for public use.",
+    location: "1 Park Ave, Singapore 111111",
+    sports: [Sport.BASKETBALL],
+    type: FacilityType.OUTDOOR,
+  },
+  {
+    name: "Fernvale Badminton Court",
+    description: "Outdoor badminton court in a community park.",
+    location: "222 Fernvale Lane, Singapore 222222",
+    sports: [Sport.BADMINTON],
+    type: FacilityType.OUTDOOR,
+  },
+  {
+    name: "Outdoor Football Field",
+    description: "Open field for football games.",
+    location: "333 Football Rd, Singapore 333333",
+    sports: [Sport.FOOTBALL],
+    type: FacilityType.OUTDOOR,
   },
 ];
 

@@ -16,7 +16,7 @@ const FaqsPage = () => {
         <Text mb="0.5em" textStyle="h1">
           Frequently asked questions
         </Text>
-        <Accordion borderColor="#575757" allowToggle>
+        <Accordion borderColor="var(--grey)" allowToggle>
           {FAQs.map((item, index) => (
             <AccordionItem key={index}>
               <AccordionButton>

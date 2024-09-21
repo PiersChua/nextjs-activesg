@@ -102,7 +102,7 @@ model Pass {
   id         String   @id @default(uuid())
   startDate  DateTime @default(now()) @db.Date
   endDate    DateTime @db.Date
-  quantity   Int      @default(1)
+  quantity   Int
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
   passType   PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
@@ -160,21 +160,22 @@ model Facility {
   name        String
   location    String
   description String
-  sport       Sport[]
+  sports      Sport[]
   type        FacilityType
-  Timeslot    Timeslot[]
+  Timeslots   Timeslot[]
 
   @@map("facilities")
 }
 
 model Timeslot {
-  id          String   @id @default(uuid())
-  startTime   DateTime @db.Timestamptz()
-  endTime     DateTime @db.Timestamptz()
-  isAvailable Boolean
-  facility    Facility @relation(fields: [facilityId], references: [id], onDelete: Restrict) // don't delete timeslot if facility is deleted
-  facilityId  String
-  booking     Booking?
+  id           String   @id @default(uuid())
+  startTime    DateTime @db.Timestamptz()
+  endTime      DateTime @db.Timestamptz()
+  isAvailable  Boolean
+  priceInCents Int
+  facility     Facility @relation(fields: [facilityId], references: [id], onDelete: Restrict) // don't delete timeslot if facility is deleted
+  facilityId   String
+  booking      Booking?
 
   @@map("timeslots")
 }

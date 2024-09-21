@@ -45,7 +45,7 @@ const SearchFacilitiesForm = () => {
       spacing={5}
       rounded="xl"
     >
-      <FormHeader text="Book a facility now" />
+      <FormHeader text="Book a facility" />
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
           <FormControl isInvalid={!!errors?.facilityType?.message}>

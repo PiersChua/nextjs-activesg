@@ -24,6 +24,10 @@ const theme = extendTheme({
       fontSize: { base: "16px", md: "20px" },
       fontWeight: "normal",
     },
+    p2: {
+      fontSize: { base: "14px", md: "18px" },
+      fontWeight: "normal",
+    },
   },
   styles: {
     global: (props: StyleFunctionProps) => ({
