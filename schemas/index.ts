@@ -33,7 +33,7 @@ const ContactSchema = z.object({
     .regex(/^[A-Za-z\s]+$/, "Name can only contain letters"),
   phone: z
     .string()
-    .regex(/^(6|8|9)\d{7}$/, "Please enter a valid phone number"),
+    .regex(/^(6|8|9)\d{7}$/, "Please enter a local phone number"),
   email: z.string().email("Please enter a valid email address"),
   message: z.string().min(50, "Message is too short"),
 });
@@ -64,7 +64,12 @@ const CartSchema = z.object({
 const SearchFacilitySchema = z.object({
   facilityType: z.nativeEnum(FacilityType, { message: "Invalid facility" }),
   sport: z.nativeEnum(Sport, { message: "Invalid sport" }),
-  date: z.coerce.date().min(new Date(), "Cannot book dates before today"),
+  date: z.coerce
+    .date()
+    .min(
+      new Date(new Date().setHours(0, 0, 0, 0)),
+      "Cannot book dates before today"
+    ),
   time: z.enum(["Morning", "Afternoon", "Evening", "All"], {
     message: "Invalid time",
   }),

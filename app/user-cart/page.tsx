@@ -26,7 +26,7 @@ const UserCartPage = async ({
               quantity={parseInt(searchParams.quantity, 10)}
             />
           )}
-          <TableComponent userCart={userCart}></TableComponent>
+          <TableComponent userCart={userCart} />
           <Box
             mb={5}
             p={3}

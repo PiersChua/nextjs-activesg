@@ -38,7 +38,6 @@ enum FacilityType {
   ROOM
   STUDIO
   OUTDOOR
-  OTHERS
 }
 
 model User {
@@ -163,7 +162,6 @@ model Facility {
   description String
   sport       Sport[]
   type        FacilityType
-  otherType   String? // used when facility is type "OTHERS"
   Timeslot    Timeslot[]
 
   @@map("facilities")

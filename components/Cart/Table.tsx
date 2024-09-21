@@ -50,11 +50,9 @@ const TableComponent = ({ userCart }: TableProps) => {
                         item.passType.durationInDays / 30 > 1
                           ? "Months"
                           : "Month"
-                      }`
+                      } ${item.passType.isPeak ? "Peak" : "Non-peak"}`
                     : `${item.passType.durationInDays} Day`
-                } ${item.passType.isPeak ? "Peak" : "Non-peak"} ${
-                  item.passType.category
-                } Pass`}
+                } ${item.passType.category} Pass`}
               </Td>
               <Td borderBottom="1px solid var(--grey)">
                 ${(item.passType.priceInCents / 100).toFixed(2)}

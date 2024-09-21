@@ -85,7 +85,7 @@ const SearchFacilitiesForm = () => {
             )}
           </FormControl>
           <FormControl isInvalid={!!errors?.date?.message}>
-            <FormLabel>Date of birth</FormLabel>
+            <FormLabel>Date</FormLabel>
             <Input
               variant="cream"
               type="date"

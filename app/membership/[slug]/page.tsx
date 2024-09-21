@@ -13,11 +13,11 @@ const PassTypesPage = async ({
   params: { slug: string };
   searchParams: { [key: string]: string };
 }) => {
-  if (params.slug !== PassCategory.GYM && params.slug !== PassCategory.SWIM) {
+  if (!Object.values(PassCategory).includes(params.slug as PassCategory)) {
     notFound();
   }
   const { dayPasses, peakPasses, nonPeakPasses } = await getPassTypes(
-    params.slug
+    params.slug as PassCategory
   );
   return (
     <Container mb={10} maxW="1400px">

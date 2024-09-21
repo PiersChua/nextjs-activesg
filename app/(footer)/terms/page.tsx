@@ -1,4 +1,4 @@
-import { Box, Container, Text } from "@chakra-ui/react";
+import { Box, Container, Divider, Flex, Text } from "@chakra-ui/react";
 
 const TermsPage = () => {
   return (
@@ -9,14 +9,15 @@ const TermsPage = () => {
         </Text>
         <Box>
           {terms.map((item, index) => (
-            <Box py={3} key={index}>
+            <Flex direction="column" gap={2} py={3} key={index}>
               <Text mb={2} textStyle="h2">{`${index + 1}. ${item.title}`}</Text>
+              <Divider borderColor="#000000" />
               <Box>
                 {item.content.map((content, index) => (
                   <Text key={index}>{`${index + 1}. ${content}`}</Text>
                 ))}
               </Box>
-            </Box>
+            </Flex>
           ))}
         </Box>
       </Container>

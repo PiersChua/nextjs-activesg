@@ -1,4 +1,4 @@
-import { Box, Container, Text } from "@chakra-ui/react";
+import { Box, Container, Divider, Flex, Text } from "@chakra-ui/react";
 
 const PolicyPage = () => {
   return (
@@ -9,14 +9,15 @@ const PolicyPage = () => {
         </Text>
         <Box>
           {policy.map((item, index) => (
-            <Box py={3} key={index}>
+            <Flex gap={2} direction="column" py={3} key={index}>
               <Text mb={2} textStyle="h2">{`${index + 1}. ${item.title}`}</Text>
+              <Divider borderColor="#000000" />
               <Box>
                 {item.content.map((content, index) => (
                   <Text key={index}>{`${index + 1}. ${content}`}</Text>
                 ))}
               </Box>
-            </Box>
+            </Flex>
           ))}
         </Box>
       </Container>

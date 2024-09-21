@@ -20,7 +20,7 @@ const FaqsPage = () => {
           {FAQs.map((item, index) => (
             <AccordionItem key={index}>
               <AccordionButton>
-                <Box as="span" flex="1" textAlign="left">
+                <Box p={3} as="span" flex="1" textAlign="left">
                   <Text textStyle="p" fontWeight="medium">
                     {item.title}
                   </Text>
