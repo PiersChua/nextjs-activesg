@@ -2,7 +2,7 @@ import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
 
 const orangeWhite = defineStyle(() => {
   return {
-    color: "#ffffff",
+    color: "var(--white)",
     backgroundColor: "var(--orange)",
     _hover: {
       backgroundColor: "var(--orange-1)",
@@ -13,7 +13,7 @@ const orangeWhite = defineStyle(() => {
 const outlineOrange = defineStyle(() => {
   return {
     color: "var(--orange)",
-    backgroundColor: "#ffffff",
+    backgroundColor: "var(--white)",
     _hover: {
       backgroundColor: "var(--white-1)",
     },
@@ -24,7 +24,7 @@ const outlineOrange = defineStyle(() => {
 
 const redWhite = defineStyle(() => {
   return {
-    color: "#ffffff",
+    color: "var(--white)",
     backgroundColor: "var(--red)",
     _hover: {
       backgroundColor: "var(--red-1)",
@@ -34,7 +34,7 @@ const redWhite = defineStyle(() => {
 
 const blueWhite = defineStyle(() => {
   return {
-    color: "#ffffff",
+    color: "var(--white)",
     backgroundColor: "var(--blue)",
     _hover: {
       backgroundColor: "var(--blue-1)",
@@ -44,7 +44,7 @@ const blueWhite = defineStyle(() => {
 
 const yellowBlack = defineStyle(() => {
   return {
-    color: "#000000",
+    color: "var(--black)",
     backgroundColor: "var(--yellow)",
     _hover: { backgroundColor: "var(--yellow-1)" },
   };

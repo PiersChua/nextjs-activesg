@@ -12,7 +12,7 @@ const AboutPage = () => {
               <Text textStyle="h2" mb={2}>
                 {item.title}
               </Text>
-              <Divider borderColor="#000000" />
+              <Divider borderColor="var(--black)" />
               <Text textStyle="p">{item.desc}</Text>
             </Flex>
           ))}

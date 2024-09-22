@@ -11,7 +11,7 @@ const TermsPage = () => {
           {terms.map((item, index) => (
             <Flex direction="column" gap={2} py={3} key={index}>
               <Text mb={2} textStyle="h2">{`${index + 1}. ${item.title}`}</Text>
-              <Divider borderColor="#000000" />
+              <Divider borderColor="var(--black)" />
               <Box>
                 {item.content.map((content, index) => (
                   <Text key={index}>{`${index + 1}. ${content}`}</Text>

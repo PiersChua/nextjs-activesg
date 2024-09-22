@@ -98,7 +98,7 @@ const LoginForm = () => {
         hrefText="Sign Up"
         text="Don't have an account?"
       />
-      <Divider borderColor="#000000" />
+      <Divider borderColor="var(--black)" />
       <form action={loginWithGoogle}>
         <Button
           w="full"
