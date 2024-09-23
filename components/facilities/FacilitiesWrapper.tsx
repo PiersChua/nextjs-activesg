@@ -1,12 +1,22 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
+import WrapperButton from "./WrapperButton";
 
 interface WrapperProps {
+  id: string;
   name: string;
   location: string;
   desc: string;
   sports: string[];
+  minPrice: number;
 }
-const FacilitiesWrapper = ({ name, location, desc, sports }: WrapperProps) => {
+const FacilitiesWrapper = ({
+  id,
+  name,
+  location,
+  desc,
+  sports,
+  minPrice,
+}: WrapperProps) => {
   return (
     <Box
       bg="var(--beige)"
@@ -14,15 +24,21 @@ const FacilitiesWrapper = ({ name, location, desc, sports }: WrapperProps) => {
       p={3}
       rounded="xl"
     >
-      <Flex alignItems="flex-end" justifyContent="space-between">
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        alignItems={{ base: "flex-start", md: "flex-end" }}
+        justifyContent="space-between"
+      >
         <Flex direction="column" gap={1}>
           <Text textStyle="h2">{name}</Text>
           <Text textStyle="p2" color="var(--grey)">
             {location}
           </Text>
-          <Text textStyle="p2">{desc}</Text>
+          <Text maxW="500px" noOfLines={1} textStyle="p2">
+            {desc}
+          </Text>
           <Flex gap={3}>
-            {sports.slice(0, 3).map((sport, idx) => (
+            {sports.slice(0, 2).map((sport, idx) => (
               <Box
                 _hover={{ bg: "var(--orange-1)" }}
                 userSelect="none"
@@ -35,7 +51,7 @@ const FacilitiesWrapper = ({ name, location, desc, sports }: WrapperProps) => {
                 {sport.replace("_", " ")}
               </Box>
             ))}
-            {sports.length > 3 && (
+            {sports.length > 2 && (
               <Box
                 _hover={{ bg: "var(--white-1)" }}
                 userSelect="none"
@@ -44,16 +60,25 @@ const FacilitiesWrapper = ({ name, location, desc, sports }: WrapperProps) => {
                 bg="var(--white)"
                 p={1}
               >
-                +{sports.length - 3} more
+                +{sports.length - 2} more
               </Box>
             )}
           </Flex>
         </Flex>
-        <Flex gap={2} direction="column" alignItems="flex-end">
+        <Divider
+          display={{ base: "block", md: "none" }}
+          my={5}
+          borderColor="var(--black)"
+        />
+        <Flex
+          gap={2}
+          direction="column"
+          alignItems={{ base: "flex-start", md: "flex-end" }}
+        >
           <Text textStyle="p" fontWeight="bold">
-            Prices from $20
+            Prices from ${(minPrice / 100).toFixed(2)}
           </Text>
-          <Button variant="orangeWhite">Book now</Button>
+          <WrapperButton id={id} />
         </Flex>
       </Flex>
     </Box>

@@ -10,8 +10,24 @@ const getFacilities = async (facility: FacilityType) => {
     where: {
       type: facility,
     },
+    include: {
+      facilitySlots: true,
+    },
   });
   return data;
 };
 
-export { getFacilities };
+const getFacility = async (id: string) => {
+  const data = await prisma.facility.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      facilitySlots: true,
+      facilityHours: true,
+    },
+  });
+  return data;
+};
+
+export { getFacilities, getFacility };

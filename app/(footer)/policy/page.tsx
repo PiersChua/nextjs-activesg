@@ -10,7 +10,7 @@ const PolicyPage = () => {
         <Box>
           {policy.map((item, index) => (
             <Flex gap={2} direction="column" py={3} key={index}>
-              <Text mb={2} textStyle="h2">{`${index + 1}. ${item.title}`}</Text>
+              <Text mb={2} textStyle="h3">{`${index + 1}. ${item.title}`}</Text>
               <Divider borderColor="var(--black)" />
               <Box>
                 {item.content.map((content, index) => (

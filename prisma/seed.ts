@@ -288,22 +288,58 @@ const facilityData: Prisma.FacilityCreateInput[] = [
     location: "1 Fernvale Lane, Singapore 797701",
     sports: [Sport.BADMINTON, Sport.BASKETBALL],
     type: FacilityType.HALL,
-  },
-  {
-    name: "Yio Chu Kang Sports Hall",
-    description:
-      "Yio Chu Kang Sport Hall is a public sport hall with 6 badminton Courts & Table Tennis Academy",
-    location: "214 Ang Mo Kio Avenue 9, Singapore 569780",
-    sports: [Sport.BADMINTON, Sport.TABLE_TENNIS],
-    type: FacilityType.HALL,
-  },
-  {
-    name: "Presbyterian High School",
-    description:
-      "Co-educational government-aided Presbyterian secondary school in Ang Mo Kio",
-    location: "5209 Ang Mo Kio Ave 6, Singapore 569845",
-    sports: [Sport.BADMINTON, Sport.BASKETBALL],
-    type: FacilityType.HALL,
+    facilityHours: {
+      createMany: {
+        data: [
+          {
+            dayOfWeek: 1, // 0-6
+            openingTime: new Date("2025-09-22T10:00:00Z"),
+            closingTime: new Date("2025-09-22T18:00:00Z"),
+          },
+          {
+            dayOfWeek: 3, // 0-6
+            openingTime: new Date("2025-09-22T10:00:00Z"),
+            closingTime: new Date("2025-09-22T17:00:00Z"),
+          },
+          {
+            dayOfWeek: 5, // 0-6
+            openingTime: new Date("2025-09-22T10:00:00Z"),
+            closingTime: new Date("2025-09-22T16:00:00Z"),
+          },
+        ],
+      },
+    },
+    facilitySlots: {
+      createMany: {
+        data: [
+          {
+            dayOfWeek: 1, // 0-6
+            durationInHours: 1,
+            priceInCents: 2000,
+          },
+          {
+            dayOfWeek: 2, // 0-6
+            durationInHours: 1,
+            priceInCents: 3000,
+          },
+          {
+            dayOfWeek: 3, // 0-6
+            durationInHours: 1,
+            priceInCents: 3000,
+          },
+          {
+            dayOfWeek: 4, // 0-6
+            durationInHours: 1,
+            priceInCents: 2000,
+          },
+          {
+            dayOfWeek: 5, // 0-6
+            durationInHours: 1,
+            priceInCents: 2000,
+          },
+        ],
+      },
+    },
   },
 
   // COURTS
@@ -402,11 +438,11 @@ const facilityData: Prisma.FacilityCreateInput[] = [
 ];
 
 async function main() {
-  for (const data of passTypeData) {
-    const user = await prisma.passType.create({
-      data: data,
-    });
-  }
+  // for (const data of passTypeData) {
+  //   const user = await prisma.passType.create({
+  //     data: data,
+  //   });
+  // }
   for (const data of facilityData) {
     const facility = await prisma.facility.create({
       data: data,

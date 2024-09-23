@@ -26,7 +26,7 @@ const FacilitiesCard = ({ title, image, href, index }: CardProps) => {
       border={0}
     >
       <CardHeader textAlign="center">
-        <Text textStyle="h2">{title}</Text>
+        <Text textStyle="h3">{title}</Text>
       </CardHeader>
       <CardBody>
         <Box h="full" borderRadius="lg" overflow="hidden">

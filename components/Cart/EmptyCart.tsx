@@ -12,7 +12,7 @@ const EmptyCart = () => {
       justifyContent="center"
     >
       <Icon color="var(--orange)" boxSize="100px" as={LuShoppingBag} />
-      <Text color="var(--grey)" textAlign="center" textStyle="h2">
+      <Text color="var(--grey)" textAlign="center" textStyle="h3">
         Your cart is empty
       </Text>
       <Button as="a" href="/membership/GYM" variant="orangeWhite">

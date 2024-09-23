@@ -35,7 +35,7 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
             border={0}
             rounded="xl"
           >
-            <CardHeader textStyle="h2">
+            <CardHeader textStyle="h3">
               {`$${(passType.priceInCents / 100).toFixed(2)}`}
             </CardHeader>
             <CardBody textStyle="p">

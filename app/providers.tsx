@@ -17,6 +17,10 @@ const theme = extendTheme({
       fontWeight: "semibold",
     },
     h2: {
+      fontSize: { base: "32px", md: "36px" },
+      fontWeight: "semibold",
+    },
+    h3: {
       fontSize: { base: "24px", md: "28px" },
       fontWeight: "semibold",
     },

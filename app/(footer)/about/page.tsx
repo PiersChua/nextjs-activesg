@@ -9,7 +9,7 @@ const AboutPage = () => {
         <Flex direction="column" gap="2em">
           {aboutItems.map((item, idx) => (
             <Flex key={idx} direction="column" gap={2}>
-              <Text textStyle="h2" mb={2}>
+              <Text textStyle="h3" mb={2}>
                 {item.title}
               </Text>
               <Divider borderColor="var(--black)" />

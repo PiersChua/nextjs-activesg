@@ -21,8 +21,10 @@ const BenefitsCard = ({ title, desc, icon }: BenefitsCardProps) => {
   return (
     <Stack alignItems="center" direction="column" gap={5}>
       <Icon boxSize="100px" as={iconComponent} color="var(--orange)" />
-      <Text textStyle="h2">{title}</Text>
-      <Text textStyle="p">{desc}</Text>
+      <Text textStyle="h3">{title}</Text>
+      <Text textStyle="p" maxW="500px">
+        {desc}
+      </Text>
     </Stack>
   );
 };

@@ -37,7 +37,7 @@ const ActivitiesCard = ({ title, desc, image, icon }: ActivitiesCardProps) => {
       <CardHeader>
         <Stack direction="row" alignItems="center">
           <Icon boxSize={10} as={iconComponent} />
-          <Text textStyle="h2">{title}</Text>
+          <Text textStyle="h3">{title}</Text>
         </Stack>
       </CardHeader>
       <CardBody>

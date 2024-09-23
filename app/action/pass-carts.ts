@@ -56,7 +56,7 @@ const createPassCart = async (
   return { success: "Successfully added to cart" };
 };
 
-const getPassCart = async () => {
+const getPassCarts = async () => {
   const user = await getSessionUser();
   const userId = user?.id;
   const passCarts = await prisma.passCart.findMany({
@@ -157,7 +157,7 @@ const updatePassCartQuantity = async (
 };
 export {
   createPassCart,
-  getPassCart,
+  getPassCarts,
   deletePassCart,
   updatePassCartChecked,
   updateAllPassCartChecked,

@@ -156,36 +156,50 @@ model ProgrammeSubscription {
 }
 
 model Facility {
-  id          String       @id @default(uuid())
-  name        String
-  location    String
-  description String
-  sports      Sport[]
-  type        FacilityType
-  Timeslots   Timeslot[]
+  id            String          @id @default(uuid())
+  name          String
+  location      String
+  description   String
+  sports        Sport[]
+  type          FacilityType
+  booking       Booking[]
+  facilityHours FacilityHours[]
+  facilitySlots FacilitySlots[]
 
   @@map("facilities")
 }
 
-model Timeslot {
-  id           String   @id @default(uuid())
-  startTime    DateTime @db.Timestamptz()
-  endTime      DateTime @db.Timestamptz()
-  isAvailable  Boolean
-  priceInCents Int
-  facility     Facility @relation(fields: [facilityId], references: [id], onDelete: Restrict) // don't delete timeslot if facility is deleted
-  facilityId   String
-  booking      Booking?
+model FacilitySlots {
+  id              String   @id @default(uuid())
+  priceInCents    Int
+  dayOfWeek       Int
+  durationInHours Int
+  facility        Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  facilityId      String
 
-  @@map("timeslots")
+  @@map("facilities_slots")
+}
+
+model FacilityHours {
+  id          String   @id @default(uuid())
+  dayOfWeek   Int
+  openingTime DateTime @db.Time() // does not store UTC time by default
+  closingTime DateTime @db.Time()
+  facility    Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  facilityId  String
+
+  @@map("facilities_hours")
 }
 
 model Booking {
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String
-  timeslot   Timeslot @relation(fields: [timeslotId], references: [id], onDelete: Restrict)
-  timeslotId String   @unique
+  id              String   @id @default(uuid())
+  priceInCents    Int
+  startTime       DateTime @db.Time()
+  durationInHours Int
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
+  facility        Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  facilityId      String
 
-  @@id([userId, timeslotId])
   @@map("bookings")
 }

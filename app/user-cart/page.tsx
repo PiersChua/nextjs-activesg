@@ -1,5 +1,5 @@
 import { Box, Container, Flex, Stack, Text } from "@chakra-ui/react";
-import { getPassCart } from "@/app/action/pass-carts";
+import { getPassCarts } from "@/app/action/pass-carts";
 import TableComponent from "@/components/Cart/Table";
 import QuantityModal from "@/components/Cart/QuantityModal";
 import EmptyCart from "@/components/Cart/EmptyCart";
@@ -11,7 +11,7 @@ const UserCartPage = async ({
 }: {
   searchParams: { [key: string]: string };
 }) => {
-  const userCart = await getPassCart();
+  const userCart = await getPassCarts();
   const checkedItems = userCart.filter((item) => item.isChecked);
   const isAllChecked = checkedItems.length === userCart.length;
   return (
@@ -50,7 +50,7 @@ const UserCartPage = async ({
                 <Text textStyle="p">
                   Total (<Text as="span">{checkedItems.length} item</Text>):
                 </Text>
-                <Text color="var(--orange)" textStyle="h2">
+                <Text color="var(--orange)" textStyle="h3">
                   {`$${(
                     checkedItems.reduce(
                       (acc, item) =>
