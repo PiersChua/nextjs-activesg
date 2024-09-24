@@ -8,7 +8,7 @@ interface ButtonProps {
 const WrapperButton = ({ id }: ButtonProps) => {
   const path = usePathname();
   return (
-    <Button as="a" href={`${path}/${id}`} variant="orangeWhite">
+    <Button as="a" href={`${path}/availability?id=${id}`} variant="orangeWhite">
       Book now
     </Button>
   );

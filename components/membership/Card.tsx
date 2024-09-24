@@ -32,7 +32,6 @@ const PassCard = ({ passTypes, header, days, time }: PassCardProps) => {
             bg="var(--beige)"
             boxShadow="0 5px 20px rgba(0,0,0,0.2)"
             key={passType.id}
-            border={0}
             rounded="xl"
           >
             <CardHeader textStyle="h3">

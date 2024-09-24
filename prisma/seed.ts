@@ -292,9 +292,15 @@ const facilityData: Prisma.FacilityCreateInput[] = [
       createMany: {
         data: [
           {
+            dayOfWeek: 0,
+          },
+          {
             dayOfWeek: 1, // 0-6
             openingTime: new Date("2025-09-22T10:00:00Z"),
             closingTime: new Date("2025-09-22T18:00:00Z"),
+          },
+          {
+            dayOfWeek: 2,
           },
           {
             dayOfWeek: 3, // 0-6
@@ -302,9 +308,15 @@ const facilityData: Prisma.FacilityCreateInput[] = [
             closingTime: new Date("2025-09-22T17:00:00Z"),
           },
           {
+            dayOfWeek: 4,
+          },
+          {
             dayOfWeek: 5, // 0-6
             openingTime: new Date("2025-09-22T10:00:00Z"),
             closingTime: new Date("2025-09-22T16:00:00Z"),
+          },
+          {
+            dayOfWeek: 6,
           },
         ],
       },

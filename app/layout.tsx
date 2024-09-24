@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "@/app/providers";
 import "./globals.css";
+import "react-datepicker/dist/react-datepicker.css";
 import Navbar from "@/components/Navbar";
 import { getSessionUser } from "@/utils/getSessionUser";
 import Footer from "@/components/Footer";

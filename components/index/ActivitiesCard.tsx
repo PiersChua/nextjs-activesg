@@ -28,12 +28,7 @@ const iconMap = {
 const ActivitiesCard = ({ title, desc, image, icon }: ActivitiesCardProps) => {
   const iconComponent = iconMap[icon];
   return (
-    <Card
-      bg="var(--beige)"
-      boxShadow="0 5px 20px rgba(0,0,0,0.2)"
-      rounded="xl"
-      border={0}
-    >
+    <Card bg="var(--beige)" boxShadow="0 5px 20px rgba(0,0,0,0.2)" rounded="xl">
       <CardHeader>
         <Stack direction="row" alignItems="center">
           <Icon boxSize={10} as={iconComponent} />

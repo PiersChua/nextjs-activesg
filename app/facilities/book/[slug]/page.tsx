@@ -3,6 +3,7 @@ import { Container, Flex, Text } from "@chakra-ui/react";
 import { notFound } from "next/navigation";
 import { FacilityType } from "@prisma/client";
 import FacilitiesWrapper from "@/components/facilities/FacilitiesWrapper";
+import BreadcrumbComponent from "@/components/Breadcrumb";
 
 const FacilitiesTypePage = async ({ params }: { params: { slug: string } }) => {
   if (!Object.values(FacilityType).includes(params.slug as FacilityType)) {
@@ -12,7 +13,8 @@ const FacilitiesTypePage = async ({ params }: { params: { slug: string } }) => {
   const facilities = await getFacilities(params.slug as FacilityType);
   return (
     <Container maxW="1400px">
-      <Flex py={10} direction="column" gap={5}>
+      <BreadcrumbComponent />
+      <Flex mb={10} direction="column" gap={5}>
         {facilities.map((item, index) => (
           <FacilitiesWrapper
             key={index}

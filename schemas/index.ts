@@ -56,7 +56,7 @@ const ProfileSchema = z.object({
 const CartSchema = z.object({
   quantity: z.coerce
     .number()
-    .int("Quantity must be integer")
+    .int("Must be integer")
     .gte(1, "Minimum quantity is 1")
     .lte(99, "Maximum quantity is 99"),
 });
@@ -75,6 +75,27 @@ const SearchFacilitySchema = z.object({
   }),
 });
 
+const BookFacilitySchema = z.object({
+  date: z.coerce
+    .date()
+    .min(
+      new Date(new Date().setHours(0, 0, 0, 0)),
+      "Cannot book dates before today"
+    ),
+  startTime: z.string().regex(/^([01]\d|2[0-3]):00$/, {
+    message: "Invalid time format. Expected HH:MM.",
+  }),
+  durationInHours: z.coerce
+    .number()
+    .int("Must be integer")
+    .min(1, "Minimum duration is 1 hour"),
+  participantsCount: z.coerce
+    .number()
+    .int("Must be integer")
+    .min(1, "Minimum participant count is 1")
+    .max(10, "Maximum participant count is 10"),
+});
+
 export {
   LoginSchema,
   SignUpSchema,
@@ -82,4 +103,5 @@ export {
   ProfileSchema,
   CartSchema,
   SearchFacilitySchema,
+  BookFacilitySchema,
 };
