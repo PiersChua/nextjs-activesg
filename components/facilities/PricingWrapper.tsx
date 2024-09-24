@@ -19,7 +19,7 @@ const PricingWrapper = ({ facilitySlots }: WrapperProps) => {
       <Text mb={3} textStyle="h3">
         Pricing
       </Text>
-      <SimpleGrid justifyContent="start" columns={1}>
+      <Stack>
         <Stack
           justifyContent="space-between"
           direction="row"
@@ -38,7 +38,7 @@ const PricingWrapper = ({ facilitySlots }: WrapperProps) => {
             </Text>
           </Stack>
         ))}
-      </SimpleGrid>
+      </Stack>
     </Box>
   );
 };

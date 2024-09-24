@@ -42,6 +42,7 @@ const ContactForm = () => {
             <FormControl isInvalid={!!errors?.name?.message}>
               <FormLabel>Full Name</FormLabel>
               <Input
+                variant="cream"
                 disabled={isPending}
                 {...register("name")}
                 placeholder="Piers Chua"
@@ -56,6 +57,7 @@ const ContactForm = () => {
               <InputGroup>
                 <InputLeftAddon>+65</InputLeftAddon>
                 <Input
+                  variant="cream"
                   disabled={isPending}
                   {...register("phone")}
                   placeholder="00000000"
@@ -70,6 +72,7 @@ const ContactForm = () => {
           <FormControl isInvalid={!!errors?.email?.message}>
             <FormLabel>Email address</FormLabel>
             <Input
+              variant="cream"
               disabled={isPending}
               {...register("email")}
               placeholder="piers@example.com"

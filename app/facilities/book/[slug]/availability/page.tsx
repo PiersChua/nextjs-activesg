@@ -12,7 +12,7 @@ const FacilityPage = async ({
   searchParams: { [key: string]: string };
 }) => {
   const facility = await getFacility(searchParams.id);
-  if (!facility) return notFound();
+  if (!facility) notFound();
 
   const sortedFacilityHours = facility.facilityHours.sort(
     (a, b) => a.dayOfWeek - b.dayOfWeek
@@ -32,7 +32,6 @@ const FacilityPage = async ({
           <OperatingHoursWrapper facilityHours={sortedFacilityHours} />
           <PricingWrapper facilitySlots={sortedFacilitySlots} />
         </Stack>
-
         <BookFacilitiesForm />
       </Box>
     </Container>

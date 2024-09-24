@@ -1,16 +1,31 @@
 import { getFacilities } from "@/app/action/facilities";
 import { Container, Flex, Text } from "@chakra-ui/react";
 import { notFound } from "next/navigation";
-import { FacilityType } from "@prisma/client";
+import { FacilityType, Sport } from "@prisma/client";
 import FacilitiesWrapper from "@/components/facilities/FacilitiesWrapper";
 import BreadcrumbComponent from "@/components/Breadcrumb";
 
-const FacilitiesTypePage = async ({ params }: { params: { slug: string } }) => {
-  if (!Object.values(FacilityType).includes(params.slug as FacilityType)) {
-    console.log(params.slug);
+const FacilitiesTypePage = async ({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: { [key: string]: string };
+}) => {
+  if (
+    (!Object.values(Sport).includes(searchParams.sport as Sport) &&
+      searchParams.sport) ||
+    !Object.values(FacilityType).includes(params.slug as FacilityType)
+  ) {
     notFound();
   }
-  const facilities = await getFacilities(params.slug as FacilityType);
+  const sportParam = searchParams.sport
+    ? (searchParams.sport as Sport)
+    : undefined;
+  const facilities = await getFacilities(
+    params.slug as FacilityType,
+    sportParam
+  );
   return (
     <Container maxW="1400px">
       <BreadcrumbComponent />

@@ -67,6 +67,7 @@ const BookFacilitiesForm = () => {
   return (
     <Stack
       p={5}
+      mb={5}
       bg="var(--beige)"
       boxShadow="0 5px 20px rgba(0,0,0,0.2)"
       w="full"

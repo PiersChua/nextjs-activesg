@@ -13,13 +13,14 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { SearchFacilitySchema } from "@/schemas";
-import FormMessage from "./FormMessage";
 import FormButton from "./FormButton";
 import { FacilityType, Sport } from "@prisma/client";
+import { usePathname, useRouter } from "next/navigation";
 
 const SearchFacilitiesForm = () => {
   const [show, setShow] = useState(false);
-  const [error, setError] = useState("");
+  const path = usePathname();
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const {
     register,
@@ -30,10 +31,14 @@ const SearchFacilitiesForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof SearchFacilitySchema>) => {
-    startTransition(async () => {
-      setError(""); // clear error message
-      // await signUp(values).then((data) => setError(data.error as string));
-    });
+    startTransition(() => {});
+    const validatedFields = SearchFacilitySchema.safeParse(values);
+    if (validatedFields.success) {
+      const { facilityType, sport, date, time } = validatedFields.data;
+      router.push(
+        `${path}/${facilityType}?sport=${sport}&date=${date.toLocaleDateString()}&time=${time}`
+      );
+    }
   };
   return (
     <Stack
@@ -113,7 +118,6 @@ const SearchFacilitiesForm = () => {
               <FormErrorMessage>{errors.time.message}</FormErrorMessage>
             )}
           </FormControl>
-          {error && <FormMessage type="Error">{error}</FormMessage>}
 
           <FormButton isLoading={isPending} text="Search" />
         </Stack>
