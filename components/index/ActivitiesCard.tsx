@@ -36,7 +36,12 @@ const ActivitiesCard = ({ title, desc, image, icon }: ActivitiesCardProps) => {
         </Stack>
       </CardHeader>
       <CardBody>
-        <Image objectFit="cover" borderRadius="lg" src={image} />
+        <Image
+          alt="Activities"
+          objectFit="cover"
+          borderRadius="lg"
+          src={image}
+        />
         <Text mt={5} textStyle="p">
           {desc}
         </Text>

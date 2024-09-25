@@ -1,6 +1,6 @@
 import UserProfileForm from "@/components/Form/UserProfileForm";
 import prisma from "@/lib/db";
-import { getSessionUser } from "@/utils/getSessionUser";
+import { getSessionUser } from "@/utils/getAuth";
 import { Container, Stack } from "@chakra-ui/react";
 
 const UserPage = async () => {

@@ -32,6 +32,7 @@ const FacilitiesCard = ({ title, image, href, index }: CardProps) => {
         <Box h="full" borderRadius="lg" overflow="hidden">
           <Link href={`${path}/${href}`}>
             <Image
+              alt="Facilities"
               _hover={{ transform: `scale(1.1) rotate(${rotation})` }}
               transition="transform 0.3s ease"
               objectFit="cover"

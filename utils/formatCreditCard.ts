@@ -7,12 +7,11 @@ const formatCreditCardNumber = (e: ChangeEvent<HTMLInputElement>) => {
   e.target.value = formattedValue;
 };
 
-// Format the expiration date as MM/YY
+// Format the expiration date as MM / YY
 const formatExpiryDate = (e: ChangeEvent<HTMLInputElement>) => {
   let inputVal = e.target.value.replace(/\D/g, ""); // Remove non-digits
   inputVal = inputVal.slice(0, 4); // Limit to 4 digits (MMYY)
 
-  // Format as MM/YY
   if (inputVal.length >= 3) {
     let month = inputVal.slice(0, 2);
     if (parseInt(month) > 12) {
@@ -27,7 +26,7 @@ const formatExpiryDate = (e: ChangeEvent<HTMLInputElement>) => {
 // Format the CVV input
 const formatCvv = (e: ChangeEvent<HTMLInputElement>) => {
   let inputVal = e.target.value.replace(/\D/g, ""); // Remove non-digits
-  inputVal = inputVal.slice(0, 3); // Limit to 4 digits
+  inputVal = inputVal.slice(0, 4); // Limit to 4 digits
   e.target.value = inputVal; // Set the value
 };
 

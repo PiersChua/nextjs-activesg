@@ -1,11 +1,14 @@
 import prisma from "@/lib/db";
-import { getSessionUser } from "@/utils/getSessionUser";
+import { getSessionUser } from "@/utils/getAuth";
 import { PassCategory, PassType } from "@prisma/client";
 import { redirect } from "next/navigation";
 
 const getPassTypes = async (category: PassCategory) => {
   const user = await getSessionUser();
-  const age = user?.age;
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
+  const age = user.age;
   if (!age) {
     redirect("/user-profile");
   }

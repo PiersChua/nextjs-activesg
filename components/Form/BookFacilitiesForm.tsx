@@ -176,36 +176,50 @@ const BookFacilitiesForm = () => {
             <Text textStyle="h3">Payment Details</Text>
           </Stack>
           <Stack direction={{ base: "column", md: "row" }}>
-            <FormControl flex="1">
+            <FormControl isInvalid={!!errors?.cardNumber?.message} flex="1">
               <FormLabel>Card number</FormLabel>
               <Input
+                {...register("cardNumber")}
                 variant="cream"
                 type="text"
                 placeholder="1234 1234 1234 1234"
                 maxLength={19}
                 onInput={formatCreditCardNumber}
               />
+              {errors?.cardNumber?.message && (
+                <FormErrorMessage>{errors.cardNumber.message}</FormErrorMessage>
+              )}
             </FormControl>
             <Stack direction="row" flex="1">
-              <FormControl>
+              <FormControl isInvalid={!!errors.cardExpiry?.message}>
                 <FormLabel>Expiry date</FormLabel>
                 <Input
+                  {...register("cardExpiry")}
                   variant="cream"
                   type="text"
                   placeholder="12 / 34"
                   maxLength={7}
                   onInput={formatExpiryDate}
                 />
+                {errors?.cardExpiry?.message && (
+                  <FormErrorMessage>
+                    {errors.cardExpiry.message}
+                  </FormErrorMessage>
+                )}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={!!errors?.cardCvv?.message}>
                 <FormLabel>CVV</FormLabel>
                 <Input
+                  {...register("cardCvv")}
                   variant="cream"
                   type="text"
                   placeholder="123"
-                  maxLength={3}
+                  maxLength={4}
                   onInput={formatCvv}
                 />
+                {errors?.cardCvv?.message && (
+                  <FormErrorMessage>{errors.cardCvv.message}</FormErrorMessage>
+                )}
               </FormControl>
             </Stack>
           </Stack>

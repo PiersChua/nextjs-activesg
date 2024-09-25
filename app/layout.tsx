@@ -3,7 +3,7 @@ import { Providers } from "@/app/providers";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from "@/components/Navbar";
-import { getSessionUser } from "@/utils/getSessionUser";
+import { getSessionUser } from "@/utils/getAuth";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {

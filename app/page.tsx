@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 import { Box } from "@chakra-ui/react";
 import Hero from "@/components/index/Hero";
 import Activities from "@/components/index/Activities";
-import { getSessionUser } from "@/utils/getSessionUser";
+import { getSessionUser } from "@/utils/getAuth";
 import Experiences from "@/components/index/Experiences";
 import Benefits from "@/components/index/Benefits";
 

@@ -94,6 +94,17 @@ const BookFacilitySchema = z.object({
     .int("Must be integer")
     .min(1, "Minimum participant count is 1")
     .max(10, "Maximum participant count is 10"),
+  cardNumber: z
+    .string()
+    .regex(
+      /^(?:4\d{3}(?:\s?\d{4}){3}|[25][1-7]\d{2}(?:\s?\d{4}){3}|6(?:011|5\d{2})(?:\s?\d{4}){3}|3[47]\d{2}(?:\s?\d{6}\s?\d{5})|3(?:0[0-5]|[68]\d)(?:\s?\d{4}){3}|(?:2131|1800|35\d{3})(?:\s?\d{4}){3})$/,
+      "Invalid card number"
+    ),
+  cardExpiry: z
+    .string()
+    .regex(/^(0[1-9]|1[0-2]) \/ \d{2}$/, "Expected format MM / YY"),
+
+  cardCvv: z.string().regex(/^\d{3,4}$/, "CVV must be 3 or 4 digits"),
 });
 
 export {

@@ -51,6 +51,7 @@ const ExperiencesWrapper = ({
       >
         {images.map((image, index) => (
           <Image
+            alt="Experiences"
             objectFit="cover"
             rounded="xl"
             h="25vw"

@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/lib/db";
 import { CartSchema } from "@/schemas";
-import { getSessionUser } from "@/utils/getSessionUser";
+import { getSessionUser } from "@/utils/getAuth";
 import { revalidatePath } from "next/cache";
 import * as z from "zod";
 
@@ -24,6 +24,9 @@ const createPassCart = async (
   ]);
   if (!passType) {
     return { error: "Pass type not found" };
+  }
+  if (!user) {
+    throw new Error("Unauthorized content");
   }
   const userId = user?.id;
   const upsertPassCart = await prisma.passCart.upsert({
@@ -58,7 +61,10 @@ const createPassCart = async (
 
 const getPassCarts = async () => {
   const user = await getSessionUser();
-  const userId = user?.id;
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
+  const userId = user.id;
   const passCarts = await prisma.passCart.findMany({
     where: {
       user: {
@@ -74,7 +80,10 @@ const getPassCarts = async () => {
 
 const deletePassCart = async (passTypeId: string) => {
   const user = await getSessionUser();
-  const userId = user?.id;
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
+  const userId = user.id;
   const deletedPassCart = await prisma.passCart.delete({
     where: {
       userId_passTypeId: {
@@ -88,7 +97,10 @@ const deletePassCart = async (passTypeId: string) => {
 
 const updatePassCartChecked = async (passTypeId: string) => {
   const user = await getSessionUser();
-  const userId = user?.id;
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
+  const userId = user.id;
   const passCart = await prisma.passCart.findUnique({
     where: {
       userId_passTypeId: {
@@ -112,6 +124,10 @@ const updatePassCartChecked = async (passTypeId: string) => {
 };
 
 const updateAllPassCartChecked = async (isChecked: boolean) => {
+  const user = await getSessionUser();
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
   const passCart = await prisma.passCart.updateMany({
     data: {
       isChecked: !isChecked,
@@ -130,7 +146,10 @@ const updatePassCartQuantity = async (
   }
   const quantity = validatedFields.data.quantity;
   const user = await getSessionUser();
-  const userId = user?.id;
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
+  const userId = user.id;
   const passCart = await prisma.passCart.findUnique({
     where: {
       userId_passTypeId: {
