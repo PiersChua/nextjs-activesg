@@ -32,7 +32,7 @@ const createPasses = async () => {
       isChecked: true,
     },
   });
-  return { success: "Passes created successfully" };
+  return { success: "Passes purchased" };
   // const [passType, user] = await Promise.all([
   //   prisma.passType.findUnique({
   //     where: {
@@ -65,7 +65,23 @@ const createPasses = async () => {
   //   },
   // });
 };
+const getPasses = async () => {
+  const user = await getSessionUser();
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
+  const passes = await prisma.pass.findMany({
+    where: {
+      user: {
+        id: user.id,
+      },
+    },
+    include: {
+      passType: true,
+    },
+  });
+  return passes;
+};
+const activatePass = (passId: string) => {};
 
-const activePass = (passId: string) => {};
-
-export { createPasses };
+export { createPasses, getPasses, activatePass };
