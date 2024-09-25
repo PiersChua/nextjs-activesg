@@ -3,7 +3,12 @@ import { MdShoppingCartCheckout } from "react-icons/md";
 
 const SubmitCart = () => {
   return (
-    <Button variant="orangeWhite" leftIcon={<MdShoppingCartCheckout />}>
+    <Button
+      as="a"
+      href={"?checkOut=true"}
+      variant="orangeWhite"
+      leftIcon={<MdShoppingCartCheckout />}
+    >
       Check out
     </Button>
   );

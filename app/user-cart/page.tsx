@@ -5,6 +5,7 @@ import QuantityModal from "@/components/Cart/QuantityModal";
 import EmptyCart from "@/components/Cart/EmptyCart";
 import SubmitCart from "@/components/Cart/SubmitCart";
 import SelectAllCheckbox from "@/components/Cart/SelectAllCheckbox";
+import CheckoutModal from "@/components/Cart/CheckoutModal";
 
 const UserCartPage = async ({
   searchParams,
@@ -14,6 +15,10 @@ const UserCartPage = async ({
   const userCart = await getPassCarts();
   const checkedItems = userCart.filter((item) => item.isChecked);
   const isAllChecked = checkedItems.length === userCart.length;
+  const checkedItemsPriceInCents = checkedItems.reduce(
+    (acc, item) => acc + item.passType.priceInCents * item.quantity,
+    0
+  );
   return (
     <Container maxW="1400px">
       {userCart.length > 0 ? (
@@ -25,6 +30,9 @@ const UserCartPage = async ({
               id={searchParams.id}
               quantity={parseInt(searchParams.quantity, 10)}
             />
+          )}
+          {searchParams.checkOut === "true" && (
+            <CheckoutModal totalPriceInCents={checkedItemsPriceInCents} />
           )}
           <TableComponent userCart={userCart} />
           <Box
@@ -51,13 +59,7 @@ const UserCartPage = async ({
                   Total (<Text as="span">{checkedItems.length} item</Text>):
                 </Text>
                 <Text color="var(--orange)" textStyle="h3">
-                  {`$${(
-                    checkedItems.reduce(
-                      (acc, item) =>
-                        acc + item.passType.priceInCents * item.quantity,
-                      0
-                    ) / 100
-                  ).toFixed(2)}`}
+                  {`$${(checkedItemsPriceInCents / 100).toFixed(2)}`}
                 </Text>
                 {checkedItems.length > 0 && <SubmitCart />}
               </Stack>

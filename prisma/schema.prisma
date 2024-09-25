@@ -99,14 +99,17 @@ model PassType {
 }
 
 model Pass {
-  id         String   @id @default(uuid())
-  startDate  DateTime @default(now()) @db.Date
-  endDate    DateTime @db.Date
+  id         String    @id @default(uuid())
+  startDate  DateTime? @db.Date
+  endDate    DateTime? @db.Date
   quantity   Int
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isActive   Boolean   @default(false)
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
-  passType   PassType @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
+  passType   PassType  @relation(fields: [passTypeId], references: [id], onDelete: Cascade)
   passTypeId String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
   @@map("passes")
 }

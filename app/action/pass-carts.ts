@@ -171,7 +171,6 @@ const updatePassCartQuantity = async (
     },
   });
   if (!updatedPassCart) return { error: "Unable to edit pass" };
-  revalidatePath("/user-cart");
   return { success: "Quantity updated successfully" };
 };
 export {
