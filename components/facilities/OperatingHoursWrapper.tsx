@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex, SimpleGrid, Stack, Switch, Text } from "@chakra-ui/react";
 import { FacilityHours } from "@prisma/client";
 import { getDayOfWeek } from "@/utils/getDayOfWeek";
-import { get12HourTime } from "@/utils/get12HourTime";
+import { get12HourTime } from "@/utils/formatDateTime";
 
 interface WrapperProps {
   facilityHours: FacilityHours[];

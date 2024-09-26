@@ -13,6 +13,7 @@ import { PassCart, PassType } from "@prisma/client";
 import DeleteButton from "./DeleteButton";
 import CartCheckbox from "./CartCheckbox";
 import EditButton from "./EditButton";
+import { formatDurationUnit } from "@/utils/formatDateTime";
 
 type relatedPassCart = PassCart & {
   passType: PassType;
@@ -44,14 +45,12 @@ const TableComponent = ({ userCart }: TableProps) => {
                 <CartCheckbox id={item.passTypeId} checked={item.isChecked} />
               </Td>
               <Td borderBottom="1px solid var(--grey)">
-                {`${
+                {`${formatDurationUnit(item.passType.durationInDays)} ${
                   item.passType.durationInDays > 1
-                    ? `${item.passType.durationInDays / 30} ${
-                        item.passType.durationInDays / 30 > 1
-                          ? "Months"
-                          : "Month"
-                      } ${item.passType.isPeak ? "Peak" : "Non-peak"}`
-                    : `${item.passType.durationInDays} Day`
+                    ? item.passType.isPeak
+                      ? "Peak"
+                      : "Non-peak"
+                    : ""
                 } ${item.passType.category} Pass`}
               </Td>
               <Td borderBottom="1px solid var(--grey)">

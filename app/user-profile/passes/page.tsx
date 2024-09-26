@@ -1,4 +1,5 @@
 import { getPasses } from "@/app/action/passes";
+import { formatDurationUnit } from "@/utils/formatDateTime";
 import { Box, Container, Stack } from "@chakra-ui/react";
 
 const PassesPage = async () => {
@@ -8,12 +9,12 @@ const PassesPage = async () => {
       <Stack>
         {userPasses.map((item, index) => (
           <Box key={index}>
-            {`${
+            {`${formatDurationUnit(item.passType.durationInDays)} ${
               item.passType.durationInDays > 1
-                ? `${item.passType.durationInDays / 30} ${
-                    item.passType.durationInDays / 30 > 1 ? "Months" : "Month"
-                  } ${item.passType.isPeak ? "Peak" : "Non-peak"}`
-                : `${item.passType.durationInDays} Day`
+                ? item.passType.isPeak
+                  ? "Peak"
+                  : "Non-peak"
+                : ""
             } ${item.passType.category} Pass`}
           </Box>
         ))}
