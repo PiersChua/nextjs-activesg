@@ -54,10 +54,9 @@ const ContactForm = () => {
             </FormControl>
             <FormControl isInvalid={!!errors?.phone?.message}>
               <FormLabel>Contact Number</FormLabel>
-              <InputGroup>
+              <InputGroup variant="cream">
                 <InputLeftAddon>+65</InputLeftAddon>
                 <Input
-                  variant="cream"
                   disabled={isPending}
                   {...register("phone")}
                   placeholder="00000000"

@@ -7,10 +7,16 @@ import "@fontsource/poppins";
 import { inputTheme } from "@/app/_themes/Input";
 import { selectTheme } from "@/app/_themes/Select";
 import { buttonTheme } from "@/app/_themes/Button";
+import { numberInputTheme } from "@/app//_themes/NumberInput";
 
 /* Theme */
 const theme = extendTheme({
-  components: { Input: inputTheme, Select: selectTheme, Button: buttonTheme },
+  components: {
+    Input: inputTheme,
+    Select: selectTheme,
+    Button: buttonTheme,
+    NumberInput: numberInputTheme,
+  },
   textStyles: {
     h1: {
       fontSize: { base: "44px", md: "60px" },

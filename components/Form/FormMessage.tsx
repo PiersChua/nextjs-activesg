@@ -30,18 +30,18 @@ const getMessageStyles = (type: "Info" | "Error" | "Success") => {
   switch (type) {
     case "Info":
       icon = IoIosInformationCircleOutline;
-      bg = "#BBDEFB";
-      color = "#0D47A1";
+      bg = "var(--info-bg)";
+      color = "var(--info-text)";
       break;
     case "Error":
       icon = FaExclamationTriangle;
-      bg = "#FFCDD2";
-      color = "#B71C1C";
+      bg = "var(--error-bg)";
+      color = "var(--error-text)";
       break;
     case "Success":
       icon = IoMdCheckmarkCircleOutline;
-      bg = "#C8E6C9";
-      color = "#2E7D32";
+      bg = "var(--success-bg)";
+      color = "var(--success-text)";
       break;
   }
   return { icon, bg, color };
