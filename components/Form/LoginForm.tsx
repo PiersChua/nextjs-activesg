@@ -16,6 +16,8 @@ import {
   Divider,
   Icon,
   FormErrorMessage,
+  Text,
+  Flex,
 } from "@chakra-ui/react";
 import { FaGoogle } from "react-icons/fa";
 import FormRedirect from "@/components/Form/FormRedirect";
@@ -98,15 +100,19 @@ const LoginForm = () => {
         hrefText="Sign Up"
         text="Don't have an account?"
       />
-      <Divider borderColor="var(--black)" />
       <form action={loginWithGoogle}>
+        <Flex alignItems="center">
+          <Divider borderColor="var(--black)" />
+          <Text padding="2">or</Text>
+          <Divider borderColor="var(--black)" />
+        </Flex>
         <Button
           w="full"
           type="submit"
           aria-label="Google"
           leftIcon={<Icon as={FaGoogle} />}
         >
-          Google
+          Continue with Google
         </Button>
       </form>
     </Stack>

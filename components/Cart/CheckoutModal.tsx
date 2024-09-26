@@ -60,14 +60,16 @@ const CheckoutModal = ({ totalPriceInCents }: ModalProps) => {
               >
                 Close
               </Button>
-              <Button
-                variant="outlineOrange"
-                type="submit"
-                isLoading={isPending}
-                onClick={() => createPass()}
-              >
-                Confirm
-              </Button>
+              {success || (
+                <Button
+                  variant="outlineOrange"
+                  type="submit"
+                  isLoading={isPending}
+                  onClick={() => createPass()}
+                >
+                  Confirm
+                </Button>
+              )}
             </Stack>
           </Stack>
         </ModalBody>

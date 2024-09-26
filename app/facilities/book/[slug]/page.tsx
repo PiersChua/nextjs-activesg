@@ -20,6 +20,7 @@ const FacilitiesTypePage = async ({
   ) {
     notFound();
   }
+  console.log(searchParams.type);
   const sportParam = searchParams.sport
     ? (searchParams.sport as Sport)
     : undefined;

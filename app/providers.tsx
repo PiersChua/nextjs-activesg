@@ -7,7 +7,8 @@ import "@fontsource/poppins";
 import { inputTheme } from "@/app/_themes/Input";
 import { selectTheme } from "@/app/_themes/Select";
 import { buttonTheme } from "@/app/_themes/Button";
-import { numberInputTheme } from "@/app//_themes/NumberInput";
+import { numberInputTheme } from "@/app/_themes/NumberInput";
+import { tabsTheme } from "@/app/_themes/Tabs";
 
 /* Theme */
 const theme = extendTheme({
@@ -16,6 +17,7 @@ const theme = extendTheme({
     Select: selectTheme,
     Button: buttonTheme,
     NumberInput: numberInputTheme,
+    Tabs: tabsTheme,
   },
   textStyles: {
     h1: {

@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, Text } from "@chakra-ui/react";
-import WrapperButton from "./WrapperButton";
+import WrapperButton from "./FacilitiesWrapperButton";
 import { getFacilities } from "@/app/action/facilities";
 import { FacilityType, Sport } from "@prisma/client";
 

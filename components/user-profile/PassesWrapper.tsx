@@ -1,12 +1,31 @@
 import { getPasses } from "@/app/action/passes";
 import { formatDurationUnit } from "@/utils/formatDateTime";
-import { Box, Button, Divider, Flex, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Select,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import { PassCategory } from "@prisma/client";
 import React from "react";
+import FilterPassesSelect from "./FilterPassesSelect";
 
-const PassesWrapper = async () => {
-  const userPasses = await getPasses();
+interface WrapperProps {
+  passCategory: PassCategory | undefined;
+}
+const PassesWrapper = async ({ passCategory }: WrapperProps) => {
+  let userPasses = await getPasses();
+  if (passCategory == "SWIM") {
+    userPasses = userPasses.filter((pass) => pass.passType.category === "SWIM");
+  } else if (passCategory == "GYM") {
+    userPasses = userPasses.filter((pass) => pass.passType.category === "GYM");
+  }
   return (
     <Flex mb={10} direction="column" gap={5}>
+      <FilterPassesSelect selectedCategory={passCategory}/>
       {userPasses.map((item, index) => (
         <Box
           key={index}
@@ -37,7 +56,7 @@ const PassesWrapper = async () => {
               </Text>
               {item.isActive ? (
                 <Box
-                  p={1}
+                  p={2}
                   w="fit-content"
                   rounded="md"
                   bg="var(--success-bg)"
@@ -52,7 +71,7 @@ const PassesWrapper = async () => {
                 </Box>
               ) : (
                 <Box
-                  p={1}
+                  p={2}
                   w="fit-content"
                   rounded="md"
                   bg="var(--error-bg)"
@@ -72,7 +91,9 @@ const PassesWrapper = async () => {
                 × {item.quantity}
               </Text>
               <Button
-                display={{ base: "none", md: "block" }}
+                as="a"
+                href={`?id=${item.id}`}
+                display={{ base: "none", md: "inline-flex" }}
                 variant="orangeWhite"
               >
                 View pass
@@ -84,7 +105,11 @@ const PassesWrapper = async () => {
             my={5}
             borderColor="var(--black)"
           />
-          <Button display={{ base: "block", md: "none" }} variant="orangeWhite">
+          <Button
+            as="a"
+            display={{ base: "inline-flex", md: "none" }}
+            variant="orangeWhite"
+          >
             View pass
           </Button>
         </Box>

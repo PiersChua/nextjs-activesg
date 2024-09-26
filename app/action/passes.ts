@@ -32,7 +32,7 @@ const createPasses = async () => {
       isChecked: true,
     },
   });
-  return { success: "Passes purchased" };
+  return { success: "Passes purchased. View them under Profile" };
   // const [passType, user] = await Promise.all([
   //   prisma.passType.findUnique({
   //     where: {
