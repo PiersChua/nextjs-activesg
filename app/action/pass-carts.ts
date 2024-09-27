@@ -74,6 +74,9 @@ const getPassCarts = async () => {
     include: {
       passType: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
   return passCarts;
 };

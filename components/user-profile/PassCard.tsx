@@ -10,6 +10,7 @@ import {
 import { notFound } from "next/navigation";
 import React from "react";
 import PassStatusTag from "./PassStatusTag";
+import ActivatePassButton from "./ActivatePassButton";
 interface CardProps {
   passId: string;
 }
@@ -43,16 +44,22 @@ const PassCard = async ({ passId }: CardProps) => {
                 × {pass.quantity}
               </Text>
             </Text>
-
-            <Text textStyle="p2">
-              Purchased on {pass.createdAt.toLocaleDateString()}
-            </Text>
+            {pass.isActive && (
+              <>
+                <Text textStyle="p2">
+                  Activated on {pass.startDate!.toLocaleDateString()}
+                </Text>
+                <Text textStyle="p2">
+                  Expiring on {pass.endDate!.toLocaleDateString()}
+                </Text>
+              </>
+            )}
             <PassStatusTag isActive={pass.isActive}></PassStatusTag>
           </Stack>
         </CardBody>
         {!pass.isActive && (
           <CardFooter>
-            <Button variant="orangeWhite">Activate</Button>
+            <ActivatePassButton passId={pass.id} />
           </CardFooter>
         )}
       </Card>

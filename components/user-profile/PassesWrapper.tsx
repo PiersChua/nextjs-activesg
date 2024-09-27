@@ -1,18 +1,11 @@
 import { getPasses } from "@/app/action/passes";
 import { formatDurationUnit } from "@/utils/formatDateTime";
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Select,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Stack, Text } from "@chakra-ui/react";
 import { PassCategory } from "@prisma/client";
 import React from "react";
 import FilterPassesSelect from "./FilterPassesSelect";
 import PassStatusTag from "./PassStatusTag";
+import EmptyPass from "./EmptyPass";
 
 interface WrapperProps {
   passCategory: PassCategory | undefined;
@@ -27,6 +20,7 @@ const PassesWrapper = async ({ passCategory }: WrapperProps) => {
   return (
     <Flex mb={10} direction="column" gap={5}>
       <FilterPassesSelect selectedCategory={passCategory} />
+      {userPasses.length === 0 && <EmptyPass />}
       {userPasses.map((item, index) => (
         <Box
           key={index}
@@ -55,6 +49,9 @@ const PassesWrapper = async ({ passCategory }: WrapperProps) => {
                   )}
                 </Text>
               </Text>
+              <Text textStyle="p2" color="var(--grey)">
+                Purchased on {item.createdAt.toLocaleDateString()}
+              </Text>
               <PassStatusTag isActive={item.isActive} />
             </Flex>
             <Stack alignItems="flex-end" justifyContent="space-between">
@@ -78,6 +75,7 @@ const PassesWrapper = async ({ passCategory }: WrapperProps) => {
           />
           <Button
             as="a"
+            href={`?id=${item.id}`}
             display={{ base: "inline-flex", md: "none" }}
             variant="orangeWhite"
           >

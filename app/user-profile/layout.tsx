@@ -23,6 +23,10 @@ const tabItems = [
     label: "Passes",
     href: "/user-profile/passes",
   },
+  {
+    label: "Bookings",
+    href: "/user-profile/bookings",
+  },
 ];
 
 export default ProfileLayout;

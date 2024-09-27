@@ -14,4 +14,12 @@ const formatDurationUnit = (durationInDays: number) => {
   }
 };
 
-export { get12HourTime, formatDurationUnit };
+const getStartAndEndDate = (durationInDays: number) => {
+  const currentDateUTC = new Date();
+  const currentDateSG = new Date(currentDateUTC.getTime() + 8 * 60 * 60 * 1000); // use current SG date to store in db
+  const endDateUTC = new Date();
+  endDateUTC.setDate(currentDateUTC.getDate() + durationInDays - 1); // include today
+  return { currentDateSG, endDateUTC };
+};
+
+export { get12HourTime, formatDurationUnit, getStartAndEndDate };

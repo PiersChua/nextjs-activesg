@@ -1,8 +1,10 @@
 "use server";
 
 import prisma from "@/lib/db";
+import { getStartAndEndDate } from "@/utils/formatDateTime";
 import { getSessionUser } from "@/utils/getAuth";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const createPasses = async () => {
   const user = await getSessionUser();
@@ -33,37 +35,6 @@ const createPasses = async () => {
     },
   });
   return { success: "Passes purchased. View them under Profile" };
-  // const [passType, user] = await Promise.all([
-  //   prisma.passType.findUnique({
-  //     where: {
-  //       id: passTypeId,
-  //     },
-  //   }),
-  //   getSessionUser(),
-  // ]);
-  // const userId = user?.id;
-  // const currentDateUTC = new Date();
-  // const currentDateSG = new Date(currentDateUTC.getTime() + 8 * 60 * 60 * 1000);
-  // const endDateUTC = new Date();
-  // endDateUTC.setDate(currentDateSG.getDate() + passType!.durationInDays - 1); // include today
-  // // Set the end time to midnight Singapore time
-  // // setHours sets the local time (SG - UTC+8), which automatically converts to UTC
-  // endDateUTC.setHours(23, 59, 59, 999);
-  // const pass = await prisma.pass.create({
-  //   data: {
-  //     endDate: endDateUTC,
-  //     user: {
-  //       connect: {
-  //         id: userId,
-  //       },
-  //     },
-  //     passType: {
-  //       connect: {
-  //         id: passType!.id,
-  //       },
-  //     },
-  //   },
-  // });
 };
 const getPasses = async () => {
   const user = await getSessionUser();
@@ -79,9 +50,59 @@ const getPasses = async () => {
     include: {
       passType: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
   return passes;
 };
-const activatePass = (passId: string) => {};
+const activatePass = async (passId: string) => {
+  const user = await getSessionUser();
+  if (!user) {
+    throw new Error("Unauthorized content");
+  }
+  const userPass = await prisma.pass.findUnique({
+    where: { id: passId },
+    include: { passType: true },
+  });
+  if (!userPass) {
+    return { error: "Pass type not found" };
+  }
+  const newQuantity = userPass.quantity - 1;
+  if (newQuantity === 0) {
+    const deletedPass = await prisma.pass.delete({ where: { id: passId } });
+  } else {
+    const updatedPasses = await prisma.pass.update({
+      where: { id: passId },
+      data: {
+        quantity: {
+          decrement: 1,
+        },
+      },
+    });
+  }
+  const { currentDateSG, endDateUTC } = getStartAndEndDate(
+    userPass.passType.durationInDays
+  );
+  const activatedPass = await prisma.pass.create({
+    data: {
+      isActive: true,
+      startDate: currentDateSG,
+      endDate: endDateUTC,
+      quantity: 1,
+      user: {
+        connect: {
+          id: userPass.userId,
+        },
+      },
+      passType: {
+        connect: {
+          id: userPass.passType.id,
+        },
+      },
+    },
+  });
+  redirect("/user-profile/passes");
+};
 
 export { createPasses, getPasses, activatePass };
