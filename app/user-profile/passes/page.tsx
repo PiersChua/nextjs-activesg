@@ -1,3 +1,4 @@
+import PassCard from "@/components/user-profile/PassCard";
 import PassesWrapper from "@/components/user-profile/PassesWrapper";
 import { Container } from "@chakra-ui/react";
 import { PassCategory } from "@prisma/client";
@@ -14,7 +15,7 @@ const PassesPage = ({
           passCategory={searchParams.passCategory as PassCategory}
         />
       ) : (
-        <h2>Display {searchParams.id} passes</h2>
+        <PassCard passId={searchParams.id} />
       )}
     </Container>
   );

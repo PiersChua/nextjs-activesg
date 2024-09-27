@@ -112,13 +112,15 @@ const QuantityModal = ({ id, quantity = 1, type, route }: ModalProps) => {
                 >
                   Close
                 </Button>
-                <Button
-                  variant="outlineOrange"
-                  type="submit"
-                  isLoading={isPending}
-                >
-                  Confirm
-                </Button>
+                {success || (
+                  <Button
+                    variant="outlineOrange"
+                    type="submit"
+                    isLoading={isPending}
+                  >
+                    Confirm
+                  </Button>
+                )}
               </Stack>
             </Stack>
           </ModalBody>

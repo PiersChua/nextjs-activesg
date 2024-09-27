@@ -12,6 +12,7 @@ import {
 import { PassCategory } from "@prisma/client";
 import React from "react";
 import FilterPassesSelect from "./FilterPassesSelect";
+import PassStatusTag from "./PassStatusTag";
 
 interface WrapperProps {
   passCategory: PassCategory | undefined;
@@ -25,7 +26,7 @@ const PassesWrapper = async ({ passCategory }: WrapperProps) => {
   }
   return (
     <Flex mb={10} direction="column" gap={5}>
-      <FilterPassesSelect selectedCategory={passCategory}/>
+      <FilterPassesSelect selectedCategory={passCategory} />
       {userPasses.map((item, index) => (
         <Box
           key={index}
@@ -54,37 +55,7 @@ const PassesWrapper = async ({ passCategory }: WrapperProps) => {
                   )}
                 </Text>
               </Text>
-              {item.isActive ? (
-                <Box
-                  p={2}
-                  w="fit-content"
-                  rounded="md"
-                  bg="var(--success-bg)"
-                  color="var(--success-text)"
-                >
-                  <Text textStyle="p2">
-                    Status:{" "}
-                    <Text as="span" fontWeight="semibold">
-                      Active
-                    </Text>
-                  </Text>
-                </Box>
-              ) : (
-                <Box
-                  p={2}
-                  w="fit-content"
-                  rounded="md"
-                  bg="var(--error-bg)"
-                  color="var(--error-text)"
-                >
-                  <Text textStyle="p2">
-                    Status:{" "}
-                    <Text as="span" fontWeight="semibold">
-                      Inactive
-                    </Text>
-                  </Text>
-                </Box>
-              )}
+              <PassStatusTag isActive={item.isActive} />
             </Flex>
             <Stack alignItems="flex-end" justifyContent="space-between">
               <Text whiteSpace="nowrap" textStyle="p" color="var(--grey)">
