@@ -1,22 +1,21 @@
 import { getPasses } from "@/app/action/passes";
-import { formatDurationUnit } from "@/utils/formatDateTime";
+import { formatDurationUnit, isExpired } from "@/utils/formatDateTime";
 import { Box, Button, Divider, Flex, Stack, Text } from "@chakra-ui/react";
 import { PassCategory } from "@prisma/client";
 import React from "react";
 import FilterPassesSelect from "./FilterPassesSelect";
 import PassStatusTag from "./PassStatusTag";
 import EmptyPass from "./EmptyPass";
+import { filterPasses } from "@/utils/filterPasses";
 
 interface WrapperProps {
   passCategory: PassCategory | undefined;
+  passStatus: string;
 }
-const PassesWrapper = async ({ passCategory }: WrapperProps) => {
+const PassesWrapper = async ({ passCategory, passStatus }: WrapperProps) => {
   let userPasses = await getPasses();
-  if (passCategory == "SWIM") {
-    userPasses = userPasses.filter((pass) => pass.passType.category === "SWIM");
-  } else if (passCategory == "GYM") {
-    userPasses = userPasses.filter((pass) => pass.passType.category === "GYM");
-  }
+  userPasses = filterPasses(userPasses, passCategory, passStatus);
+
   return (
     <Flex mb={10} direction="column" gap={5}>
       <FilterPassesSelect selectedCategory={passCategory} />
@@ -52,7 +51,10 @@ const PassesWrapper = async ({ passCategory }: WrapperProps) => {
               <Text textStyle="p2" color="var(--grey)">
                 Purchased on {item.createdAt.toLocaleDateString()}
               </Text>
-              <PassStatusTag isActive={item.isActive} />
+              <PassStatusTag
+                expiryDate={item.isActive ? (item.endDate as Date) : undefined}
+                isActive={item.isActive}
+              />
             </Flex>
             <Stack alignItems="flex-end" justifyContent="space-between">
               <Text whiteSpace="nowrap" textStyle="p" color="var(--grey)">

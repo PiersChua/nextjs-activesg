@@ -9,6 +9,7 @@ import { selectTheme } from "@/app/_themes/Select";
 import { buttonTheme } from "@/app/_themes/Button";
 import { numberInputTheme } from "@/app/_themes/NumberInput";
 import { tabsTheme } from "@/app/_themes/Tabs";
+import { radioTheme } from "./_themes/Radio";
 
 /* Theme */
 const theme = extendTheme({
@@ -18,6 +19,7 @@ const theme = extendTheme({
     Button: buttonTheme,
     NumberInput: numberInputTheme,
     Tabs: tabsTheme,
+    Radio: radioTheme,
   },
   textStyles: {
     h1: {

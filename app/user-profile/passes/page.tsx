@@ -13,6 +13,7 @@ const PassesPage = ({
       {!searchParams.id ? (
         <PassesWrapper
           passCategory={searchParams.passCategory as PassCategory}
+          passStatus={searchParams.passStatus}
         />
       ) : (
         <PassCard passId={searchParams.id} />

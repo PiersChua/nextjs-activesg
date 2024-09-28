@@ -22,4 +22,9 @@ const getStartAndEndDate = (durationInDays: number) => {
   return { currentDateSG, endDateUTC };
 };
 
-export { get12HourTime, formatDurationUnit, getStartAndEndDate };
+const isExpired = (expiryDate: Date) => {
+  const today = new Date();
+  return expiryDate < new Date(today.setDate(today.getDate() - 1));
+};
+
+export { get12HourTime, formatDurationUnit, getStartAndEndDate, isExpired };

@@ -1,40 +1,65 @@
 "use client";
+import { isExpired } from "@/utils/formatDateTime";
 import { Box, Icon, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { FaExclamationTriangle } from "react-icons/fa";
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import {
+  IoIosInformationCircleOutline,
+  IoMdCheckmarkCircleOutline,
+} from "react-icons/io";
 interface TagProps {
   isActive: boolean;
+  expiryDate: Date | undefined;
 }
-const PassStatusTag = ({ isActive }: TagProps) => {
+const PassStatusTag = ({ isActive, expiryDate }: TagProps) => {
   return isActive ? (
-    <Box
-      p={2}
-      w="fit-content"
-      rounded="md"
-      bg="var(--success-bg)"
-      color="var(--success-text)"
-    >
-      <Stack alignItems="center" direction="row">
-        <Icon as={IoMdCheckmarkCircleOutline} />
-        <Text textStyle="p2">
-          Status:{" "}
-          <Text as="span" fontWeight="semibold">
-            Active
+    isExpired(expiryDate!) ? (
+      <Box
+        p={2}
+        w="fit-content"
+        rounded="md"
+        bg="var(--error-bg)"
+        color="var(--error-text)"
+      >
+        <Stack alignItems="center" direction="row">
+          <Icon as={FaExclamationTriangle} />
+          <Text textStyle="p2">
+            Status:{" "}
+            <Text as="span" fontWeight="semibold">
+              Expired
+            </Text>
           </Text>
-        </Text>
-      </Stack>
-    </Box>
+        </Stack>
+      </Box>
+    ) : (
+      <Box
+        p={2}
+        w="fit-content"
+        rounded="md"
+        bg="var(--success-bg)"
+        color="var(--success-text)"
+      >
+        <Stack alignItems="center" direction="row">
+          <Icon as={IoMdCheckmarkCircleOutline} />
+          <Text textStyle="p2">
+            Status:{" "}
+            <Text as="span" fontWeight="semibold">
+              Active
+            </Text>
+          </Text>
+        </Stack>
+      </Box>
+    )
   ) : (
     <Box
       p={2}
       w="fit-content"
       rounded="md"
-      bg="var(--error-bg)"
-      color="var(--error-text)"
+      bg="var(--info-bg)"
+      color="var(--info-text)"
     >
       <Stack alignItems="center" direction="row">
-        <Icon as={FaExclamationTriangle} />
+        <Icon as={IoIosInformationCircleOutline} />
         <Text textStyle="p2">
           Status:{" "}
           <Text as="span" fontWeight="semibold">

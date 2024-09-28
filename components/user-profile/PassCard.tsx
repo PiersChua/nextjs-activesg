@@ -11,6 +11,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 import PassStatusTag from "./PassStatusTag";
 import ActivatePassButton from "./ActivatePassButton";
+import { isExpired } from "@/utils/formatDateTime";
 interface CardProps {
   passId: string;
 }
@@ -50,11 +51,15 @@ const PassCard = async ({ passId }: CardProps) => {
                   Activated on {pass.startDate!.toLocaleDateString()}
                 </Text>
                 <Text textStyle="p2">
-                  Expiring on {pass.endDate!.toLocaleDateString()}
+                  {isExpired(pass.endDate!) ? "Expired" : "Expiring"} on{" "}
+                  {pass.endDate!.toLocaleDateString()}
                 </Text>
               </>
             )}
-            <PassStatusTag isActive={pass.isActive}></PassStatusTag>
+            <PassStatusTag
+              expiryDate={pass.endDate!}
+              isActive={pass.isActive}
+            />
           </Stack>
         </CardBody>
         {!pass.isActive && (
